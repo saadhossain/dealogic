@@ -5,6 +5,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
     const {userLogin} = useContext(AuthContext)
+    //Handle User login functionality using email and password
     const handleUserLogin = (e) => {
         e.preventDefault()
         const form = e.target

@@ -5,6 +5,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Sell from "../Pages/Sell/Sell";
+import PrivateRouter from "./PrivateRouter";
 
 export const Routers = createBrowserRouter([
     {
@@ -29,7 +30,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/sell',
-                element: <Sell></Sell>
+                element: <PrivateRouter><Sell></Sell></PrivateRouter>
             }
         ]
     }
