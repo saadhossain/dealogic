@@ -2,7 +2,15 @@
 module.exports = {
     content: ["./src/**/*.{html,js}"],
     theme: {
-        extend: {},
+        extend: {
+          colors: {
+            "innova": "#FE5E05",
+            "secondary": "#FC970E"
+          }
+        },
     },
     plugins: [],
+      daisyui: {
+        themes: ["light", "dark", ]
+      },
 }
