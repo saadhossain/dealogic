@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Register = () => {
-    const { createUser , updateUser} = useContext(AuthContext)
+    const { createUser, updateUser} = useContext(AuthContext)
 
     //Set Account type
     const [accountType, setAccountType] = useState('Buyer')
@@ -37,23 +37,23 @@ const Register = () => {
                     accountType
                 }
                 createUser(email, password)
-                .then((result) => {
-                    const user = result.user;
-                    console.log(user);
-                    toast.success('User Registration Successful...')
-                    updateUser(fullName, profileImage)
-                    .then(() => {
+                    .then((result) => {
+                        const user = result.user;
+                        console.log(user);
+                        toast.success('User Registration Successful...')
+                        updateUser(fullName, profileImage)
+                            .then(() => {
+                            })
+                        saveUser(userInfo)
+                        form.reset()
                     })
-                    saveUser(userInfo)
-                    form.reset()
-                })
-                .catch(err=> console.error(err))
+                    .catch(err => console.error(err))
             })
             .catch(err => console.error(err))
     }
 
     //Save New user to the database
-    const saveUser  = (userInfo) => {
+    const saveUser = (userInfo) => {
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -61,7 +61,7 @@ const Register = () => {
             },
             body: JSON.stringify(userInfo)
         })
-    } 
+    }
     return (
         <div className='flex justify-center'>
             <div className="flex flex-col max-w-md p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl">
