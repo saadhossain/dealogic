@@ -13,7 +13,6 @@ const MyProudcts = () => {
         queryFn: () => fetch(`http://localhost:5000/products?email=${user?.email}`)
             .then(res => res.json())
     })
-    const [prodStatus, setProdStatus] = useState();
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
         fetch(`http://localhost:5000/products/${id}`, {
@@ -21,12 +20,13 @@ const MyProudcts = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ prodStatus })
+            body: JSON.stringify({ prodStatus : 'Sold' })
         })
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
                     toast.success('Product Status Updated...')
+                    refetch()
                 }
             })
     }
@@ -66,7 +66,7 @@ const MyProudcts = () => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='font-semibold'>
                             {
                                 myProducts.map((myproduct, idx) => <tr
                                     key={myproduct._id}
@@ -76,11 +76,18 @@ const MyProudcts = () => {
                                     <td>${myproduct.regularPrice}</td>
                                     <td>${myproduct.resalePrice}</td>
                                     <td className='flex items-center gap-1'>
-                                        <select onChange={e => setProdStatus(e.target.value)} name="prodStatus" id="prodStatus" className='border-2 border-gray-800 rounded'>
+                                        {/* <select onChange={e => setProdStatus(e.target.value)} name="prodStatus" id="prodStatus" className='border-2 border-gray-800 rounded'>
                                             <option value={myproduct?.prodStatus}>{myproduct?.prodStatus}</option>
                                             <option value={myproduct?.prodStatus === 'Sold' ? 'Available' : 'Sold'}>{myproduct?.prodStatus === 'Sold' ? 'Available' : 'Sold'}</option>
                                         </select>
-                                        <button onClick={() => handleStatusChange(myproduct._id)} className='bg-innova hover:bg-secondary duration-300 py-1 px-2 rounded text-white'>Save</button>
+                                        <button onClick={() => handleStatusChange(myproduct._id)} className='bg-innova hover:bg-secondary duration-300 py-1 px-2 rounded text-white'>Save</button> */}
+                                        <button
+                                        onClick={() => handleStatusChange(myproduct._id)}
+                                        className={`duration-300 py-1 px-2 rounded text-white font-semibold ${myproduct.prodStatus === 'Sold' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
+                                        disabled={myproduct.prodStatus === 'Sold'}
+                                        >
+                                        {myproduct.prodStatus === 'Sold'? 'Sold' : 'Mark Sold'}
+                                        </button>
                                     </td>
                                     <td>
                                         <button className='bg-innova hover:bg-secondary duration-300 py-1 px-2 rounded text-white'>{myproduct.promoted ? 'Promoted' : 'Promote'}</button>
