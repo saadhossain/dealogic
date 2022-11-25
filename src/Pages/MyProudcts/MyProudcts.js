@@ -1,13 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { FaTrash } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const MyProudcts = () => {
     //Get User from the Context
     const { user } = useContext(AuthContext)
     //Get Products for logged in users
-    const { data: myProducts = [] } = useQuery({
+    const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts', user?.email],
         queryFn: () => fetch(`http://localhost:5000/products?email=${user?.email}`)
             .then(res => res.json())
@@ -15,20 +16,35 @@ const MyProudcts = () => {
     const [prodStatus, setProdStatus] = useState();
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        // console.log(id);
-        fetch(`http://localhost:5000/products/${id}`,{
+        fetch(`http://localhost:5000/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({prodStatus})
+            body: JSON.stringify({ prodStatus })
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.modifiedCount > 0){
-                toast.success('Product Status Updated...')
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Product Status Updated...')
+                }
+            })
+    }
+    //Remove Product from listing
+    const handleRemoveProduct = (id) => {
+        const confirmation = window.confirm('Do You Want to Delete This Item?')
+        if (confirmation) {
+            fetch(`http://localhost:5000/products/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.deletedCount > 0){
+                        toast.error('One Product has been Deleted...')
+                        refetch()
+                    }
+                })
+        }
     }
     return (
         <div>
@@ -46,23 +62,31 @@ const MyProudcts = () => {
                                 <th>Regular Price</th>
                                 <th>Sale Price</th>
                                 <th>Status</th>
+                                <th>Promote</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 myProducts.map((myproduct, idx) => <tr
-                                key={myproduct._id}
+                                    key={myproduct._id}
                                 >
-                                    <th>{idx+1}</th>
+                                    <th>{idx + 1}</th>
                                     <td>{myproduct.proName}</td>
                                     <td>${myproduct.regularPrice}</td>
                                     <td>${myproduct.resalePrice}</td>
                                     <td className='flex items-center gap-1'>
-                                        <select onChange={e=> setProdStatus(e.target.value)} name="prodStatus" id="prodStatus" className='border-2 border-gray-800 rounded'>
+                                        <select onChange={e => setProdStatus(e.target.value)} name="prodStatus" id="prodStatus" className='border-2 border-gray-800 rounded'>
                                             <option value={myproduct?.prodStatus}>{myproduct?.prodStatus}</option>
                                             <option value={myproduct?.prodStatus === 'Sold' ? 'Available' : 'Sold'}>{myproduct?.prodStatus === 'Sold' ? 'Available' : 'Sold'}</option>
                                         </select>
-                                        <button onClick={()=> handleStatusChange(myproduct._id)} className='bg-innova hover:bg-secondary duration-300 py-1 px-2 rounded text-white'>Save</button>
+                                        <button onClick={() => handleStatusChange(myproduct._id)} className='bg-innova hover:bg-secondary duration-300 py-1 px-2 rounded text-white'>Save</button>
+                                    </td>
+                                    <td>
+                                        <button className='bg-innova hover:bg-secondary duration-300 py-1 px-2 rounded text-white'>{myproduct.promoted ? 'Promoted' : 'Promote'}</button>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => handleRemoveProduct(myproduct._id)} className='text-innova hover:text-red-700 duration-300'><FaTrash></FaTrash></button>
                                     </td>
                                 </tr>)
                             }
