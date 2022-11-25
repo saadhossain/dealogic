@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Register = () => {
     const { createUser, updateUser} = useContext(AuthContext)
-
+    //Use Location to redirect user after registration
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/dashboard'
     //Set Account type
     const [accountType, setAccountType] = useState('Buyer')
     //Register a new user
@@ -45,6 +48,7 @@ const Register = () => {
                             })
                         saveUser(userInfo)
                         form.reset()
+                        navigate(from, {replace: true})
                     })
                     .catch(err => console.error(err))
             })

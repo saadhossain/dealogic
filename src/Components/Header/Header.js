@@ -25,14 +25,14 @@ const Header = () => {
                 <ul className={`md:flex items-center gap-3 font-semibold absolute md:static py-5 px-10 shadow-lg md:shadow-none ${expand ? 'top-8 right-0' : 'top-[-200px] right-0'}`}>
                     <li className='hover:text-innova'><NavLink to='/'>Home</NavLink></li>
                     <li className='hover:text-innova'><NavLink to='/blogs'>Blog</NavLink></li>
-                    <li className='hover:text-innova'><NavLink to='/sell'>Sell</NavLink></li>
+                    <li className='hover:text-innova'><NavLink to='/dashboard/addProduct'>Sell</NavLink></li>
                     {
                         user?.email
                             ? <>
                                 <Link to='/dashboard'>
                                     <img src={user?.photoURL ? user.photoURL : ''} alt={user?.displayName} className='w-10 rounded-full' />
                                 </Link>
-                                <Link onClick={handleLogOut}><FaPowerOff className='w-6 h-6'></FaPowerOff></Link>
+                                <Link onClick={handleLogOut}><FaPowerOff className='w-5 h-5 duration-500 text-accent hover:text-innova'></FaPowerOff></Link>
                             </>
                             : <li className='hover:text-innova'><NavLink to='/login'>Login</NavLink></li>
                     }

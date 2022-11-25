@@ -8,7 +8,6 @@ import Login from "../Pages/Login/Login";
 import MyProudcts from "../Pages/MyProudcts/MyProudcts";
 import Products from "../Pages/Products/Products";
 import Register from "../Pages/Register/Register";
-import Sell from "../Pages/Sell/Sell";
 import PrivateRouter from "./PrivateRouter";
 
 export const Routers = createBrowserRouter([
@@ -36,10 +35,6 @@ export const Routers = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>
-            },
-            {
-                path: '/sell',
-                element: <PrivateRouter><Sell></Sell></PrivateRouter>
             }
         ]
     },

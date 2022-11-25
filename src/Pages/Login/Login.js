@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
     const {userLogin} = useContext(AuthContext)
+    //Use Location to redirect user after registration
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/dashboard'
     //Handle User login functionality using email and password
     const handleUserLogin = (e) => {
         e.preventDefault()
@@ -16,6 +20,7 @@ const Login = () => {
             const user = result.user;
             toast.success('User Login Successful...')
             form.reset()
+            navigate(from, {replace: true})
         })
         .catch(err => console.error(err))
     }
