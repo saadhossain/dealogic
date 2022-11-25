@@ -8,7 +8,6 @@ import toast from 'react-hot-toast';
 
 const Header = () => {
     const [expand, setExpand] = useState(false);
-
     //get user form the context
     const { user, logOut } = useContext(AuthContext)
 
