@@ -5,7 +5,8 @@ module.exports = {
         extend: {
           colors: {
             "innova": "#FE5E05",
-            "secondary": "#FC970E"
+            "secondary": "#FC970E",
+            "accent": "#191A1F"
           }
         },
     },

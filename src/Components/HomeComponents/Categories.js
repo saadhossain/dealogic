@@ -3,7 +3,6 @@ import React from 'react';
 import CategoryShowcase from './CategoryShowcase';
 
 const Categories = () => {
-
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
         queryFn: () => fetch('http://localhost:5000/categories')

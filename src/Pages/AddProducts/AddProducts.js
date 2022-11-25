@@ -48,7 +48,8 @@ const AddProducts = () => {
                 productCategory,
                 sellerName: user?.displayName,
                 sellerEmail: user?.email,
-                addedOn: new Date()
+                addedOn: new Date(),
+                prodStatus: 'Available',
             }
             //Save New Product to the Database
             fetch('http://localhost:5000/products', {
@@ -72,8 +73,9 @@ const AddProducts = () => {
     }
     return (
         <div className='w-full flex flex-col p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl'>
-            <div className="mb-8 text-center">
-                <h1 className="my-3 text-4xl font-bold">Add A Product</h1>
+            <div className='relative'>
+                <h1 className='text-xl lg:text-4xl font-bold text-innova mb-10'>Add A Product</h1>
+                <div className='border-2 border-innova w-20 absolute top-8 left-64'></div>
             </div>
             <form onSubmit={handleAddProduct}>
                 <div className="space-y-4">
@@ -126,11 +128,12 @@ const AddProducts = () => {
                     </div>
                     <div>
                         <label htmlFor="productImage" className="mb-2 text-lg block">Product Image</label>
-                        <input type="file" name="productImage" id="productImage" className="text-gray-800" />
+                        <input type="file" name="productImage" id="productImage" className="w-full px-3 py-2" />
+                        <label htmlFor="regularPrice" className="mb-2 text-lg">Image Dimension: <span className='font-semibold'>450px by 300px</span></label>
                     </div>
                     <div>
                         <label htmlFor="description" className="mb-2 text-lg block">Product Description</label>
-                        <textarea onBlur={handleValues} name="description" id="description" rows="3" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" ></textarea>
+                        <textarea onBlur={handleValues} name="description" id="description" rows="3" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" placeholder='Product Description' ></textarea>
                     </div>
                     {/* Product information section end */}
 
