@@ -9,7 +9,6 @@ const Categories = () => {
         queryFn: () => fetch('http://localhost:5000/categories')
             .then(res => res.json())
     })
-    console.log(categories);
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto mt-10'>
             <div className='relative'>

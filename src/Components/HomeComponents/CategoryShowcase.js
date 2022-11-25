@@ -9,7 +9,7 @@ const CategoryShowcase = ({ category }) => {
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-semibold">{category.categoryName}</h2>
                     <div className="card-actions justify-center">
-                        <Link to={`/category/${category._id}`}>
+                        <Link to={`/products/${category.catSlug}`}>
                             <button className="btn btn-primary bg-innova border-none hover:bg-secondary duration-300 ease-in-out">View Products</button>
                         </Link>
                     </div>
