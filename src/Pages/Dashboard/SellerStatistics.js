@@ -1,0 +1,32 @@
+import { useQuery } from '@tanstack/react-query';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
+
+const SellerStatistics = () => {
+    const {user} = useContext(AuthContext)
+    //Get Purchase products
+    //Get Products for logged in users
+    const { data: myProducts = [] } = useQuery({
+        queryKey: ['myProducts', user?.email],
+        queryFn: () => fetch(`http://localhost:5000/products?email=${user?.email}`)
+            .then(res => res.json())
+    })
+    //total Purchase Price
+    const totalPurchasePrice = myProducts.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0)
+    return (
+        <div>
+            {
+                myProducts.length > 0 && <div className='shadow-xl rounded-lg p-5 bg-slate-50'>
+                    <h3 className='text-2xl font-bold'>Total Purchase: <span className='text-innova'>{myProducts.length}</span></h3>
+                    <h3 className='text-2xl font-bold'>Total Price: <span className='text-innova'>${totalPurchasePrice}</span></h3>
+                    <Link to='/dashboard/mypurchase'>
+                        <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-innova hover:bg-secondary'>See All</button>
+                    </Link>
+                </div>
+            }
+        </div>
+    );
+};
+
+export default SellerStatistics;
