@@ -33,10 +33,13 @@ const DashboardLeftSidebar = () => {
                     </div>
                     <div className='mt-10 ml-5'>
                         <ul className='font-semibold flex flex-col gap-3'>
+                            <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                <li>Dashboard</li>
+                            </Link>
                             {/* //Conditionally showing Admin menus */}
                             {
                                 loggedInUser?.accountType === 'Admin' && <>
-                                    <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>All Products</li>
                                     </Link>
                                     <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
@@ -53,7 +56,7 @@ const DashboardLeftSidebar = () => {
                             {/* //Conditionally showing Seller menus */}
                             {
                                 loggedInUser?.accountType === 'Seller' && <>
-                                <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/myproducts' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>My Products</li>
                                     </Link>
                                     <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
@@ -63,8 +66,8 @@ const DashboardLeftSidebar = () => {
                             {/* //Conditionally showing buyer menus */}
                             {
                                 loggedInUser?.accountType === 'Buyer' && <>
-                                <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
-                                        <li>My Purchase</li>
+                                    <Link to='/dashboard/mypurchase' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>My Purchases</li>
                                     </Link>
                                     <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>Sell A Product</li>

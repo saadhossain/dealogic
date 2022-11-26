@@ -8,7 +8,7 @@ const Register = () => {
     //Use Location to redirect user after registration
     const location = useLocation()
     const navigate = useNavigate()
-    const from = location.state?.from?.pathname || '/dashboard'
+    const from = location.state?.from?.pathname || '/dashboard/mypurchase'
     //Set Account type
     const [accountType, setAccountType] = useState('Buyer')
     //Register a new user

@@ -3,9 +3,11 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import AddProducts from "../Pages/AddProducts/AddProducts";
 import Blogs from "../Pages/Blogs/Blogs";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import MyProudcts from "../Pages/MyProudcts/MyProudcts";
+import MyPurchase from "../Pages/MyPurchase/MyPurchase";
 import Products from "../Pages/Products/Products";
 import Register from "../Pages/Register/Register";
 import PrivateRouter from "./PrivateRouter";
@@ -21,7 +23,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/products/:category',
-                loader: ({params}) => fetch(`http://localhost:5000/products/${params.category}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.category}`),
                 element: <PrivateRouter><Products></Products></PrivateRouter>
             },
             {
@@ -29,7 +31,7 @@ export const Routers = createBrowserRouter([
                 element: <Login></Login>
             },
             {
-                path:'/register',
+                path: '/register',
                 element: <Register></Register>
             },
             {
@@ -41,17 +43,28 @@ export const Routers = createBrowserRouter([
 
     //User dashboard routes
     {
-        path:'/dashboard',
-        element:<DashboardLayout></DashboardLayout>,
+        path: '/dashboard',
+        element: <DashboardLayout></DashboardLayout>,
         children: [
             {
-                path:'/dashboard/',
-                element: <PrivateRouter><MyProudcts></MyProudcts></PrivateRouter>
-            }
-            ,
+                path: '/dashboard',
+                element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>
+            },
             {
-                path:'/dashboard/addProduct',
+                path: '/dashboard/allproducts',
+                element: <PrivateRouter></PrivateRouter>
+            },
+            {
+                path: '/dashboard/addProduct',
                 element: <PrivateRouter><AddProducts></AddProducts></PrivateRouter>
+            },
+            {
+                path: '/dashboard/mypurchase',
+                element: <PrivateRouter><MyPurchase></MyPurchase></PrivateRouter>
+            },
+            {
+                path: '/dashboard/myproducts',
+                element: <PrivateRouter><MyProudcts></MyProudcts></PrivateRouter>
             }
         ]
     }
