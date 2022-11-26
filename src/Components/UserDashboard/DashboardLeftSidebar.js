@@ -1,18 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext} from 'react';
 import toast from 'react-hot-toast';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useUser from '../../hooks/UseUser/useUser';
 
 const DashboardLeftSidebar = () => {
     const { user, logOut } = useContext(AuthContext)
-
-    const [loggedInUser, setLoggedInUser] = useState([])
-    useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setLoggedInUser(data[0]))
-    }, [user?.email])
+    //Get LoggedIn user by using useUser hook
+    const {loggedInUser} = useUser(user?.email)
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -45,10 +41,10 @@ const DashboardLeftSidebar = () => {
                                     <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>Add A Product</li>
                                     </Link>
-                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/allusers' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>All Users</li>
                                     </Link>
-                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/bookedproducts' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>Booked Products</li>
                                     </Link>
                                 </>

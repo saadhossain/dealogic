@@ -5,7 +5,7 @@ import { FaTrash } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider';
 import {RiRocket2Fill} from 'react-icons/ri'
 
-const AllProducts = () => {
+const AllUsers = () => {
     //Get User from the Context
     const { user } = useContext(AuthContext)
     //Get Products for logged in users
@@ -67,8 +67,8 @@ const AllProducts = () => {
     return (
         <div>
             <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-innova mb-10'>All Products</h1>
-                <div className='border-2 border-innova w-20 absolute top-8 left-56'></div>
+                <h1 className='text-xl lg:text-4xl font-bold text-innova mb-10'>All Users</h1>
+                <div className='border-2 border-innova w-20 absolute top-8 left-40'></div>
             </div>
             <div>
                 <div className="overflow-x-auto">
@@ -124,4 +124,4 @@ const AllProducts = () => {
     );
 };
 
-export default AllProducts;
+export default AllUsers;
