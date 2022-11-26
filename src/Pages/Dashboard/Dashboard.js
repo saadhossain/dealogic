@@ -26,6 +26,9 @@ const Dashboard = () => {
                 <div className='border-2 border-innova w-20 absolute top-8 left-40'></div>
             </div>
             <div className='grid lg:grid-cols-3 gap-5'>
+                {/* For admin */}
+                
+                {/* for buyer */}
                 {
                     myPurchases.length > 0 && <div className='shadow-xl rounded-lg p-5 bg-slate-50'>
                         <h3 className='text-2xl font-bold'>Total Purchase: <span className='text-innova'>{myPurchases.length}</span></h3>
@@ -35,6 +38,7 @@ const Dashboard = () => {
                         </Link>
                     </div>
                 }
+                {/* for seller */}
                 {
                     myProducts.length > 0 && <div>
                         <h3>{myProducts.length}</h3>

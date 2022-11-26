@@ -1,10 +1,10 @@
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AiOutlineLogout } from 'react-icons/ai';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assests/logo.png';
 import { AuthContext } from '../../Context/AuthProvider';
-import {FaPowerOff} from 'react-icons/fa'
-import toast from 'react-hot-toast';
 
 const Header = () => {
     const [expand, setExpand] = useState(false);
@@ -14,9 +14,9 @@ const Header = () => {
     //Handle User logout
     const handleLogOut = () => {
         logOut()
-        .then(()=> {
-            toast.success('User Logged Out...')
-        })
+            .then(() => {
+                toast.success('User Logged Out...')
+            })
     }
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto my-1 flex justify-between items-center'>
@@ -30,9 +30,14 @@ const Header = () => {
                         user?.email
                             ? <>
                                 <Link to='/dashboard'>
+                                    <li className='hover:text-innova'>Dashboard</li>
+                                </Link>
+                                <Link to='/dashboard'>
                                     <img src={user?.photoURL ? user.photoURL : ''} alt={user?.displayName} className='w-10 rounded-full' />
                                 </Link>
-                                <Link onClick={handleLogOut}><FaPowerOff className='w-5 h-5 duration-500 text-accent hover:text-innova'></FaPowerOff></Link>
+                                <Link onClick={handleLogOut}>
+                                    <AiOutlineLogout className='w-6 h-6 text-accent'></AiOutlineLogout>
+                                </Link>
                             </>
                             : <li className='hover:text-innova'><NavLink to='/login'>Login</NavLink></li>
                     }
