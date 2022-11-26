@@ -7,7 +7,7 @@ const DashboardLayout = () => {
     return (
         <div>
             <Header></Header>
-            <div className='w-11/12 lg:w-10/12 mx-auto flex gap-5'>
+            <div className='w-11/12 lg:w-10/12 mx-auto flex gap-5 my-5'>
                 <div className='w-1/4 sticky top-10'>
                     <DashboardLeftSidebar></DashboardLeftSidebar>
                 </div>

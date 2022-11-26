@@ -25,7 +25,7 @@ const Login = () => {
         .catch(err => console.error(err))
     }
     return (
-        <div className='flex justify-center'>
+        <div className='flex justify-center my-5'>
             <div className="flex flex-col max-w-md p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl">
                 <div className="mb-8 text-center">
                     <h1 className="my-3 text-4xl font-bold">Login your Account</h1>

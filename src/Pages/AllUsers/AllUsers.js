@@ -59,7 +59,9 @@ const AllUsers = () => {
                                         <img src={users.profileImage} alt={users.fullName} className='w-12 rounded-full'/>
                                     </td>
                                     <td>{users.email}</td>
-                                    <td>{users.accountType}</td>
+                                    <td>
+                                        <button className='bg-innova text-white  rounded py-1 px-2'>{users.accountType}</button>
+                                    </td>
                                     <td>
                                         <button onClick={() => handleDeleteUser(users._id)} className='text-innova hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
                                     </td>
