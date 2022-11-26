@@ -84,15 +84,15 @@ const AddProducts = () => {
                     <div className='grid grid-cols-2 lg:grid-cols-4 gap-2'>
                         <div>
                             <label htmlFor="proName" className="mb-2 text-lg">Product Name</label>
-                            <input onBlur={handleValues} type="text" name="proName" id="proName" placeholder="Enter Product Name" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input onBlur={handleValues} type="text" name="proName" id="proName" placeholder="Enter Product Name" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
                         </div>
                         <div>
                             <label htmlFor="regularPrice" className="mb-2 text-lg">Regular Price</label>
-                            <input onBlur={handleValues} type="digit" name="regularPrice" id="regularPrice" placeholder="eg: $120" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input onBlur={handleValues} type="digit" name="regularPrice" id="regularPrice" placeholder="eg: $120" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
                         </div>
                         <div>
                             <label htmlFor="resalePrice" className="mb-2 text-lg">Resale Price</label>
-                            <input onBlur={handleValues} type="digit" name="resalePrice" id="resalePrice" placeholder="eg: $80" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input onBlur={handleValues} type="digit" name="resalePrice" id="resalePrice" placeholder="eg: $80" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
                         </div>
                         <div>
                             <label htmlFor="condition" className="mb-2 text-lg">Product Condition</label>
@@ -106,11 +106,11 @@ const AddProducts = () => {
                     <div className='grid grid-cols-2 lg:grid-cols-4 gap-2'>
                         <div>
                             <label htmlFor="usedDuration" className="mb-2 text-lg">Duration of Use</label>
-                            <input onBlur={handleValues} type="text" name="usedDuration" id="usedDuration" placeholder="eg: 2 Years" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input onBlur={handleValues} type="text" name="usedDuration" id="usedDuration" placeholder="eg: 2 Years" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
                         </div>
                         <div>
                             <label htmlFor="purchaseYear" className="mb-2 text-lg">Year of purchase</label>
-                            <input onBlur={handleValues} type="text" name="purchaseYear" id="purchaseYear" placeholder="eg: 2020" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input onBlur={handleValues} type="text" name="purchaseYear" id="purchaseYear" placeholder="eg: 2020" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
                         </div>
                         <div>
                             <label htmlFor="category" className="mb-2 text-lg">Product Category</label>
@@ -122,13 +122,13 @@ const AddProducts = () => {
                         </div>
                         <div>
                             <label htmlFor="location" className="mb-2 text-lg">Product Location</label>
-                            <input onBlur={handleValues} type="text" name="location" id="location" placeholder="eg: Dhaka" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input onBlur={handleValues} type="text" name="location" id="location" placeholder="eg: Dhaka" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
                         </div>
 
                     </div>
                     <div>
                         <label htmlFor="productImage" className="mb-2 text-lg block">Product Image</label>
-                        <input type="file" name="productImage" id="productImage" className="w-full px-3 py-2" />
+                        <input type="file" name="productImage" id="productImage" className="w-full px-3 py-2" required/>
                         <label htmlFor="regularPrice" className="mb-2 text-lg">Image Dimension: <span className='font-semibold'>450px by 300px</span></label>
                     </div>
                     <div>
@@ -150,7 +150,7 @@ const AddProducts = () => {
                         </div>
                         <div>
                             <label htmlFor="sellerPhone" className="mb-2 text-lg">Contact Number</label>
-                            <input onBlur={handleValues} type="tel" name="sellerPhone" id="sellerPhone" placeholder="eg: +88018X-XXXXXXX" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input onBlur={handleValues} type="tel" name="sellerPhone" id="sellerPhone" placeholder="eg: +88018X-XXXXXXX" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
                         </div>
                     </div>
                     {/* Seller Information section end */}

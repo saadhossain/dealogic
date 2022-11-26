@@ -44,27 +44,27 @@ export const Routers = createBrowserRouter([
     //User dashboard routes
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRouter><DashboardLayout></DashboardLayout></PrivateRouter>,
         children: [
             {
                 path: '/dashboard',
-                element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>
+                element: <Dashboard></Dashboard>
             },
             {
                 path: '/dashboard/allproducts',
-                element: <PrivateRouter></PrivateRouter>
+                element: <AddProducts></AddProducts>
             },
             {
                 path: '/dashboard/addProduct',
-                element: <PrivateRouter><AddProducts></AddProducts></PrivateRouter>
+                element: <AddProducts></AddProducts>
             },
             {
                 path: '/dashboard/mypurchase',
-                element: <PrivateRouter><MyPurchase></MyPurchase></PrivateRouter>
+                element: <MyPurchase></MyPurchase>
             },
             {
                 path: '/dashboard/myproducts',
-                element: <PrivateRouter><MyProudcts></MyProudcts></PrivateRouter>
+                element: <MyProudcts></MyProudcts>
             }
         ]
     }
