@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,13 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const DashboardLeftSidebar = () => {
     const { user, logOut } = useContext(AuthContext)
+
+    const [loggedInUser, setLoggedInUser] = useState([])
+    useEffect(() => {
+        fetch(`http://localhost:5000/users?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setLoggedInUser(data[0]))
+    }, [user?.email])
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -26,12 +33,43 @@ const DashboardLeftSidebar = () => {
                     </div>
                     <div className='mt-10 ml-5'>
                         <ul className='font-semibold flex flex-col gap-3'>
-                            <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova hover:text-white py-1 px-2 rounded'>
-                                <li>My Products</li>
-                            </Link>
-                            <Link to='/dashboard/addProduct' className='hover:bg-innova hover:text-white py-1 px-2 rounded'>
-                                <li>Add A Product</li>
-                            </Link>
+                            {/* //Conditionally showing Admin menus */}
+                            {
+                                loggedInUser?.accountType === 'Admin' && <>
+                                    <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>All Products</li>
+                                    </Link>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>Add A Product</li>
+                                    </Link>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>All Users</li>
+                                    </Link>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>Booked Products</li>
+                                    </Link>
+                                </>
+                            }
+                            {/* //Conditionally showing Seller menus */}
+                            {
+                                loggedInUser?.accountType === 'Seller' && <>
+                                <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>My Products</li>
+                                    </Link>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>Sell A Product</li>
+                                    </Link></>
+                            }
+                            {/* //Conditionally showing buyer menus */}
+                            {
+                                loggedInUser?.accountType === 'Buyer' && <>
+                                <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>My Purchase</li>
+                                    </Link>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>Sell A Product</li>
+                                    </Link></>
+                            }
                         </ul>
                     </div>
                 </div>

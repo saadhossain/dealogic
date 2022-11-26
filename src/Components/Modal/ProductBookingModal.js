@@ -20,7 +20,6 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
             meetingLocaton,
             payment: 'unpaid'
         }
-        console.log(updatedProductInfo);
         fetch('http://localhost:5000/products/book', {
             method: 'POST',
             headers: {
@@ -43,7 +42,6 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
                         .then(res => res.json())
                         .then(data => {
                             if (data.modifiedCount > 0) {
-                                // refetch()
                             }
                         })
                 }
