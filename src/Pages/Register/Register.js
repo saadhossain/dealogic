@@ -8,7 +8,7 @@ const Register = () => {
     //Use Location to redirect user after registration
     const location = useLocation()
     const navigate = useNavigate()
-    const from = location.state?.from?.pathname || '/dashboard/mypurchase'
+    const from = location.state?.from?.pathname || '/dashboard'
     //Set Account type
     const [accountType, setAccountType] = useState('Buyer')
     //Register a new user
@@ -66,7 +66,7 @@ const Register = () => {
         })
     }
     return (
-        <div className='flex justify-center'>
+        <div className='flex justify-center my-5'>
             <div className="flex flex-col max-w-md p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl">
                 <div className="mb-8 text-center">
                     <h1 className="my-3 text-4xl font-bold">Create An Account</h1>

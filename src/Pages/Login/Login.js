@@ -8,7 +8,7 @@ const Login = () => {
     //Use Location to redirect user after registration
     const location = useLocation()
     const navigate = useNavigate()
-    const from = location.state?.from?.pathname || '/dashboard/mypurchase'
+    const from = location.state?.from?.pathname || '/dashboard'
     //Handle User login functionality using email and password
     const handleUserLogin = (e) => {
         e.preventDefault()
