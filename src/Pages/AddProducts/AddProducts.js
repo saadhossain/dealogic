@@ -54,6 +54,7 @@ const AddProducts = () => {
                 sellerName: loggedInUser?.fullName,
                 sellerEmail: loggedInUser?.email,
                 sellerVerified: loggedInUser?.verified,
+                booked:false,
                 addedOn: new Date(),
                 prodStatus: 'Available',
             }
