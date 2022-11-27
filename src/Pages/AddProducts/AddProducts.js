@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useUser from '../../hooks/UseUser/useUser';
 
 const AddProducts = () => {
     //Get the Logged in user information from the context
     const {user} = useContext(AuthContext)
+    const {loggedInUser} = useUser(user?.email)
     //Navigate
     const navigate = useNavigate()
     const [category, setCategory] = useState([])
@@ -49,8 +51,9 @@ const AddProducts = () => {
                 productImageURL,
                 productCondition,
                 productCategory,
-                sellerName: user?.displayName,
-                sellerEmail: user?.email,
+                sellerName: loggedInUser?.fullName,
+                sellerEmail: loggedInUser?.email,
+                sellerVerified: loggedInUser?.verified,
                 addedOn: new Date(),
                 prodStatus: 'Available',
             }
@@ -146,11 +149,11 @@ const AddProducts = () => {
                     <div className='grid grid-cols-2 lg:grid-cols-3 gap-2'>
                         <div>
                             <label htmlFor="seller" className="mb-2 text-lg">Seller Name</label>
-                            <input type="text" name="seller" id="seller" placeholder={user?.displayName} disabled className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input type="text" name="seller" id="seller" placeholder={loggedInUser?.fullName} disabled className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
                         </div>
                         <div>
                             <label htmlFor="sellerEmail" className="mb-2 text-lg">Seller Email</label>
-                            <input type="email" name="sellerEmail" id="sellerEmail" placeholder={user?.email} disabled className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
+                            <input type="email" name="sellerEmail" id="sellerEmail" placeholder={loggedInUser?.email} disabled className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
                         </div>
                         <div>
                             <label htmlFor="sellerPhone" className="mb-2 text-lg">Contact Number</label>

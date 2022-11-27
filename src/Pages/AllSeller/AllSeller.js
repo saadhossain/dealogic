@@ -2,10 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
+import {GoVerified} from 'react-icons/go'
 
 const AllSeller = () => {
     //Get all the sellers from the database
-    const {data:sellers = [] , refetch} = useQuery({
+    const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users/sellers');
@@ -22,12 +23,29 @@ const AllSeller = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    if(data.deletedCount > 0){
+                    if (data.deletedCount > 0) {
                         toast.error('One Seller has been Deleted...')
                         refetch()
                     }
                 })
         }
+    }
+    //Verify a Seller
+    const handleVerify = (id) => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({verified: true})
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('Seller has been Verified')
+                refetch()
+            }
+        })
     }
     return (
         <div>
@@ -56,15 +74,17 @@ const AllSeller = () => {
                                     <th>{idx + 1}</th>
                                     <td>{seller.fullName}</td>
                                     <td>
-                                        <img src={seller.profileImage} alt={seller.fullName} className='w-12 rounded-full'/>
+                                        <img src={seller.profileImage} alt={seller.fullName} className='w-12 rounded-full' />
                                     </td>
                                     <td>{seller.email}</td>
                                     <td>
                                         <button className='bg-innova text-white  rounded py-1 px-2'>{seller.accountType}</button>
                                     </td>
-                                    <td>
+                                    <td className='flex items-center gap-2 mt-3'>
                                         <button onClick={() => handleDeleteSeller(seller._id)} className='text-innova hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
+                                        <button onClick={() => handleVerify(seller._id)} className={`duration-300 flex items-center gap-1 ${seller.verified ? 'text-green-700' : 'text-innova hover:text-green-700'}`}><GoVerified></GoVerified> {seller.verified ? 'Verified': 'Verify'}</button>
                                     </td>
+
                                 </tr>)
                             }
                         </tbody>

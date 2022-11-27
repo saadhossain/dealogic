@@ -1,9 +1,10 @@
 import dateFormat from "dateformat";
 import React from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import {GoVerified} from 'react-icons/go'
 
 const DisplayPromotedProducts = ({ promoted, setAvailableProduct }) => {
-    const { proName, productImageURL, productCondition, resalePrice, sellerName, addedOn, location, booked } = promoted;
+    const { proName, productImageURL, productCondition, resalePrice, sellerName, addedOn, location, booked, sellerVerified } = promoted;
     return (
         <div>
             <div className="card card-compact w-full bg-base-100 shadow-lg hover:shadow-2xl cursor-pointer relative">
@@ -18,7 +19,8 @@ const DisplayPromotedProducts = ({ promoted, setAvailableProduct }) => {
                     </div>
                     <hr className="border-1 border-gray-400"/>
                     <p>Posted On: {dateFormat(addedOn, "mmm dS, h:MM: TT")}</p>
-                    <p>Sold By: {sellerName}</p>
+                    <p className="flex gap-1 items-center">Sold By: {sellerName} {sellerVerified && <GoVerified className="text-blue-600" title="Verified Seller"></GoVerified>}
+                    </p>
                     <hr className="border-1 border-gray-400"/>
                     <div className="card-actions justify-center">
                         <label
