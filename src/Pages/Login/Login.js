@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import {FaGoogle} from 'react-icons/fa'
 
 const Login = () => {
-    const {userLogin} = useContext(AuthContext)
+    const {userLogin, googleLogin} = useContext(AuthContext)
     //Use Location to redirect user after registration
     const location = useLocation()
     const navigate = useNavigate()
@@ -24,6 +25,16 @@ const Login = () => {
         })
         .catch(err => console.error(err))
     }
+        //Functionality for google login
+        const handleGoogleLogin = () => {
+            googleLogin()
+                .then((result) => {
+                    const user = result.user;
+                    toast.success('Login Successful... Redirecting...')
+                    navigate(from, { replace: true })
+                })
+                .catch(err => console.error(err))
+        }
     return (
         <div className='flex justify-center my-5'>
             <div className="flex flex-col max-w-md p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl">
@@ -53,6 +64,13 @@ const Login = () => {
                         </p>
                     </div>
                 </form>
+                <button
+                onClick={handleGoogleLogin}
+                type="button"
+                className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-innova hover:border-innova hover:text-white">
+                    <FaGoogle></FaGoogle>
+                    <p>Login with Google</p>
+                </button>
             </div>
         </div>
     );

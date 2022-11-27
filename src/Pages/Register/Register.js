@@ -1,14 +1,13 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FaGoogle } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Register = () => {
-    const { createUser, updateUser} = useContext(AuthContext)
+    const { createUser, googleLogin, updateUser } = useContext(AuthContext)
     //Use Location to redirect user after registration
-    const location = useLocation()
     const navigate = useNavigate()
-    const from = location.state?.from?.pathname || '/dashboard'
     //Set Account type
     const [accountType, setAccountType] = useState('Buyer')
     //Register a new user
@@ -48,13 +47,32 @@ const Register = () => {
                             })
                         saveUser(userInfo)
                         form.reset()
-                        navigate(from, {replace: true})
+                        toast.success('Account Registration successful... Redirecting...')
+                        navigate('/dashboard')
                     })
                     .catch(err => console.error(err))
             })
             .catch(err => console.error(err))
     }
 
+    //Functionality for google login
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then((result) => {
+                const user = result.user;
+                const userInfo = {
+                    fullName: user.displayName,
+                    email: user.email,
+                    profileImage: user.photoURL,
+                    accountType: 'Buyer'
+                }
+                console.log(userInfo);
+                saveUser(userInfo)
+                toast.success('Account Registration Successful... Redirecting...')
+                navigate('/dashboard')
+            })
+            .catch(err => console.error(err))
+    }
     //Save New user to the database
     const saveUser = (userInfo) => {
         fetch('http://localhost:5000/users', {
@@ -106,6 +124,13 @@ const Register = () => {
                         </p>
                     </div>
                 </form>
+                <button
+                onClick={handleGoogleLogin}
+                type="button"
+                className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-innova hover:border-innova hover:text-white">
+                    <FaGoogle></FaGoogle>
+                    <p>Login with Google</p>
+                </button>
             </div>
         </div>
     );

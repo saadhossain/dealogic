@@ -1,11 +1,13 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
 import app from '../Firebase/Firebase.config'
 
 export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     //Get the firebase auth
     const auth = getAuth(app);
+    //Create a Provider for google login
+    const googleProiver = new GoogleAuthProvider()
     //Loading state
     const [loading, setLoading] = useState(true)
     //Get user from the auth state and set to state
@@ -14,6 +16,10 @@ const AuthProvider = ({ children }) => {
     const createUser = (email, password) =>{
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
+    }
+    //Create a User using Google Account
+    const googleLogin = () => {
+        return signInWithPopup(auth, googleProiver)
     }
     //Update User Profile after registration
     const updateUser = (fullName, profileImage) => {
@@ -40,7 +46,7 @@ const AuthProvider = ({ children }) => {
         })
         return () => unSubscribe()
     }, [auth])
-    const authInfo = {createUser, updateUser, loading, setLoading, userLogin, user, logOut}
+    const authInfo = {createUser, googleLogin, updateUser, loading, setLoading, userLogin, user, logOut}
     return (
         <div>
             <AuthContext.Provider value={authInfo}>
