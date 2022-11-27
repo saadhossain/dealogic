@@ -13,8 +13,8 @@ const Dashboard = () => {
     return (
         <div>
             <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-innova mb-10'>Statistics</h1>
-                <div className='border-2 border-innova w-20 absolute top-8 left-40'></div>
+                <h1 className='text-2xl lg:text-4xl font-bold text-innova mb-10'>Statistics</h1>
+                <div className='border-2 border-innova w-20 absolute top-6 lg:top-8 left-28 lg:left-40'></div>
             </div>
             <div>
                 {/* For admin */}

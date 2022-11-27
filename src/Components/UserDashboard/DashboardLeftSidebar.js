@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,7 @@ import useUser from '../../hooks/UseUser/useUser';
 const DashboardLeftSidebar = () => {
     const { user, logOut } = useContext(AuthContext)
     //Get LoggedIn user by using useUser hook
-    const {loggedInUser} = useUser(user?.email)
+    const { loggedInUser } = useUser(user?.email)
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -18,7 +18,7 @@ const DashboardLeftSidebar = () => {
     }
     return (
         <div className='sticky top-10'>
-            <div className='bg-accent h-[80vh] p-5 rounded-lg flex flex-col justify-between text-white'>
+            <div className='bg-accent p-5 rounded-lg flex flex-col justify-between text-white'>
                 <div>
                     <div className='flex items-center gap-5'>
                         <img src={user?.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt={user?.displayName} className="w-16 h-16 rounded-full" />
@@ -43,6 +43,12 @@ const DashboardLeftSidebar = () => {
                                     </Link>
                                     <Link to='/dashboard/allusers' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>All Users</li>
+                                    </Link>
+                                    <Link to='/dashboard/sellers' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>All Seller</li>
+                                    </Link>
+                                    <Link to='/dashboard/buyers' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>All Buyer</li>
                                     </Link>
                                     <Link to='/dashboard/bookedproducts' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>Booked Products</li>
@@ -72,7 +78,13 @@ const DashboardLeftSidebar = () => {
                         </ul>
                     </div>
                 </div>
-                <Link onClick={handleLogOut} className='flex gap-2 font-semibold'>Logout<AiOutlineLogout className='w-6 h-6 text-white'></AiOutlineLogout></Link>
+                <Link
+                    onClick={handleLogOut}
+                    className='flex gap-2 font-semibold mt-5 hover:text-innova'>
+                    Logout
+                    <AiOutlineLogout className='w-6 h-6 text-white hover:text-innova'>
+                    </AiOutlineLogout>
+                </Link>
             </div>
         </div>
     );
