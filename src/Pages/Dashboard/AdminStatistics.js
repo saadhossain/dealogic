@@ -32,6 +32,15 @@ const AdminStatistics = () => {
             return data;
         }
     })
+    //Get all the buyers from the database
+    const {data:buyers = [] } = useQuery({
+        queryKey: ['buyers'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/users/buyers');
+            const data = await res.json()
+            return data
+        }
+    })
     const totalBookedPrice = bookeProducts.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0)
     return (
         <div className='w-full grid lg:grid-cols-3 gap-5'>
@@ -54,7 +63,12 @@ const AdminStatistics = () => {
                     allUsers.length > 0 && <div className='shadow-xl rounded-lg p-5 bg-slate-50'>
                         <h3 className='text-xl font-bold text-center border-b-2 border-innova mb-4'>All Users</h3>
                         <h3 className='text-xl font-bold'>All Users: <span className='text-innova text-2xl'>{allUsers.length}</span></h3>
-                        <h3 className='text-lg font-bold'>Buyer <span className='text-innova text-xl'>| Admin | </span> Seller</h3>
+                        <h3 className='text-lg font-bold'>
+                            Buyer
+                            <span className='text-innova text-xl'> {buyers.length} | </span>
+                            Seller
+                            <span className='text-innova text-xl'> {buyers.length} </span>
+                        </h3>
                         <Link to='/dashboard/allusers'>
                             <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-innova hover:bg-secondary'>See All</button>
                         </Link>

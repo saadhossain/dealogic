@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Register = () => {
-    const { createUser, googleLogin, updateUser } = useContext(AuthContext)
+    const { createUser, googleLogin, updateUser, setLoading } = useContext(AuthContext)
     //Use Location to redirect user after registration
     const location = useLocation()
     const navigate = useNavigate()
@@ -51,6 +51,7 @@ const Register = () => {
                         form.reset()
                         toast.success('Account Registration successful... Redirecting...')
                         navigate(from, { replace: true })
+                        setLoading(false)
                     })
                     .catch(err => console.error(err))
             })
@@ -71,6 +72,7 @@ const Register = () => {
                 saveUser(userInfo)
                 toast.success('Account Registration Successful... Redirecting...')
                 navigate(from, { replace: true })
+                setLoading(false)
             })
             .catch(err => console.error(err))
     }
