@@ -73,9 +73,9 @@ const AdminStatistics = () => {
                         <h3 className='text-xl font-bold text-center border-b-2 border-innova mb-4'>All Users</h3>
                         <h3 className='text-xl font-bold'>All Users: <span className='text-innova text-2xl'>{allUsers.length}</span></h3>
                         <h3 className='text-lg font-bold'>
-                            <Link to='dashboard/buyers' className='hover:text-innova'>Buyer</Link>
+                            <Link to='/dashboard/buyers' className='hover:text-innova'>Buyer</Link>
                             <span className='text-innova text-xl'> {buyers.length} | </span>
-                            <Link to='dashboard/sellers' className='hover:text-innova'>Seller</Link>
+                            <Link to='/dashboard/sellers' className='hover:text-innova'>Seller</Link>
                             <span className='text-innova text-xl'> {sellers.length} </span>
                         </h3>
                         <Link to='/dashboard/allusers'>
