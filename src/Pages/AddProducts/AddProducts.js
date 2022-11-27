@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const AddProducts = () => {
     //Get the Logged in user information from the context
     const {user} = useContext(AuthContext)
+    //Navigate
+    const navigate = useNavigate()
     const [category, setCategory] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/categories')
@@ -64,6 +67,7 @@ const AddProducts = () => {
                 if(data.acknowledged){
                     toast.success('New Product Added Successfully...')
                     e.target.reset()
+                    navigate('/dashboard/myproducts')
                 }
             })
             .catch(err => console.error(err))

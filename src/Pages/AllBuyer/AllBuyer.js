@@ -8,22 +8,22 @@ const AllBuyer = () => {
     const {data:buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/buyer/buyers');
+            const res = await fetch('http://localhost:5000/users/buyers');
             const data = await res.json()
             return data
         }
     })
-    //Remove or Delete a User
-    const handleDeleteUser = (id) => {
+    //Remove or Delete a Buyer
+    const handleDeleteBuyer = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This User?')
         if (confirmation) {
-            fetch(`http://localhost:5000/buyer/${id}`, {
+            fetch(`http://localhost:5000/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if(data.deletedCount > 0){
-                        toast.error('One User has been Deleted...')
+                        toast.error('One Buyer has been Deleted...')
                         refetch()
                     }
                 })
@@ -63,7 +63,7 @@ const AllBuyer = () => {
                                         <button className='bg-innova text-white  rounded py-1 px-2'>{buyer.accountType}</button>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleDeleteUser(buyer._id)} className='text-innova hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
+                                        <button onClick={() => handleDeleteBuyer(buyer._id)} className='text-innova hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
                                     </td>
                                 </tr>)
                             }
