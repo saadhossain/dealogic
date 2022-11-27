@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Register = () => {
     const { createUser, googleLogin, updateUser } = useContext(AuthContext)
     //Use Location to redirect user after registration
+    const location = useLocation()
     const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/dashboard'
     //Set Account type
     const [accountType, setAccountType] = useState('Buyer')
     //Register a new user
@@ -48,7 +50,7 @@ const Register = () => {
                         saveUser(userInfo)
                         form.reset()
                         toast.success('Account Registration successful... Redirecting...')
-                        navigate('/dashboard')
+                        navigate(from, { replace: true })
                     })
                     .catch(err => console.error(err))
             })
@@ -66,10 +68,9 @@ const Register = () => {
                     profileImage: user.photoURL,
                     accountType: 'Buyer'
                 }
-                console.log(userInfo);
                 saveUser(userInfo)
                 toast.success('Account Registration Successful... Redirecting...')
-                navigate('/dashboard')
+                navigate(from, { replace: true })
             })
             .catch(err => console.error(err))
     }

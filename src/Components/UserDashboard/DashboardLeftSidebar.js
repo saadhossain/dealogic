@@ -7,7 +7,6 @@ import useUser from '../../hooks/UseUser/useUser';
 
 const DashboardLeftSidebar = () => {
     const { user, logOut } = useContext(AuthContext)
-    console.log(user);
     //Get LoggedIn user by using useUser hook
     const {loggedInUser} = useUser(user?.email)
     const handleLogOut = () => {
