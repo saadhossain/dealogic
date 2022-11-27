@@ -25,6 +25,7 @@ const MyPurchase = () => {
                             <tr>
                                 <th></th>
                                 <th>Product Name</th>
+                                <th>Product Image</th>
                                 <th>Regular Price</th>
                                 <th>Sale Price</th>
                                 <th>Payment</th>
@@ -38,6 +39,9 @@ const MyPurchase = () => {
                                 >
                                     <th>{idx + 1}</th>
                                     <td>{myPurchase.proName}</td>
+                                    <td>
+                                        <img src={myPurchase.productImageURL} alt={myPurchase.proName} className='w-10'/>
+                                    </td>
                                     <td>${myPurchase.regularPrice}</td>
                                     <td>${myPurchase.resalePrice}</td>
                                     <td className='flex items-center gap-1'>
@@ -45,7 +49,7 @@ const MyPurchase = () => {
                                         className={`duration-300 py-1 px-2 rounded text-white font-semibold ${myPurchase.payment === 'Paid' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
                                         disabled={myPurchase.payment === 'Paid'}
                                         >
-                                        {myPurchase.payment}
+                                        {myPurchase.payment? 'Pay Now' : myPurchase.payment}
                                         </button>
                                     </td>
                                     <td>
