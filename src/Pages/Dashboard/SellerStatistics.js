@@ -17,7 +17,7 @@ const SellerStatistics = () => {
     return (
         <div>
             {
-                myProducts.length > 0 && <div className='shadow-xl rounded-lg p-5 bg-slate-50'>
+                myProducts.length > 0 && <div className='w-72 shadow-xl rounded-lg p-5 bg-slate-50'>
                     <h3 className='text-2xl font-bold'>Total Purchase: <span className='text-innova'>{myProducts.length}</span></h3>
                     <h3 className='text-2xl font-bold'>Total Price: <span className='text-innova'>${totalPurchasePrice}</span></h3>
                     <Link to='/dashboard/mypurchase'>
