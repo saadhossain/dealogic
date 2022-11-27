@@ -4,7 +4,7 @@ const useUser = (email) => {
     const [loggedInUser, setLoggedInUser] = useState([])
     const [userLoading, setUserLoading] = useState(true)
     useEffect(() => {
-        fetch(`http://localhost:5000/users?email=${email}`)
+        fetch(`http://localhost:5000/user?email=${email}`)
             .then(res => res.json())
             .then(data => {
                 setLoggedInUser(data[0])

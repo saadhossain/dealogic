@@ -19,10 +19,12 @@ const AuthProvider = ({ children }) => {
     }
     //Create a User using Google Account
     const googleLogin = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProiver)
     }
     //Update User Profile after registration
     const updateUser = (fullName, profileImage) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, {
             displayName: fullName,
             photoURL: profileImage
@@ -36,6 +38,7 @@ const AuthProvider = ({ children }) => {
     }
     //User Logout
     const logOut = () => {
+        setLoading(true)
         return signOut(auth)
     }
     //Get user from auth 
