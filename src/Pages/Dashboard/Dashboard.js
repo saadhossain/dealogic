@@ -9,7 +9,6 @@ const Dashboard = () => {
     const { user } = useContext(AuthContext)
     //Get the User 
     const {loggedInUser} = useUser(user?.email)
-    console.log(loggedInUser);
     return (
         <div>
             <div className='relative'>

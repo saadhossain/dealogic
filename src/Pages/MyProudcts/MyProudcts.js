@@ -11,7 +11,7 @@ const MyProudcts = () => {
     //Get Products for logged in users
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/products?email=${user?.email}`)
+        queryFn: () => fetch(`http://localhost:5000/products/seller?email=${user?.email}`)
             .then(res => res.json())
     })
     //Set Product Status to the Database
