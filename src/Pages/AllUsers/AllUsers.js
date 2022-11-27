@@ -63,7 +63,7 @@ const AllUsers = () => {
                                         <button className='bg-innova text-white  rounded py-1 px-2'>{users.accountType}</button>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleDeleteUser(users._id)} className='text-innova hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
+                                        <button onClick={() => handleDeleteUser(users._id)} className={`duration-300 flex items-center gap-1 ${users?.accountType === 'Admin'? 'text-accent' : 'text-innova hover:text-red-700'}`} disabled={users?.accountType === 'Admin'} ><FaTrash></FaTrash> Delete</button>
                                     </td>
                                 </tr>)
                             }
