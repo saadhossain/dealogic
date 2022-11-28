@@ -71,7 +71,9 @@ const AddProducts = () => {
                         if (data.acknowledged) {
                             toast.success('New Product Added Successfully...')
                             e.target.reset()
-                            navigate('/dashboard/myproducts')
+                            if(loggedInUser === 'Seller'){
+                                navigate('/dashboard/myproducts')
+                            }
                         }
                     })
                     .catch(err => console.error(err))

@@ -19,6 +19,7 @@ import Register from "../Pages/Register/Register";
 import AdminRouter from "./AdminRouter";
 import PrivateRouter from "./PrivateRouter";
 import SellerRouter from "./SellerRouter";
+import BuyerRouter from "./BuyerRouter"
 
 export const Routers = createBrowserRouter([
     {
@@ -86,7 +87,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/mypurchase',
-                element: <MyPurchase></MyPurchase>
+                element: <BuyerRouter><MyPurchase></MyPurchase></BuyerRouter>
             },
             {
                 path: '/dashboard/myproducts',
