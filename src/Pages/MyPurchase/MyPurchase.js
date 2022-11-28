@@ -1,16 +1,27 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const MyPurchase = () => {
     //Get User from the Context
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     //Get Products for logged in users
     const { data: myPurchases = [] } = useQuery({
-        queryKey: ['myPurchases', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/mypurchase?email=${user?.email}`)
-            .then(res => res.json())
+        queryKey: ['myPurchases', user?.email, logOut],
+        queryFn: () => fetch(`http://localhost:5000/mypurchase?email=${user?.email}`, {
+            headers: {
+                authorization: `Beareer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    toast.error('Sorry! You are not authorized to access the data')
+                    return logOut()
+                }
+                return res.json()
+            })
     })
     return (
         <div>
@@ -40,16 +51,16 @@ const MyPurchase = () => {
                                     <th>{idx + 1}</th>
                                     <td>{myPurchase.proName}</td>
                                     <td>
-                                        <img src={myPurchase.productImageURL} alt={myPurchase.proName} className='w-10'/>
+                                        <img src={myPurchase.productImageURL} alt={myPurchase.proName} className='w-10' />
                                     </td>
                                     <td>${myPurchase.regularPrice}</td>
                                     <td>${myPurchase.resalePrice}</td>
                                     <td className='flex items-center gap-1'>
                                         <button
-                                        className={`duration-300 py-1 px-2 rounded text-white font-semibold ${myPurchase.payment === 'Paid' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
-                                        disabled={myPurchase.payment === 'Paid'}
+                                            className={`duration-300 py-1 px-2 rounded text-white font-semibold ${myPurchase.payment === 'Paid' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
+                                            disabled={myPurchase.payment === 'Paid'}
                                         >
-                                        {myPurchase.payment? 'Pay Now' : myPurchase.payment}
+                                            {myPurchase.payment ? 'Pay Now' : myPurchase.payment}
                                         </button>
                                     </td>
                                     <td>

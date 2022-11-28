@@ -7,12 +7,22 @@ import {RiRocket2Fill} from 'react-icons/ri'
 
 const MyProudcts = () => {
     //Get User from the Context
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     //Get Products for logged in users
     const { data: myProducts = [], refetch } = useQuery({
-        queryKey: ['myProducts', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/products/seller?email=${user?.email}`)
-            .then(res => res.json())
+        queryKey: ['myProducts', user?.email, logOut],
+        queryFn: () => fetch(`http://localhost:5000/products/seller?email=${user?.email}`, {
+            headers: {
+                authorization : `Beareer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if(res.status === 401 || res.status === 403){
+                    toast.error('Sorry! You are not authorized to access the data')
+                    return logOut()
+                }
+                return res.json()
+            })
     })
     //Set Product Status to the Database
     const handleStatusChange = (id) => {

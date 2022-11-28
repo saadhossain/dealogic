@@ -43,15 +43,33 @@ const Register = () => {
                 createUser(email, password)
                     .then((result) => {
                         const user = result.user;
+                        const currentUser = {
+                            email: user.email
+                        }
                         toast.success('User Registration Successful...')
                         updateUser(fullName, profileImage)
                             .then(() => {
                             })
                         saveUser(userInfo)
-                        form.reset()
-                        toast.success('Account Registration successful... Redirecting...')
-                        navigate(from, { replace: true })
-                        setLoading(false)
+                        //Get Access token from the server and save it to local storage
+                        fetch('http://localhost:5000/accesstoken', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(currentUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.token) {
+                                    localStorage.setItem('AccessToken', data.token)
+                                    //After Saving the token to local storage then do others tasks
+                                    form.reset()
+                                    toast.success('Account Registration successful... Redirecting...')
+                                    navigate(from, { replace: true })
+                                    setLoading(false)
+                                }
+                            })
                     })
                     .catch(err => console.error(err))
             })
@@ -69,10 +87,28 @@ const Register = () => {
                     profileImage: user.photoURL,
                     accountType: 'Buyer'
                 }
-                saveUser(userInfo)
-                toast.success('Account Registration Successful... Redirecting...')
-                navigate(from, { replace: true })
-                setLoading(false)
+                const currentUser = {
+                    email: user.email
+                }
+                //Get Access token from the server and save it to local storage
+                fetch('http://localhost:5000/accesstoken', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.token) {
+                            localStorage.setItem('AccessToken', data.token)
+                            //After Saving the token to local storage then do others tasks
+                            saveUser(userInfo)
+                            toast.success('Account Registration Successful... Redirecting...')
+                            navigate(from, { replace: true })
+                            setLoading(false)
+                        }
+                    })
             })
             .catch(err => console.error(err))
     }
@@ -128,9 +164,9 @@ const Register = () => {
                     </div>
                 </form>
                 <button
-                onClick={handleGoogleLogin}
-                type="button"
-                className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-innova hover:border-innova hover:text-white">
+                    onClick={handleGoogleLogin}
+                    type="button"
+                    className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-innova hover:border-innova hover:text-white">
                     <FaGoogle></FaGoogle>
                     <p>Login with Google</p>
                 </button>

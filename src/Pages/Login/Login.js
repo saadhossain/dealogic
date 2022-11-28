@@ -19,9 +19,27 @@ const Login = () => {
         userLogin(email, password)
             .then((result) => {
                 const user = result.user;
-                toast.success('User Login Successful...')
-                form.reset()
-                navigate(from, { replace: true })
+                const currentUser = {
+                    email: user.email
+                }
+                //Get Access token from the server and save it to local storage
+                fetch('http://localhost:5000/accesstoken', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.token) {
+                            localStorage.setItem('AccessToken', data.token)
+                            //After Saving the token to local storage then do others tasks
+                            toast.success('User Login Successful...')
+                            form.reset()
+                            navigate(from, { replace: true })
+                        }
+                    })
             })
             .catch(err => console.error(err))
     }

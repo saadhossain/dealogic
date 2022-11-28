@@ -1,15 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const BuyerStatistics = () => {
-    const {user} = useContext(AuthContext)
+    const {user, logOut} = useContext(AuthContext)
     //Get Purchase products
     const { data: myPurchases = [] } = useQuery({
         queryKey: ['myPurchases', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/mypurchase?email=${user?.email}`)
-            .then(res => res.json())
+        queryFn: () => fetch(`http://localhost:5000/mypurchase?email=${user?.email}`, {
+            headers: {
+                authorization : `Beareer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if(res.status ===401 || res.status ===403){
+                    toast.error('Sorry! You are not authorized to access the data')
+                    return logOut()
+                }
+                return res.json()
+            })
     })
     //total Purchase Price
     const totalPurchasePrice = myPurchases.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0)
