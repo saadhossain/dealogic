@@ -42,6 +42,7 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
                         .then(res => res.json())
                         .then(data => {
                             if (data.modifiedCount > 0) {
+                                window.location.reload()
                             }
                         })
                 }
