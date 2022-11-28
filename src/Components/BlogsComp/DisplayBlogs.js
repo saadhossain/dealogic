@@ -1,8 +1,9 @@
 import dateFormat from "dateformat";
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const DisplayBlogs = ({ blog }) => {
-    const { blogTitle, blogImage, description, authorImage, authorName, authorEmail, publishedOn } = blog;
+    const { _id, blogTitle, blogImage, description, authorImage, authorName, publishedOn } = blog;
     return (
         <div>
             <div className="card card-compact w-full bg-base-100 shadow-lg hover:shadow-2xl duration-500 cursor-pointer">
@@ -13,15 +14,17 @@ const DisplayBlogs = ({ blog }) => {
                     <p>
                         {description.length > 150 && description.slice(0, 150) + '...'}
                     </p>
-                    <div className='flex items-center gap-2'>
-                        <img src={authorImage} alt={authorName} className='w-12 rounded-full'/>
-                        <div>
-                            <p>{authorName}</p>
-                            <p>{authorEmail}</p>
-                        </div>
-                    </div>
                     <hr className="border-1 border-gray-400" />
-                    <p>Posted On: {dateFormat(publishedOn, "mmm dS, h:MM: TT")}</p>
+                    <div className='flex items-center justify-between'>
+                        <div className="flex items-center gap-2">
+                            <img src={authorImage} alt={authorName} className='w-12 rounded-full' />
+                            <div>
+                                <p>{authorName}</p>
+                                <p>On: {dateFormat(publishedOn, "mmm dS, yyyy")}</p>
+                            </div>
+                        </div>
+                        <Link to={`/blogs/${_id}`}><button className='py-2 px-2 bg-innova duration-500 ease-in-out hover:bg-secondary rounded text-white font-semibold text-center'>Read Details</button></Link>
+                    </div>
                 </div>
             </div>
         </div>

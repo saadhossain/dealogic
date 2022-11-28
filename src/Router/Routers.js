@@ -21,6 +21,7 @@ import PrivateRouter from "./PrivateRouter";
 import SellerRouter from "./SellerRouter";
 import BuyerRouter from "./BuyerRouter"
 import PulishBlog from "../Pages/PulishBlog/PulishBlog";
+import BlogDetails from "../Components/BlogsComp/BlogDetails";
 
 export const Routers = createBrowserRouter([
     {
@@ -48,6 +49,11 @@ export const Routers = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>
+            },
+            {
+                path: '/blogs/:id',
+                loader: ({params})=> fetch(`https://innova-server.vercel.app/blogs/${params.id}`),
+                element:<BlogDetails></BlogDetails>
             }
         ]
     },
