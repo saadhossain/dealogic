@@ -2,14 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
-import {GoVerified} from 'react-icons/go'
+import { GoVerified } from 'react-icons/go';
 
 const AllSeller = () => {
     //Get all the sellers from the database
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/sellers');
+            const res = await fetch('https://innova-server.vercel.app/users/sellers');
             const data = await res.json()
             return data
         }
@@ -18,7 +18,7 @@ const AllSeller = () => {
     const handleDeleteSeller = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This User?')
         if (confirmation) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://innova-server.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -32,20 +32,20 @@ const AllSeller = () => {
     }
     //Verify a Seller
     const handleVerify = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://innova-server.vercel.app/users/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({verified: true})
+            body: JSON.stringify({ verified: true })
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.modifiedCount > 0){
-                toast.success('Seller has been Verified')
-                refetch()
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Seller has been Verified')
+                    refetch()
+                }
+            })
     }
     return (
         <div>
@@ -82,7 +82,7 @@ const AllSeller = () => {
                                     </td>
                                     <td className='flex items-center gap-2 mt-3'>
                                         <button onClick={() => handleDeleteSeller(seller._id)} className='text-innova hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
-                                        <button onClick={() => handleVerify(seller._id)} className={`duration-300 flex items-center gap-1 ${seller.verified ? 'text-green-700' : 'text-innova hover:text-green-700'}`}><GoVerified></GoVerified> {seller.verified ? 'Verified': 'Verify'}</button>
+                                        <button onClick={() => handleVerify(seller._id)} className={`duration-300 flex items-center gap-1 ${seller.verified ? 'text-green-700' : 'text-innova hover:text-green-700'}`}><GoVerified></GoVerified> {seller.verified ? 'Verified' : 'Verify'}</button>
                                     </td>
 
                                 </tr>)

@@ -1,26 +1,26 @@
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
-import {RiRocket2Fill} from 'react-icons/ri'
+import { RiRocket2Fill } from 'react-icons/ri';
 
 const BookedProducts = () => {
     //Get all booked products from the database
     const { data: bookeProducts = [], refetch } = useQuery({
         queryKey: ['bookeProducts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/booked')
+            const res = await fetch('https://innova-server.vercel.app/booked')
             const data = await res.json()
             return data;
         }
     })
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://innova-server.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ prodStatus : 'Sold' })
+            body: JSON.stringify({ prodStatus: 'Sold' })
         })
             .then(res => res.json())
             .then(data => {
@@ -34,12 +34,12 @@ const BookedProducts = () => {
     const handleRemoveProduct = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This Item?')
         if (confirmation) {
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://innova-server.vercel.app/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    if(data.deletedCount > 0){
+                    if (data.deletedCount > 0) {
                         toast.error('One Product has been Deleted...')
                         refetch()
                     }
@@ -77,20 +77,20 @@ const BookedProducts = () => {
                                     <td>${product.resalePrice}</td>
                                     <td className='flex items-center gap-1'>
                                         <button
-                                        onClick={() => handleStatusChange(product._id)}
-                                        className={`duration-300 py-1 px-2 rounded text-white font-semibold ${product.prodStatus === 'Sold' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
-                                        disabled={product.prodStatus === 'Sold'}
+                                            onClick={() => handleStatusChange(product._id)}
+                                            className={`duration-300 py-1 px-2 rounded text-white font-semibold ${product.prodStatus === 'Sold' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
+                                            disabled={product.prodStatus === 'Sold'}
                                         >
-                                        {product.prodStatus === 'Sold'? 'Sold' : 'Mark Sold'}
+                                            {product.prodStatus === 'Sold' ? 'Sold' : 'Mark Sold'}
                                         </button>
                                     </td>
                                     <td>
                                         <button
-                                        className='flex items-center duration-300 py-1 px-2 rounded text-white bg-accent'
-                                        disabled={product.promoted}
+                                            className='flex items-center duration-300 py-1 px-2 rounded text-white bg-accent'
+                                            disabled={product.promoted}
                                         >
-                                        <RiRocket2Fill></RiRocket2Fill>
-                                        {product.promoted && 'Promoted'}</button>
+                                            <RiRocket2Fill></RiRocket2Fill>
+                                            {product.promoted && 'Promoted'}</button>
                                     </td>
                                     <td>
                                         <button onClick={() => handleRemoveProduct(product._id)} className='text-innova hover:text-red-700 duration-300'><FaTrash></FaTrash></button>

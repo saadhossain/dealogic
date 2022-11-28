@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const BuyerStatistics = () => {
-    const {user, logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     //Get Purchase products
     const { data: myPurchases = [] } = useQuery({
         queryKey: ['myPurchases', user?.email],
-        queryFn: () => fetch(`http://localhost:5000/mypurchase?email=${user?.email}`, {
+        queryFn: () => fetch(`https://innova-server.vercel.app/mypurchase?email=${user?.email}`, {
             headers: {
-                authorization : `Beareer ${localStorage.getItem('accessToken')}`
+                authorization: `Beareer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => {
-                if(res.status ===401 || res.status ===403){
+                if (res.status === 401 || res.status === 403) {
                     toast.error('Sorry! You are not authorized to access the data')
                     return logOut()
                 }

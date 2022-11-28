@@ -5,10 +5,10 @@ import { FaTrash } from 'react-icons/fa';
 
 const AllBuyer = () => {
     //Get all the buyers from the database
-    const {data:buyers = [], refetch } = useQuery({
+    const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/buyers');
+            const res = await fetch('https://innova-server.vercel.app/users/buyers');
             const data = await res.json()
             return data
         }
@@ -17,12 +17,12 @@ const AllBuyer = () => {
     const handleDeleteBuyer = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This User?')
         if (confirmation) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://innova-server.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    if(data.deletedCount > 0){
+                    if (data.deletedCount > 0) {
                         toast.error('One Buyer has been Deleted...')
                         refetch()
                     }
@@ -56,7 +56,7 @@ const AllBuyer = () => {
                                     <th>{idx + 1}</th>
                                     <td>{buyer.fullName}</td>
                                     <td>
-                                        <img src={buyer.profileImage} alt={buyer.fullName} className='w-12 rounded-full'/>
+                                        <img src={buyer.profileImage} alt={buyer.fullName} className='w-12 rounded-full' />
                                     </td>
                                     <td>{buyer.email}</td>
                                     <td>

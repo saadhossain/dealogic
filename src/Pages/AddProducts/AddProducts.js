@@ -6,13 +6,13 @@ import useUser from '../../hooks/UseUser/useUser';
 
 const AddProducts = () => {
     //Get the Logged in user information from the context
-    const {user} = useContext(AuthContext)
-    const {loggedInUser} = useUser(user?.email)
+    const { user } = useContext(AuthContext)
+    const { loggedInUser } = useUser(user?.email)
     //Navigate
     const navigate = useNavigate()
     const [category, setCategory] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('https://innova-server.vercel.app/categories')
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
@@ -27,12 +27,12 @@ const AddProducts = () => {
         e.preventDefault()
         const field = e.target.name;
         const value = e.target.value;
-        const updatedDetails = {...productDetails}
+        const updatedDetails = { ...productDetails }
         updatedDetails[field] = value;
         setProductDetails(updatedDetails)
     }
     //Handle add /sell product functionality
-    const handleAddProduct =(e) => {
+    const handleAddProduct = (e) => {
         e.preventDefault()
         const productImage = e.target.productImage.files[0];
         const formData = new FormData()
@@ -42,41 +42,41 @@ const AddProducts = () => {
             method: 'POST',
             body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-            const productImageURL = data.data.url;
-            //Product Detailed info
-            const productInfo = {
-                ...productDetails,
-                productImageURL,
-                productCondition,
-                productCategory,
-                sellerName: loggedInUser?.fullName,
-                sellerEmail: loggedInUser?.email,
-                sellerVerified: loggedInUser?.verified,
-                booked:false,
-                addedOn: new Date(),
-                prodStatus: 'Available',
-            }
-            //Save New Product to the Database
-            fetch('http://localhost:5000/products', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(productInfo)
-            })
             .then(res => res.json())
             .then(data => {
-                if(data.acknowledged){
-                    toast.success('New Product Added Successfully...')
-                    e.target.reset()
-                    navigate('/dashboard/myproducts')
+                const productImageURL = data.data.url;
+                //Product Detailed info
+                const productInfo = {
+                    ...productDetails,
+                    productImageURL,
+                    productCondition,
+                    productCategory,
+                    sellerName: loggedInUser?.fullName,
+                    sellerEmail: loggedInUser?.email,
+                    sellerVerified: loggedInUser?.verified,
+                    booked: false,
+                    addedOn: new Date(),
+                    prodStatus: 'Available',
                 }
+                //Save New Product to the Database
+                fetch('https://innova-server.vercel.app/products', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(productInfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+                            toast.success('New Product Added Successfully...')
+                            e.target.reset()
+                            navigate('/dashboard/myproducts')
+                        }
+                    })
+                    .catch(err => console.error(err))
             })
             .catch(err => console.error(err))
-        })
-        .catch(err => console.error(err))
 
     }
     return (
@@ -92,15 +92,15 @@ const AddProducts = () => {
                     <div className='grid grid-cols-2 lg:grid-cols-4 gap-2'>
                         <div>
                             <label htmlFor="proName" className="mb-2 text-lg">Product Name</label>
-                            <input onBlur={handleValues} type="text" name="proName" id="proName" placeholder="Enter Product Name" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
+                            <input onBlur={handleValues} type="text" name="proName" id="proName" placeholder="Enter Product Name" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required />
                         </div>
                         <div>
                             <label htmlFor="regularPrice" className="mb-2 text-lg">Regular Price</label>
-                            <input onBlur={handleValues} type="digit" name="regularPrice" id="regularPrice" placeholder="eg: $120" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
+                            <input onBlur={handleValues} type="digit" name="regularPrice" id="regularPrice" placeholder="eg: $120" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required />
                         </div>
                         <div>
                             <label htmlFor="resalePrice" className="mb-2 text-lg">Resale Price</label>
-                            <input onBlur={handleValues} type="digit" name="resalePrice" id="resalePrice" placeholder="eg: $80" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
+                            <input onBlur={handleValues} type="digit" name="resalePrice" id="resalePrice" placeholder="eg: $80" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required />
                         </div>
                         <div>
                             <label htmlFor="condition" className="mb-2 text-lg">Product Condition</label>
@@ -114,15 +114,15 @@ const AddProducts = () => {
                     <div className='grid grid-cols-2 lg:grid-cols-4 gap-2'>
                         <div>
                             <label htmlFor="usedDuration" className="mb-2 text-lg">Duration of Use</label>
-                            <input onBlur={handleValues} type="text" name="usedDuration" id="usedDuration" placeholder="eg: 2 Years" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
+                            <input onBlur={handleValues} type="text" name="usedDuration" id="usedDuration" placeholder="eg: 2 Years" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required />
                         </div>
                         <div>
                             <label htmlFor="purchaseYear" className="mb-2 text-lg">Year of purchase</label>
-                            <input onBlur={handleValues} type="text" name="purchaseYear" id="purchaseYear" placeholder="eg: 2020" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
+                            <input onBlur={handleValues} type="text" name="purchaseYear" id="purchaseYear" placeholder="eg: 2020" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required />
                         </div>
                         <div>
                             <label htmlFor="category" className="mb-2 text-lg">Product Category</label>
-                            <select onChange={e => setProductCategory(e.target.value) } name="category" id="category" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800">
+                            <select onChange={e => setProductCategory(e.target.value)} name="category" id="category" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800">
                                 <option value={category[0]?.catSlug}>{category[0]?.categoryName}</option>
                                 <option value={category[1]?.catSlug}>{category[1]?.categoryName}</option>
                                 <option value={category[2]?.catSlug}>{category[2]?.categoryName}</option>
@@ -130,13 +130,13 @@ const AddProducts = () => {
                         </div>
                         <div>
                             <label htmlFor="location" className="mb-2 text-lg">Product Location</label>
-                            <input onBlur={handleValues} type="text" name="location" id="location" placeholder="eg: Dhaka" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
+                            <input onBlur={handleValues} type="text" name="location" id="location" placeholder="eg: Dhaka" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required />
                         </div>
 
                     </div>
                     <div>
                         <label htmlFor="productImage" className="mb-2 text-lg block">Product Image</label>
-                        <input type="file" name="productImage" id="productImage" className="w-full px-3 py-2" required/>
+                        <input type="file" name="productImage" id="productImage" className="w-full px-3 py-2" required />
                         <label htmlFor="regularPrice" className="mb-2 text-lg">Image Dimension: <span className='font-semibold'>450px by 300px</span></label>
                     </div>
                     <div>
@@ -158,7 +158,7 @@ const AddProducts = () => {
                         </div>
                         <div>
                             <label htmlFor="sellerPhone" className="mb-2 text-lg">Contact Number</label>
-                            <input onBlur={handleValues} type="tel" name="sellerPhone" id="sellerPhone" placeholder="eg: +88018X-XXXXXXX" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required/>
+                            <input onBlur={handleValues} type="tel" name="sellerPhone" id="sellerPhone" placeholder="eg: +88018X-XXXXXXX" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required />
                         </div>
                     </div>
                     {/* Seller Information section end */}

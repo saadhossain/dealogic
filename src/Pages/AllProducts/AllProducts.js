@@ -2,26 +2,26 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
-import {RiRocket2Fill} from 'react-icons/ri'
+import { RiRocket2Fill } from 'react-icons/ri';
 
 const AllProducts = () => {
     //Get All Products from the database
     const { data: allProducts = [], refetch } = useQuery({
         queryKey: ['allProducts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch('https://innova-server.vercel.app/products');
             const data = await res.json()
             return data;
         }
     })
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://innova-server.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ prodStatus : 'Sold' })
+            body: JSON.stringify({ prodStatus: 'Sold' })
         })
             .then(res => res.json())
             .then(data => {
@@ -35,12 +35,12 @@ const AllProducts = () => {
     const handleRemoveProduct = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This Item?')
         if (confirmation) {
-            fetch(`http://localhost:5000/products/${id}`, {
+            fetch(`https://innova-server.vercel.app/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
-                    if(data.deletedCount > 0){
+                    if (data.deletedCount > 0) {
                         toast.error('One Product has been Deleted...')
                         refetch()
                     }
@@ -49,7 +49,7 @@ const AllProducts = () => {
     }
     //Promote Product by Seller
     const handlePromote = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://innova-server.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -95,21 +95,21 @@ const AllProducts = () => {
                                     <td>${product.resalePrice}</td>
                                     <td className='flex items-center gap-1'>
                                         <button
-                                        onClick={() => handleStatusChange(product._id)}
-                                        className={`duration-300 py-1 px-2 rounded text-white font-semibold ${product.prodStatus === 'Sold' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
-                                        disabled={product.prodStatus === 'Sold'}
+                                            onClick={() => handleStatusChange(product._id)}
+                                            className={`duration-300 py-1 px-2 rounded text-white font-semibold ${product.prodStatus === 'Sold' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
+                                            disabled={product.prodStatus === 'Sold'}
                                         >
-                                        {product.prodStatus === 'Sold'? 'Sold' : 'Mark Sold'}
+                                            {product.prodStatus === 'Sold' ? 'Sold' : 'Mark Sold'}
                                         </button>
                                     </td>
                                     <td>
                                         <button
-                                        onClick={()=> handlePromote(product._id)}
-                                        className={`flex items-center duration-300 py-1 px-2 rounded text-white ${product.promoted ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
-                                        disabled={product.promoted}
+                                            onClick={() => handlePromote(product._id)}
+                                            className={`flex items-center duration-300 py-1 px-2 rounded text-white ${product.promoted ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
+                                            disabled={product.promoted}
                                         >
-                                        <RiRocket2Fill></RiRocket2Fill>
-                                        {product.promoted ? 'Promoted' : 'Promote'}</button>
+                                            <RiRocket2Fill></RiRocket2Fill>
+                                            {product.promoted ? 'Promoted' : 'Promote'}</button>
                                     </td>
                                     <td>
                                         <button onClick={() => handleRemoveProduct(product._id)} className='text-innova hover:text-red-700 duration-300'><FaTrash></FaTrash></button>

@@ -17,7 +17,6 @@ import MyPurchase from "../Pages/MyPurchase/MyPurchase";
 import Products from "../Pages/Products/Products";
 import Register from "../Pages/Register/Register";
 import AdminRouter from "./AdminRouter";
-import BuyerRouter from "./BuyerRouter";
 import PrivateRouter from "./PrivateRouter";
 import SellerRouter from "./SellerRouter";
 
@@ -33,7 +32,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/products/:category',
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.category}`),
+                loader: ({ params }) => fetch(`https://innova-server.vercel.app/products/${params.category}`),
                 element: <PrivateRouter><Products></Products></PrivateRouter>
             },
             {
@@ -87,7 +86,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/mypurchase',
-                element: <BuyerRouter><MyPurchase></MyPurchase></BuyerRouter>
+                element: <MyPurchase></MyPurchase>
             },
             {
                 path: '/dashboard/myproducts',

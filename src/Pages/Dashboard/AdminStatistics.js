@@ -7,7 +7,7 @@ const AdminStatistics = () => {
     const { data: allProducts = [] } = useQuery({
         queryKey: ['allProducts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
+            const res = await fetch('https://innova-server.vercel.app/products');
             const data = await res.json()
             return data;
         }
@@ -18,7 +18,7 @@ const AdminStatistics = () => {
     const { data: allUsers = [] } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users')
+            const res = await fetch('https://innova-server.vercel.app/users')
             const data = await res.json()
             return data;
         }
@@ -27,25 +27,25 @@ const AdminStatistics = () => {
     const { data: bookeProducts = [] } = useQuery({
         queryKey: ['bookeProducts'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/booked')
+            const res = await fetch('https://innova-server.vercel.app/booked')
             const data = await res.json()
             return data;
         }
     })
     //Get all the buyers from the database
-    const {data:buyers = [] } = useQuery({
+    const { data: buyers = [] } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/buyers');
+            const res = await fetch('https://innova-server.vercel.app/users/buyers');
             const data = await res.json()
             return data
         }
     })
     //Get all the sellers from the database
-    const {data:sellers = [] } = useQuery({
+    const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/sellers');
+            const res = await fetch('https://innova-server.vercel.app/users/sellers');
             const data = await res.json()
             return data
         }
