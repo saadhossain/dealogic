@@ -50,6 +50,9 @@ const DashboardLeftSidebar = () => {
                                     <Link to='/dashboard/buyers' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>All Buyer</li>
                                     </Link>
+                                    <Link to='/dashboard/publishblog' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                        <li>Publish A Blog</li>
+                                    </Link>
                                     <Link to='/dashboard/bookedproducts' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
                                         <li>Booked Products</li>
                                     </Link>

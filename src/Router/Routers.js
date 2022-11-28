@@ -20,6 +20,7 @@ import AdminRouter from "./AdminRouter";
 import PrivateRouter from "./PrivateRouter";
 import SellerRouter from "./SellerRouter";
 import BuyerRouter from "./BuyerRouter"
+import PulishBlog from "../Pages/PulishBlog/PulishBlog";
 
 export const Routers = createBrowserRouter([
     {
@@ -84,6 +85,10 @@ export const Routers = createBrowserRouter([
             {
                 path: '/dashboard/bookedproducts',
                 element: <AdminRouter><BookedProducts></BookedProducts></AdminRouter>
+            },
+            {
+                path: '/dashboard/publishblog',
+                element: <AdminRouter><PulishBlog></PulishBlog></AdminRouter>
             },
             {
                 path: '/dashboard/mypurchase',
