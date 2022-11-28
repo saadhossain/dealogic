@@ -61,8 +61,8 @@ const Register = () => {
                         })
                             .then(res => res.json())
                             .then(data => {
-                                if (data.token) {
-                                    localStorage.setItem('AccessToken', data.token)
+                                if (data.accessToken) {
+                                    localStorage.setItem('AccessToken', data.accessToken)
                                     //After Saving the token to local storage then do others tasks
                                     form.reset()
                                     toast.success('Account Registration successful... Redirecting...')
@@ -100,8 +100,8 @@ const Register = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if (data.token) {
-                            localStorage.setItem('AccessToken', data.token)
+                        if (data.accessToken) {
+                            localStorage.setItem('AccessToken', data.accessToken)
                             //After Saving the token to local storage then do others tasks
                             saveUser(userInfo)
                             toast.success('Account Registration Successful... Redirecting...')

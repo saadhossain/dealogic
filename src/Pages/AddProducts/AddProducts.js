@@ -166,7 +166,7 @@ const AddProducts = () => {
                     {/* Seller Information section end */}
                 </div>
                 <div className='flex justify-center my-5'>
-                    <button type='submit' className='bg-innova text-white font-semibold py-3 px-10 rounded'>Add Product</button>
+                    <button type='submit' className='bg-innova duration-500 ease-in-out hover:bg-secondary text-white font-semibold py-3 px-10 rounded'> Add Product</button>
                 </div>
             </form>
         </div>

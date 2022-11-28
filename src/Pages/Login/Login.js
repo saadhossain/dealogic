@@ -32,8 +32,8 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if (data.token) {
-                            localStorage.setItem('AccessToken', data.token)
+                        if (data.accessToken) {
+                            localStorage.setItem('AccessToken', data.accessToken)
                             //After Saving the token to local storage then do others tasks
                             toast.success('User Login Successful...')
                             form.reset()
@@ -48,6 +48,9 @@ const Login = () => {
         googleLogin()
             .then((result) => {
                 const user = result.user;
+                const currentUser = {
+                    email: user.email
+                }
                 const userInfo = {
                     fullName: user.displayName,
                     email: user.email,
@@ -55,8 +58,22 @@ const Login = () => {
                     accountType: 'Buyer'
                 }
                 saveUser(userInfo)
-                toast.success('Account Registration Successful... Redirecting...')
-                navigate('/dashboard')
+                fetch('https://innova-server.vercel.app/accesstoken', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.accessToken) {
+                            localStorage.setItem('AccessToken', data.accessToken)
+                            //After Saving the token to local storage then do others tasks
+                            toast.success('Account Registration Successful... Redirecting...')
+                            navigate('/dashboard')
+                        }
+                    })
             })
             .catch(err => console.error(err))
     }
