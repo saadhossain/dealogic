@@ -20,7 +20,7 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
             meetingLocaton,
             payment: 'unpaid'
         }
-        fetch('https://innova-server.vercel.app/products/book', {
+        fetch('http://localhost:5000/products/book', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -32,7 +32,7 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
                 if (data.acknowledged) {
                     toast.success(`You have Successfully Booked ${proName}`)
                     setAvailableProduct(null)
-                    fetch(`https://innova-server.vercel.app/products/${_id}`, {
+                    fetch(`http://localhost:5000/products/${_id}`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json'

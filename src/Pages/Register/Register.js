@@ -42,22 +42,18 @@ const Register = () => {
                 }
                 createUser(email, password)
                     .then((result) => {
-                        const user = result.user;
-                        const currentUser = {
-                            email: user.email
-                        }
                         toast.success('User Registration Successful...')
                         updateUser(fullName, profileImage)
                             .then(() => {
                             })
                         saveUser(userInfo)
                         //Get Access token from the server and save it to local storage
-                        fetch('https://innova-server.vercel.app/accesstoken', {
+                        fetch('http://localhost:5000/accesstoken', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
                             },
-                            body: JSON.stringify(currentUser)
+                            body: JSON.stringify(email)
                         })
                             .then(res => res.json())
                             .then(data => {
@@ -91,7 +87,7 @@ const Register = () => {
                     email: user.email
                 }
                 //Get Access token from the server and save it to local storage
-                fetch('https://innova-server.vercel.app/accesstoken', {
+                fetch('http://localhost:5000/accesstoken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -114,7 +110,7 @@ const Register = () => {
     }
     //Save New user to the database
     const saveUser = (userInfo) => {
-        fetch('https://innova-server.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

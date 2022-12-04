@@ -11,9 +11,9 @@ const MyProudcts = () => {
     //Get Products for logged in users
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts', user?.email, logOut],
-        queryFn: () => fetch(`https://innova-server.vercel.app/products/seller?email=${user?.email}`, {
+        queryFn: () => fetch(`http://localhost:5000/products/seller?email=${user?.email}`, {
             headers: {
-                authorization: `Beareer ${localStorage.getItem('accessToken')}`
+                authorization: `Beareer ${localStorage.getItem('AccessToken')}`
             }
         })
             .then(res => {
@@ -26,7 +26,7 @@ const MyProudcts = () => {
     })
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`https://innova-server.vercel.app/products/${id}`, {
+        fetch(`http://localhost:5000/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -45,7 +45,7 @@ const MyProudcts = () => {
     const handleRemoveProduct = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This Item?')
         if (confirmation) {
-            fetch(`https://innova-server.vercel.app/products/${id}`, {
+            fetch(`http://localhost:5000/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -59,7 +59,7 @@ const MyProudcts = () => {
     }
     //Promote Product by Seller
     const handlePromote = (id) => {
-        fetch(`https://innova-server.vercel.app/products/${id}`, {
+        fetch(`http://localhost:5000/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

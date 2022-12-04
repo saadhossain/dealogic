@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import BlogDetails from "../Components/BlogsComp/BlogDetails";
 import ErrorElements from "../Components/ErrorElements/ErrorElements";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
@@ -15,13 +16,12 @@ import Login from "../Pages/Login/Login";
 import MyProudcts from "../Pages/MyProudcts/MyProudcts";
 import MyPurchase from "../Pages/MyPurchase/MyPurchase";
 import Products from "../Pages/Products/Products";
+import PulishBlog from "../Pages/PulishBlog/PulishBlog";
 import Register from "../Pages/Register/Register";
 import AdminRouter from "./AdminRouter";
+import BuyerRouter from "./BuyerRouter";
 import PrivateRouter from "./PrivateRouter";
 import SellerRouter from "./SellerRouter";
-import BuyerRouter from "./BuyerRouter"
-import PulishBlog from "../Pages/PulishBlog/PulishBlog";
-import BlogDetails from "../Components/BlogsComp/BlogDetails";
 
 export const Routers = createBrowserRouter([
     {
@@ -35,7 +35,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/products/:category',
-                loader: ({ params }) => fetch(`https://innova-server.vercel.app/products/${params.category}`),
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.category}`),
                 element: <PrivateRouter><Products></Products></PrivateRouter>
             },
             {
@@ -52,8 +52,8 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/blogs/:id',
-                loader: ({params})=> fetch(`https://innova-server.vercel.app/blogs/${params.id}`),
-                element:<BlogDetails></BlogDetails>
+                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`),
+                element: <BlogDetails></BlogDetails>
             }
         ]
     },

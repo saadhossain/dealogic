@@ -18,22 +18,18 @@ const Login = () => {
         const password = form.password.value
         userLogin(email, password)
             .then((result) => {
-                const user = result.user;
-                const currentUser = {
-                    email: user.email
-                }
                 //Get Access token from the server and save it to local storage
-                fetch('https://innova-server.vercel.app/accesstoken', {
+                fetch('http://localhost:5000/getToken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify(currentUser)
+                    body: JSON.stringify(email)
                 })
                     .then(res => res.json())
                     .then(data => {
-                        if (data.accessToken) {
-                            localStorage.setItem('AccessToken', data.accessToken)
+                        if (data.accesstoken) {
+                            localStorage.setItem('AccessToken', data.accesstoken)
                             //After Saving the token to local storage then do others tasks
                             toast.success('User Login Successful...')
                             form.reset()
@@ -58,7 +54,7 @@ const Login = () => {
                     accountType: 'Buyer'
                 }
                 saveUser(userInfo)
-                fetch('https://innova-server.vercel.app/accesstoken', {
+                fetch('http://localhost:5000/accesstoken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -79,7 +75,7 @@ const Login = () => {
     }
     //Save New user to the database
     const saveUser = (userInfo) => {
-        fetch('https://innova-server.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

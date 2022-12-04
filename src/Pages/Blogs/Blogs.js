@@ -5,10 +5,10 @@ import DisplayBlogs from '../../Components/BlogsComp/DisplayBlogs';
 const Blogs = () => {
 
     //Get All Blogs
-    const {data: blogs = []} = useQuery({
+    const { data: blogs = [] } = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
-            const res = await fetch('https://innova-server.vercel.app/blogs');
+            const res = await fetch('http://localhost:5000/blogs');
             const data = await res.json()
             return data
         }
@@ -24,8 +24,8 @@ const Blogs = () => {
             <div className='grid lg:grid-cols-3 gap-5'>
                 {
                     blogs.map(blog => <DisplayBlogs
-                    key={blog._id}
-                    blog={blog}
+                        key={blog._id}
+                        blog={blog}
                     ></DisplayBlogs>)
                 }
             </div>

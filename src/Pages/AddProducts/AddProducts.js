@@ -12,7 +12,7 @@ const AddProducts = () => {
     const navigate = useNavigate()
     const [category, setCategory] = useState([])
     useEffect(() => {
-        fetch('https://innova-server.vercel.app/categories')
+        fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
@@ -59,7 +59,7 @@ const AddProducts = () => {
                     prodStatus: 'Available',
                 }
                 //Save New Product to the Database
-                fetch('https://innova-server.vercel.app/products', {
+                fetch('http://localhost:5000/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -71,7 +71,7 @@ const AddProducts = () => {
                         if (data.acknowledged) {
                             toast.success('New Product Added Successfully...')
                             e.target.reset()
-                            if(loggedInUser === 'Seller'){
+                            if (loggedInUser === 'Seller') {
                                 navigate('/dashboard/myproducts')
                             }
                         }
