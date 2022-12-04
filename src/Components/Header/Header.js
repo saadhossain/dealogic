@@ -35,7 +35,7 @@ const Header = () => {
                                     </Link>
                                     <div className='flex items-center gap-2'>
                                         <Link to='/dashboard'>
-                                            <img src={user?.photoURL ? user.photoURL : ''} alt={user?.displayName} className='w-10 rounded-full' />
+                                            <img src={user?.photoURL ? user.photoURL : ''} alt={user?.displayName} className='w-10 h-10 rounded-full' />
                                         </Link>
                                         <Link onClick={handleLogOut}>
                                             <AiOutlineLogout className='w-6 h-6 text-accent'></AiOutlineLogout>
