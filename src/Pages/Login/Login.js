@@ -44,9 +44,6 @@ const Login = () => {
         googleLogin()
             .then((result) => {
                 const user = result.user;
-                const currentUser = {
-                    email: user.email
-                }
                 const userInfo = {
                     fullName: user.displayName,
                     email: user.email,
@@ -59,7 +56,7 @@ const Login = () => {
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify(currentUser)
+                    body: JSON.stringify(user.email)
                 })
                     .then(res => res.json())
                     .then(data => {

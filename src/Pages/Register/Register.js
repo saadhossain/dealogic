@@ -83,16 +83,13 @@ const Register = () => {
                     profileImage: user.photoURL,
                     accountType: 'Buyer'
                 }
-                const currentUser = {
-                    email: user.email
-                }
                 //Get Access token from the server and save it to local storage
                 fetch('http://localhost:5000/accesstoken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify(currentUser)
+                    body: JSON.stringify(user.email)
                 })
                     .then(res => res.json())
                     .then(data => {
