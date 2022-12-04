@@ -11,7 +11,7 @@ const MyProudcts = () => {
     //Get Products for logged in users
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts', user?.email, logOut],
-        queryFn: () => fetch(`https://innova-server.vercel.app/products/seller?email=${user?.email}`, {
+        queryFn: () => fetch(`https://innova-server.vercel.app/seller/products?email=${user?.email}`, {
             headers: {
                 authorization: `Beareer ${localStorage.getItem('AccessToken')}`
             }

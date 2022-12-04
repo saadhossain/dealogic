@@ -53,7 +53,7 @@ const Register = () => {
                             headers: {
                                 'content-type': 'application/json'
                             },
-                            body: JSON.stringify(email)
+                            body: JSON.stringify({email})
                         })
                             .then(res => res.json())
                             .then(data => {
@@ -83,13 +83,14 @@ const Register = () => {
                     profileImage: user.photoURL,
                     accountType: 'Buyer'
                 }
+                const email = user.email;
                 //Get Access token from the server and save it to local storage
                 fetch('https://innova-server.vercel.app/accesstoken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify(user.email)
+                    body: JSON.stringify({email})
                 })
                     .then(res => res.json())
                     .then(data => {
