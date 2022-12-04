@@ -48,7 +48,7 @@ const Register = () => {
                             })
                         saveUser(userInfo)
                         //Get Access token from the server and save it to local storage
-                        fetch('http://localhost:5000/accesstoken', {
+                        fetch('https://innova-server.vercel.app/accesstoken', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -84,7 +84,7 @@ const Register = () => {
                     accountType: 'Buyer'
                 }
                 //Get Access token from the server and save it to local storage
-                fetch('http://localhost:5000/accesstoken', {
+                fetch('https://innova-server.vercel.app/accesstoken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -107,7 +107,7 @@ const Register = () => {
     }
     //Save New user to the database
     const saveUser = (userInfo) => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://innova-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

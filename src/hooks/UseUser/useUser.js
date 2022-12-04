@@ -4,7 +4,7 @@ const useUser = (email) => {
     const [loggedInUser, setLoggedInUser] = useState([])
     const [userLoading, setUserLoading] = useState(true)
     useEffect(() => {
-        fetch(`http://localhost:5000/user?email=${email}`)
+        fetch(`https://innova-server.vercel.app/user?email=${email}`)
             .then(res => res.json())
             .then(data => {
                 setLoggedInUser(data[0])

@@ -9,7 +9,7 @@ const AllSeller = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/sellers');
+            const res = await fetch('https://innova-server.vercel.app/users/sellers');
             const data = await res.json()
             return data
         }
@@ -18,7 +18,7 @@ const AllSeller = () => {
     const handleDeleteSeller = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This User?')
         if (confirmation) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://innova-server.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -32,7 +32,7 @@ const AllSeller = () => {
     }
     //Verify a Seller
     const handleVerify = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://innova-server.vercel.app/users/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

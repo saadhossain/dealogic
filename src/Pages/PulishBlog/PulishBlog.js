@@ -42,7 +42,7 @@ const PulishBlog = () => {
                     publishedOn: new Date(),
                 }
                 //Save New Product to the Database
-                fetch('http://localhost:5000/blogs', {
+                fetch('https://innova-server.vercel.app/blogs', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

@@ -8,7 +8,7 @@ const AllUsers = () => {
     const { data: allUsers = [], refetch } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users')
+            const res = await fetch('https://innova-server.vercel.app/users')
             const data = await res.json()
             return data;
         }
@@ -17,7 +17,7 @@ const AllUsers = () => {
     const handleDeleteUser = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This User?')
         if (confirmation) {
-            fetch(`http://localhost:5000/users/${id}`, {
+            fetch(`https://innova-server.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
