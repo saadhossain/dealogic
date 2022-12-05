@@ -11,9 +11,11 @@ const DisplayBlogs = ({ blog }) => {
                 <div className="card-body font-semibold">
                     <h2 className="text-xl font-semibold">{blogTitle}</h2>
                     <hr className="border-1 border-gray-400" />
-                    <p>
-                        {description.length > 150 && description.slice(0, 150) + '...'}
-                    </p>
+                    <div 
+                    dangerouslySetInnerHTML={{__html:description.slice(0, 150)}}
+                    >
+
+                    </div>
                     <hr className="border-1 border-gray-400" />
                     <div className='flex items-center justify-between'>
                         <div className="flex items-center gap-2">

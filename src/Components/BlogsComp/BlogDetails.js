@@ -11,9 +11,9 @@ const BlogDetails = () => {
                 <div className="card-body font-semibold">
                     <h2 className="text-xl font-semibold">{blog.blogTitle}</h2>
                     <hr className="border-1 border-gray-400" />
-                    <p>
-                        {blog.description}
-                    </p>
+                    <div dangerouslySetInnerHTML={{__html:blog.description}}>
+
+                    </div>
                     <hr className="border-1 border-gray-400" />
                     <div className='flex items-center gap-2'>
                         <img src={blog.authorImage} alt={blog.authorName} className='w-12 rounded-full' />
