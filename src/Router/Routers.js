@@ -15,6 +15,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import MyProudcts from "../Pages/MyProudcts/MyProudcts";
 import MyPurchase from "../Pages/MyPurchase/MyPurchase";
+import Payment from "../Pages/Payment/Payment";
 import Products from "../Pages/Products/Products";
 import PulishBlog from "../Pages/PulishBlog/PulishBlog";
 import Register from "../Pages/Register/Register";
@@ -103,6 +104,11 @@ export const Routers = createBrowserRouter([
             {
                 path: '/dashboard/myproducts',
                 element: <SellerRouter><MyProudcts></MyProudcts></SellerRouter>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                loader: ({params}) => fetch(`https://innova-server.vercel.app/products/${params.id}`),
+                element: <Payment></Payment>
             }
         ]
     }

@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const MyPurchase = () => {
@@ -56,12 +57,14 @@ const MyPurchase = () => {
                                     <td>${myPurchase.regularPrice}</td>
                                     <td>${myPurchase.resalePrice}</td>
                                     <td className='flex items-center gap-1'>
-                                        <button
-                                            className={`duration-300 py-1 px-2 rounded text-white font-semibold ${myPurchase.payment === 'Paid' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
-                                            disabled={myPurchase.payment === 'Paid'}
-                                        >
-                                            {myPurchase.payment ? 'Pay Now' : myPurchase.payment}
-                                        </button>
+                                        <Link to={`/dashboard/payment/${myPurchase._id}`}>
+                                            <button
+                                                className={`duration-300 py-1 px-2 rounded text-white font-semibold ${myPurchase.payment === 'Paid' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
+                                                disabled={myPurchase.payment === 'Paid'}
+                                            >
+                                                {myPurchase.payment ? 'Pay Now' : myPurchase.payment}
+                                            </button>
+                                        </Link>
                                     </td>
                                     <td>
                                         <button className='text-innova hover:text-red-700 duration-300 flex items-center'><FaTrash></FaTrash> Cancel</button>
