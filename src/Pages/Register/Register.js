@@ -48,7 +48,7 @@ const Register = () => {
                             })
                         saveUser(userInfo)
                         //Get Access token from the server and save it to local storage
-                        fetch('https://dealogic.vercel.app/accesstoken', {
+                        fetch('https://dealogic.vercel.app/getToken', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -85,7 +85,7 @@ const Register = () => {
                 }
                 const email = user.email;
                 //Get Access token from the server and save it to local storage
-                fetch('https://dealogic.vercel.app/accesstoken', {
+                fetch('https://dealogic.vercel.app/getToken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

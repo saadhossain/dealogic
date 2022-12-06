@@ -52,7 +52,7 @@ const Login = () => {
                 }
                 const email = user.email;
                 saveUser(userInfo)
-                fetch('https://dealogic.vercel.app/accesstoken', {
+                fetch('https://dealogic.vercel.app/getToken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
