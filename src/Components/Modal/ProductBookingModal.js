@@ -13,15 +13,15 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
         const buyerPhone = form.buyerPhone.value;
         const meetingLocaton = form.meetingLocation.value;
         const updatedProductInfo = {
-            ...availableProduct,
             buyerName: user?.displayName,
             buyerEmail: user?.email,
             buyerPhone,
             meetingLocaton,
-            payment: 'unpaid'
+            payment: 'unpaid',
+            booked: true
         }
-        fetch('https://innova-server.vercel.app/products/book', {
-            method: 'POST',
+        fetch(`https://innova-server.vercel.app/products/${_id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -29,22 +29,23 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
+                if (data.modifiedCount > 0) {
                     toast.success(`You have Successfully Booked ${proName}`)
                     setAvailableProduct(null)
-                    fetch(`https://innova-server.vercel.app/products/${_id}`, {
-                        method: 'PUT',
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify({ booked: true })
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.modifiedCount > 0) {
-                                window.location.reload()
-                            }
-                        })
+                    window.location.reload()
+                    // fetch(`https://innova-server.vercel.app/products/${_id}`, {
+                    //     method: 'PUT',
+                    //     headers: {
+                    //         'content-type': 'application/json'
+                    //     },
+                    //     body: JSON.stringify({ booked: true })
+                    // })
+                    //     .then(res => res.json())
+                    //     .then(data => {
+                    //         if (data.modifiedCount > 0) {
+                    //             window.location.reload()
+                    //         }
+                    //     })
                 }
             })
     }

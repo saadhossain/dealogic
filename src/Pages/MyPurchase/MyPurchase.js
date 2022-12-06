@@ -62,7 +62,7 @@ const MyPurchase = () => {
                                                 className={`duration-300 py-1 px-2 rounded text-white font-semibold ${myPurchase.payment === 'Paid' ? 'bg-accent' : 'bg-innova hover:bg-secondary'}`}
                                                 disabled={myPurchase.payment === 'Paid'}
                                             >
-                                                {myPurchase.payment ? 'Pay Now' : myPurchase.payment}
+                                                {myPurchase.payment ?myPurchase.payment : 'Pay Now' }
                                             </button>
                                         </Link>
                                     </td>

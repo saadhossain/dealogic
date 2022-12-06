@@ -64,9 +64,10 @@ const CheckoutForm = ({ product }) => {
             setErrs(paymentError.message)
             return;
         }
+        //Change Product payment status after completing payment
         if (paymentIntent.status === 'succeeded') {
             //Change Product Status Paid after payment
-            fetch(`https://innova-server.vercel.app/booked/products/${product._id}`, {
+            fetch(`https://innova-server.vercel.app/products/${product._id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -80,16 +81,6 @@ const CheckoutForm = ({ product }) => {
                         navigate('/dashboard/mypurchase')
                     }
                 })
-            //Change Product Status Sold after payment
-            fetch(`https://innova-server.vercel.app/products/${product._id}`, {
-                method: 'PUT',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({ prodStatus: 'Sold' })
-            })
-                .then(res => res.json())
-                .then(data => console.log(data))
         }
         console.log(paymentIntent);
     }
