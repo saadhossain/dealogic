@@ -103,17 +103,17 @@ const Login = () => {
                     </div>
                     <div className="space-y-2">
                         <div>
-                            <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-innova text-white">Sign in</button>
+                            <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-dealogic text-white">Sign in</button>
                         </div>
                         <p className="px-6 text-lg text-center text-gray-800">Don't have an account yet?
-                            <Link to="/register" className="hover:underline text-innova ml-2 font-bold">Sign up</Link>.
+                            <Link to="/register" className="hover:underline text-dealogic ml-2 font-bold">Sign up</Link>.
                         </p>
                     </div>
                 </form>
                 <button
                     onClick={handleGoogleLogin}
                     type="button"
-                    className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-innova hover:border-innova hover:text-white">
+                    className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-dealogic hover:border-dealogic hover:text-white">
                     <FaGoogle></FaGoogle>
                     <p>Login with Google</p>
                 </button>

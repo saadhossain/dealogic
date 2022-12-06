@@ -9,8 +9,8 @@ const Products = () => {
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto my-5'>
             <div className='relative'>
-                <h1 className='text-2xl lg:text-4xl font-bold text-innova mb-10'>All Products</h1>
-                <div className='border-2 border-innova w-20 absolute top-8 left-36 lg:left-52'></div>
+                <h1 className='text-2xl lg:text-4xl font-bold text-dealogic mb-10'>All Products</h1>
+                <div className='border-2 border-dealogic w-20 absolute top-8 left-36 lg:left-52'></div>
             </div>
             {/* Products */}
             <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-5'>
@@ -25,7 +25,7 @@ const Products = () => {
             {
                 availableProduct &&
                 <ProductBookingModal
-                availableProduct={availableProduct}
+                    availableProduct={availableProduct}
                     setAvailableProduct={setAvailableProduct}
                 >
                 </ProductBookingModal>

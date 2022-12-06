@@ -12,17 +12,17 @@ const Payment = () => {
     return (
         <div className='flex justify-between gap-10'>
             <div className='w-2/5'>
-                <h1 className='text-xl lg:text-3xl text-innova font-bold'>Payment Details</h1>
+                <h1 className='text-xl lg:text-3xl text-dealogic font-bold'>Payment Details</h1>
                 <div className='my-5'>
                     <Elements stripe={stripePromise}>
                         <CheckoutForm
-                        product={product}
+                            product={product}
                         ></CheckoutForm>
                     </Elements>
                 </div>
             </div>
             <div className='w-3/5'>
-                <h1 className='text-xl lg:text-3xl text-innova font-bold'>Products Details</h1>
+                <h1 className='text-xl lg:text-3xl text-dealogic font-bold'>Products Details</h1>
                 {/* Product Details */}
                 <div className='flex gap-2 mt-5 border p-3 rounded-lg'>
                     <img src={product.productImageURL} alt={product.proName} className='w-28 rounded-lg' />
@@ -31,16 +31,16 @@ const Payment = () => {
                         <p className='flex items-center gap-1 font-semibold'>By: {product.sellerName} {product.sellerVerified && <GoVerified className="text-blue-600" title="Verified Seller"></GoVerified>}</p>
                         <div className='flex justify-between font-semibold'>
                             <p>Quantity: 1</p>
-                            <p>Price: <span className='text-innova text-lg font-bold'>${product.resalePrice}</span></p>
+                            <p>Price: <span className='text-dealogic text-lg font-bold'>${product.resalePrice}</span></p>
                         </div>
                     </div>
                 </div>
                 <div className='text-end font-semibold'>
-                    <p>Subtotal: <span className='text-innova text-lg'>${product.regularPrice}</span></p>
-                    <p>Discount: <span className='text-innova text-lg'>-${product.regularPrice - product.resalePrice}</span></p>
-                    <p>Shipping: <span className='text-innova text-lg'>$0</span></p>
-                    <hr className='border border-innova my-1 ml-48' />
-                    <p>Total: <span className='text-innova text-lg font-bold'>${product.resalePrice}</span> USD</p>
+                    <p>Subtotal: <span className='text-dealogic text-lg'>${product.regularPrice}</span></p>
+                    <p>Discount: <span className='text-dealogic text-lg'>-${product.regularPrice - product.resalePrice}</span></p>
+                    <p>Shipping: <span className='text-dealogic text-lg'>$0</span></p>
+                    <hr className='border border-dealogic my-1 ml-48' />
+                    <p>Total: <span className='text-dealogic text-lg font-bold'>${product.resalePrice}</span> USD</p>
                 </div>
             </div>
         </div>

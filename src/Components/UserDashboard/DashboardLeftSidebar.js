@@ -29,31 +29,31 @@ const DashboardLeftSidebar = () => {
                     </div>
                     <div className='mt-10 ml-5'>
                         <ul className='font-semibold flex flex-col gap-3'>
-                            <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                            <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                 <li>Dashboard</li>
                             </Link>
                             {/* //Conditionally showing Admin menus */}
                             {
                                 loggedInUser?.accountType === 'Admin' && <>
-                                    <Link to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>All Products</li>
                                     </Link>
-                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>Add A Product</li>
                                     </Link>
-                                    <Link to='/dashboard/allusers' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/allusers' className='hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>All Users</li>
                                     </Link>
-                                    <Link to='/dashboard/sellers' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/sellers' className='hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>All Seller</li>
                                     </Link>
-                                    <Link to='/dashboard/buyers' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/buyers' className='hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>All Buyer</li>
                                     </Link>
-                                    <Link to='/dashboard/publishblog' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/publishblog' className='hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>Publish A Blog</li>
                                     </Link>
-                                    <Link to='/dashboard/bookedproducts' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/bookedproducts' className='hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>Booked Products</li>
                                     </Link>
                                 </>
@@ -61,20 +61,20 @@ const DashboardLeftSidebar = () => {
                             {/* //Conditionally showing Seller menus */}
                             {
                                 loggedInUser?.accountType === 'Seller' && <>
-                                    <Link to='/dashboard/myproducts' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/myproducts' className='duration-500 ease-in-out hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>My Products</li>
                                     </Link>
-                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>Sell A Product</li>
                                     </Link></>
                             }
                             {/* //Conditionally showing buyer menus */}
                             {
                                 loggedInUser?.accountType === 'Buyer' && <>
-                                    <Link to='/dashboard/mypurchase' className='duration-500 ease-in-out hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/mypurchase' className='duration-500 ease-in-out hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>My Purchases</li>
                                     </Link>
-                                    <Link to='/dashboard/addProduct' className='hover:bg-innova text-white py-1 px-2 rounded border-b-2 border-innova'>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-dealogic text-white py-1 px-2 rounded border-b-2 border-dealogic'>
                                         <li>Sell A Product</li>
                                     </Link></>
                             }
@@ -83,9 +83,9 @@ const DashboardLeftSidebar = () => {
                 </div>
                 <Link
                     onClick={handleLogOut}
-                    className='flex gap-2 font-semibold mt-5 hover:text-innova'>
+                    className='flex gap-2 font-semibold mt-5 hover:text-dealogic'>
                     Logout
-                    <AiOutlineLogout className='w-6 h-6 text-white hover:text-innova'>
+                    <AiOutlineLogout className='w-6 h-6 text-white hover:text-dealogic'>
                     </AiOutlineLogout>
                 </Link>
             </div>

@@ -8,12 +8,12 @@ import SellerStatistics from './SellerStatistics';
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
     //Get the User 
-    const {loggedInUser} = useUser(user?.email)
+    const { loggedInUser } = useUser(user?.email)
     return (
         <div>
             <div className='relative'>
-                <h1 className='text-2xl lg:text-4xl font-bold text-innova mb-10'>Statistics</h1>
-                <div className='border-2 border-innova w-20 absolute top-6 lg:top-8 left-28 lg:left-40'></div>
+                <h1 className='text-2xl lg:text-4xl font-bold text-dealogic mb-10'>Statistics</h1>
+                <div className='border-2 border-dealogic w-20 absolute top-6 lg:top-8 left-28 lg:left-40'></div>
             </div>
             <div>
                 {/* For admin */}

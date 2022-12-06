@@ -10,7 +10,7 @@ const CategoryShowcase = ({ category }) => {
                     <h2 className="text-center text-2xl font-semibold">{category.categoryName}</h2>
                     <div className="card-actions justify-center">
                         <Link to={`/products/${category.catSlug}`}>
-                            <button className="btn btn-primary bg-innova border-none hover:bg-secondary duration-300 ease-in-out">View Products</button>
+                            <button className="btn btn-primary bg-dealogic border-none hover:bg-secondary duration-300 ease-in-out">View Products</button>
                         </Link>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import dateFormat from "dateformat";
 import React from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import {GoVerified} from 'react-icons/go'
+import { GoVerified } from 'react-icons/go'
 
 const ProductShowcase = ({ product, setAvailableProduct }) => {
     const { proName, productImageURL, productCondition, purchaseYear, regularPrice, resalePrice, sellerName, usedDuration, addedOn, location, booked, sellerVerified } = product;
@@ -13,7 +13,7 @@ const ProductShowcase = ({ product, setAvailableProduct }) => {
                     <h2 className="text-xl font-semibold">{proName}</h2>
                     <div className='flex items-center justify-between'>
                         <p className='line-through text-gray-500'>Regular :${regularPrice}</p>
-                        <p className='font-bold text-xl text-innova'>Sale: ${resalePrice}</p>
+                        <p className='font-bold text-xl text-dealogic'>Sale: ${resalePrice}</p>
                     </div>
                     <hr className="border-1 border-gray-400" />
                     <div className='flex justify-between items-center'>
@@ -30,7 +30,7 @@ const ProductShowcase = ({ product, setAvailableProduct }) => {
                     </p>
                     <div className="card-actions justify-center">
                         <label
-                            className='btn border-none duration-300 ease-in-out bg-innova hover:bg-secondary'
+                            className='btn border-none duration-300 ease-in-out bg-dealogic hover:bg-secondary'
                             htmlFor="booking-modal"
                             disabled={booked}
                             onClick={() => setAvailableProduct(product)}

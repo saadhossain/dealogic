@@ -20,8 +20,8 @@ const PromotedProducts = () => {
                 promotedProducts?.length > 0 &&
                 <>
                     <div className='relative'>
-                        <h1 className='text-2xl lg:text-4xl font-bold text-innova mb-10'>Promoted Products</h1>
-                        <div className='border-2 border-innova w-20 absolute top-8 left-56 lg:left-[340px]'></div>
+                        <h1 className='text-2xl lg:text-4xl font-bold text-dealogic mb-10'>Promoted Products</h1>
+                        <div className='border-2 border-dealogic w-20 absolute top-8 left-56 lg:left-[340px]'></div>
                     </div>
                     <div className='grid lg:grid-cols-4 gap-5'>
                         {

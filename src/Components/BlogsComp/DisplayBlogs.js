@@ -11,8 +11,8 @@ const DisplayBlogs = ({ blog }) => {
                 <div className="card-body font-semibold">
                     <h2 className="text-xl font-semibold">{blogTitle}</h2>
                     <hr className="border-1 border-gray-400" />
-                    <div 
-                    dangerouslySetInnerHTML={{__html:description.slice(0, 150)}}
+                    <div
+                        dangerouslySetInnerHTML={{ __html: description.slice(0, 150) }}
                     >
 
                     </div>
@@ -25,7 +25,7 @@ const DisplayBlogs = ({ blog }) => {
                                 <p>On: {dateFormat(publishedOn, "mmm dS, yyyy")}</p>
                             </div>
                         </div>
-                        <Link to={`/blogs/${_id}`}><button className='py-2 px-2 bg-innova duration-500 ease-in-out hover:bg-secondary rounded text-white font-semibold text-center'>Read Details</button></Link>
+                        <Link to={`/blogs/${_id}`}><button className='py-2 px-2 bg-dealogic duration-500 ease-in-out hover:bg-secondary rounded text-white font-semibold text-center'>Read Details</button></Link>
                     </div>
                 </div>
             </div>

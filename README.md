@@ -1,7 +1,7 @@
 # Getting Started with Create React App
 
 
-## Live Website [https://innova-msh.web.app/](https://innova-msh.web.app/)
+## Live Website [https://dealogic-msh.web.app/](https://dealogic-msh.web.app/)
 
 In the project directory, you can run:
 
