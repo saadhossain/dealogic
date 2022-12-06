@@ -12,7 +12,7 @@ const AddProducts = () => {
     const navigate = useNavigate()
     const [category, setCategory] = useState([])
     useEffect(() => {
-        fetch('https://innova-server.vercel.app/categories')
+        fetch('https://dealogic.vercel.app/categories')
             .then(res => res.json())
             .then(data => setCategory(data))
     }, [])
@@ -59,7 +59,7 @@ const AddProducts = () => {
                     prodStatus: 'Available',
                 }
                 //Save New Product to the Database
-                fetch('https://innova-server.vercel.app/products', {
+                fetch('https://dealogic.vercel.app/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

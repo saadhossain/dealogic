@@ -6,7 +6,7 @@ import DisplayPromotedProducts from '../ProductsComponents/DisplayPromotedProduc
 const PromotedProducts = () => {
     const [promotedProducts, setPromotedProducts] = useState()
     const [availableProduct, setAvailableProduct] = useState(null)
-    const url = 'https://innova-server.vercel.app/promoted'
+    const url = 'https://dealogic.vercel.app/promoted'
     // Load/Fetch Promoted Products using axios
     axios.get(url)
         .then(data => {

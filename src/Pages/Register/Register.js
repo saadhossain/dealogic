@@ -48,12 +48,12 @@ const Register = () => {
                             })
                         saveUser(userInfo)
                         //Get Access token from the server and save it to local storage
-                        fetch('https://innova-server.vercel.app/accesstoken', {
+                        fetch('https://dealogic.vercel.app/accesstoken', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
                             },
-                            body: JSON.stringify({email})
+                            body: JSON.stringify({ email })
                         })
                             .then(res => res.json())
                             .then(data => {
@@ -85,12 +85,12 @@ const Register = () => {
                 }
                 const email = user.email;
                 //Get Access token from the server and save it to local storage
-                fetch('https://innova-server.vercel.app/accesstoken', {
+                fetch('https://dealogic.vercel.app/accesstoken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify({email})
+                    body: JSON.stringify({ email })
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -108,7 +108,7 @@ const Register = () => {
     }
     //Save New user to the database
     const saveUser = (userInfo) => {
-        fetch('https://innova-server.vercel.app/users', {
+        fetch('https://dealogic.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

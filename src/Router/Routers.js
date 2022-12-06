@@ -36,7 +36,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/products/:category',
-                loader: ({ params }) => fetch(`https://innova-server.vercel.app/products/${params.category}`),
+                loader: ({ params }) => fetch(`https://dealogic.vercel.app/products/${params.category}`),
                 element: <PrivateRouter><Products></Products></PrivateRouter>
             },
             {
@@ -53,7 +53,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/blogs/:id',
-                loader: ({ params }) => fetch(`https://innova-server.vercel.app/blogs/${params.id}`),
+                loader: ({ params }) => fetch(`https://dealogic.vercel.app/blogs/${params.id}`),
                 element: <BlogDetails></BlogDetails>
             }
         ]
@@ -107,7 +107,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/payment/:id',
-                loader: ({params}) => fetch(`https://innova-server.vercel.app/products/${params.id}`),
+                loader: ({ params }) => fetch(`https://dealogic.vercel.app/products/${params.id}`),
                 element: <Payment></Payment>
             }
         ]

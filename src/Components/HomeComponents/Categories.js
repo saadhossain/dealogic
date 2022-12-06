@@ -5,7 +5,7 @@ import CategoryShowcase from './CategoryShowcase';
 const Categories = () => {
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('https://innova-server.vercel.app/categories')
+        queryFn: () => fetch('https://dealogic.vercel.app/categories')
             .then(res => res.json())
     })
     return (

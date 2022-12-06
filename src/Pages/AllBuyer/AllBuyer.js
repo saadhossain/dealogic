@@ -8,7 +8,7 @@ const AllBuyer = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('https://innova-server.vercel.app/users/buyers');
+            const res = await fetch('https://dealogic.vercel.app/users/buyers');
             const data = await res.json()
             return data
         }
@@ -17,7 +17,7 @@ const AllBuyer = () => {
     const handleDeleteBuyer = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This User?')
         if (confirmation) {
-            fetch(`https://innova-server.vercel.app/users/${id}`, {
+            fetch(`https://dealogic.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

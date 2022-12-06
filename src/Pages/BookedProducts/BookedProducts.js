@@ -8,14 +8,14 @@ const BookedProducts = () => {
     const { data: bookeProducts = [], refetch } = useQuery({
         queryKey: ['bookeProducts'],
         queryFn: async () => {
-            const res = await fetch('https://innova-server.vercel.app/booked')
+            const res = await fetch('https://dealogic.vercel.app/booked')
             const data = await res.json()
             return data;
         }
     })
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`https://innova-server.vercel.app/products/${id}`, {
+        fetch(`https://dealogic.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -34,7 +34,7 @@ const BookedProducts = () => {
     const handleRemoveProduct = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This Item?')
         if (confirmation) {
-            fetch(`https://innova-server.vercel.app/products/${id}`, {
+            fetch(`https://dealogic.vercel.app/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

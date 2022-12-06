@@ -51,7 +51,7 @@ const PulishBlog = ({ placeholder }) => {
                 }
                 console.log(articleInfo)
                 //Save New Product to the Database
-                fetch('https://innova-server.vercel.app/blogs', {
+                fetch('https://dealogic.vercel.app/blogs', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
