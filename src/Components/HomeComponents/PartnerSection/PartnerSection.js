@@ -53,8 +53,8 @@ const PartnerSection = () => {
                     </div>
                 </div>
                 <div className='lg:hidden'>
-                    <IoIosArrowBack className='w-6 h-6 text-dealogic absolute top-12 left-5'></IoIosArrowBack>
-                    <IoIosArrowForward className='w-6 h-6 text-dealogic absolute top-12 right-5'></IoIosArrowForward>
+                    <IoIosArrowBack className='w-6 h-6 text-dealogic absolute top-12 left-1'></IoIosArrowBack>
+                    <IoIosArrowForward className='w-6 h-6 text-dealogic absolute top-12 right-1'></IoIosArrowForward>
                 </div>
             </div>
         </div>
