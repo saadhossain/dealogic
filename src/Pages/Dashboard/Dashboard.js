@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Loader from '../../Components/Spinners/Loader';
 import { AuthContext } from '../../Context/AuthProvider';
 import useUser from '../../hooks/UseUser/useUser';
 import AdminStatistics from './AdminStatistics';
@@ -8,7 +9,10 @@ import SellerStatistics from './SellerStatistics';
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
     //Get the User 
-    const { loggedInUser } = useUser(user?.email)
+    const { loggedInUser, userLoading } = useUser(user?.email)
+    if(userLoading){
+        return <Loader></Loader>
+    }
     return (
         <div>
             <div className='relative'>
