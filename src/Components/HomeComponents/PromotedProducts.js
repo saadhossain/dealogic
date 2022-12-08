@@ -1,19 +1,16 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import ProductBookingModal from '../Modal/ProductBookingModal';
 import DisplayPromotedProducts from '../ProductsComponents/DisplayPromotedProducts';
 
 const PromotedProducts = () => {
     const [promotedProducts, setPromotedProducts] = useState()
     const [availableProduct, setAvailableProduct] = useState(null)
-    const url = 'https://dealogic.vercel.app/promoted'
-    // Load/Fetch Promoted Products using axios
-    axios.get(url)
-        .then(data => {
-            const promoted = (data.data);
-            setPromotedProducts(promoted)
-        })
-
+    useEffect(()=> {
+        fetch('https://dealogic.vercel.app/promoted')
+        .then(res => res.json())
+        .then(data => setPromotedProducts(data))
+    }, [])
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto mt-10'>
             {
