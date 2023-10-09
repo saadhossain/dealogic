@@ -1,0 +1,13 @@
+.footer-area{
+    background-image: url('../../assests/login-register-bg-logic.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
+.footer-area li{
+    transition: all 0.3s ease-in-out;
+}
+.footer-area li:hover{
+    margin-left: 5px;
+}
