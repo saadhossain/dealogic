@@ -2,25 +2,25 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import registerBg from '../../assests/registration.png';
 import SmallLoader from '../../Components/Spinners/SmallLoader';
 import { AuthContext } from '../../Context/AuthProvider';
+import registerBg from '../../assests/registration.png';
 import '../../index.css';
 
 const Register = () => {
-    const { createUser, googleLogin, updateUser, loading, setLoading } = useContext(AuthContext)
+    const { createUser, googleLogin, updateUser, loading, setLoading } = useContext(AuthContext);
     //Use Location to redirect user after registration
-    const location = useLocation()
-    const navigate = useNavigate()
-    const from = location.state?.from?.pathname || '/dashboard'
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/dashboard';
     //Set Account type
     const [accountType, setAccountType] = useState('Buyer');
     //Set email
     const [email, setEmail] = useState();
     //Get the email from the input
     const handleEmail = (e) => {
-        setEmail(e.target.value)
-    }
+        setEmail(e.target.value);
+    };
     //Register a new user
     const handleRegistration = (e) => {
         e.preventDefault();
@@ -31,10 +31,10 @@ const Register = () => {
         const password = form.password.value;
         //Handle Profile Picture upload
         const profile = form.profile.files[0];
-        const formData = new FormData()
-        formData.append('image', profile)
+        const formData = new FormData();
+        formData.append('image', profile);
         //Save profile picture to the imgbb site
-        const url = 'https://api.imgbb.com/1/upload?key=ee7085d23184f77801d3c6950c563d75';
+        const url = 'https://api.imgbb.com/1/upload?key=12bce7cbd26e6938d46594532d6a3147';
         fetch(url, {
             method: 'POST',
             body: formData
@@ -48,16 +48,16 @@ const Register = () => {
                     email,
                     profileImage,
                     accountType
-                }
+                };
                 createUser(email, password)
                     .then((result) => {
-                        toast.success('User Registration Successful...')
+                        toast.success('User Registration Successful...');
                         updateUser(fullName, profileImage)
                             .then(() => {
-                            })
-                        saveUser(userInfo)
+                            });
+                        saveUser(userInfo);
                         //Get Access token from the server and save it to local storage
-                        fetch('https://dealogic.vercel.app/getToken', {
+                        fetch('https://dealogic-server-omega.vercel.app/getToken', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -67,25 +67,25 @@ const Register = () => {
                             .then(res => res.json())
                             .then(data => {
                                 if (data.accessToken) {
-                                    localStorage.setItem('AccessToken', data.accessToken)
+                                    localStorage.setItem('AccessToken', data.accessToken);
                                     //After Saving the token to local storage then do others tasks
-                                    form.reset()
-                                    toast.success('Account Registration successful... Redirecting...')
-                                    navigate(from, { replace: true })
-                                    setLoading(false)
+                                    form.reset();
+                                    toast.success('Account Registration successful... Redirecting...');
+                                    navigate(from, { replace: true });
+                                    setLoading(false);
                                 }
-                            })
+                            });
                     })
                     .catch(err => {
                         console.error(err);
-                        setLoading(false)
-                    })
+                        setLoading(false);
+                    });
             })
             .catch(err => {
                 console.error(err);
-                setLoading(false)
-            })
-    }
+                setLoading(false);
+            });
+    };
 
     //Functionality for google login
     const handleGoogleLogin = () => {
@@ -97,10 +97,10 @@ const Register = () => {
                     email: user.email,
                     profileImage: user.photoURL,
                     accountType: 'Buyer'
-                }
+                };
                 const email = user.email;
                 //Get Access token from the server and save it to local storage
-                fetch('https://dealogic.vercel.app/getToken', {
+                fetch('https://dealogic-server-omega.vercel.app/getToken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -110,27 +110,27 @@ const Register = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.accessToken) {
-                            localStorage.setItem('AccessToken', data.accessToken)
+                            localStorage.setItem('AccessToken', data.accessToken);
                             //After Saving the token to local storage then do others tasks
-                            saveUser(userInfo)
-                            toast.success('Account Registration Successful... Redirecting...')
-                            navigate(from, { replace: true })
-                            setLoading(false)
+                            saveUser(userInfo);
+                            toast.success('Account Registration Successful... Redirecting...');
+                            navigate(from, { replace: true });
+                            setLoading(false);
                         }
-                    })
+                    });
             })
-            .catch(err => console.error(err))
-    }
+            .catch(err => console.error(err));
+    };
     //Save New user to the database
     const saveUser = (userInfo) => {
-        fetch('https://dealogic.vercel.app/users', {
+        fetch('https://dealogic-server-omega.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(userInfo)
-        })
-    }
+        });
+    };
     return (
         <div className='register-bg min-h-screen'>
             <div className='flex flex-col-reverse lg:flex-row w-11/12 lg:max-w-6xl py-10 mx-auto gap-10'>
@@ -155,17 +155,17 @@ const Register = () => {
                                     <input type="password" name="password" id="password" placeholder="********" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" />
                                 </div>
                                 <div>
-                                <div>
-                                    <label htmlFor="profile" className="text-lg">Profile Picture</label>
-                                    <input type="file" name="profile" id="profile" accept='image/*' className="w-full px-3 py-2 border rounded-md border-gray-800" />
-                                </div>
-                                <div className='flex gap-3 mt-5'>
-                                    <label htmlFor="password" className="text-lg">Account Type</label>
-                                    <select onChange={e => setAccountType(e.target.value)} className='border border-gray-700 px-5 rounded text-lg font-semibold'>
-                                        <option value='Buyer'>Buyer</option>
-                                        <option value='Seller'>Seller</option>
-                                    </select>
-                                </div>
+                                    <div>
+                                        <label htmlFor="profile" className="text-lg">Profile Picture</label>
+                                        <input type="file" name="profile" id="profile" accept='image/*' className="w-full px-3 py-2 border rounded-md border-gray-800" />
+                                    </div>
+                                    <div className='flex gap-3 mt-5'>
+                                        <label htmlFor="password" className="text-lg">Account Type</label>
+                                        <select onChange={e => setAccountType(e.target.value)} className='border border-gray-700 px-5 rounded text-lg font-semibold'>
+                                            <option value='Buyer'>Buyer</option>
+                                            <option value='Seller'>Seller</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div className="space-y-2">

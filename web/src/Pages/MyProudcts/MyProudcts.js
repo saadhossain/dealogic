@@ -7,26 +7,26 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const MyProudcts = () => {
     //Get User from the Context
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
     //Get Products for logged in users
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts', user?.email, logOut],
-        queryFn: () => fetch(`https://dealogic.vercel.app/seller/products?email=${user?.email}`, {
+        queryFn: () => fetch(`https://dealogic-server-omega.vercel.app/seller/products?email=${user?.email}`, {
             headers: {
                 authorization: `Beareer ${localStorage.getItem('AccessToken')}`
             }
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
-                    toast.error('Sorry! You are not authorized to access the data')
-                    return logOut()
+                    toast.error('Sorry! You are not authorized to access the data');
+                    return logOut();
                 }
-                return res.json()
+                return res.json();
             })
-    })
+    });
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`https://dealogic.vercel.app/products/${id}`, {
+        fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -36,30 +36,30 @@ const MyProudcts = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success('Product Status Updated...')
-                    refetch()
+                    toast.success('Product Status Updated...');
+                    refetch();
                 }
-            })
-    }
+            });
+    };
     //Remove Product from listing
     const handleRemoveProduct = (id) => {
-        const confirmation = window.confirm('Do You Want to Delete This Item?')
+        const confirmation = window.confirm('Do You Want to Delete This Item?');
         if (confirmation) {
-            fetch(`https://dealogic.vercel.app/products/${id}`, {
+            fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        toast.error('One Product has been Deleted...')
-                        refetch()
+                        toast.error('One Product has been Deleted...');
+                        refetch();
                     }
-                })
+                });
         }
-    }
+    };
     //Promote Product by Seller
     const handlePromote = (id) => {
-        fetch(`https://dealogic.vercel.app/products/${id}`, {
+        fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -69,11 +69,11 @@ const MyProudcts = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success('Product Boosted Successfully....')
-                    refetch()
+                    toast.success('Product Boosted Successfully....');
+                    refetch();
                 }
-            })
-    }
+            });
+    };
     return (
         <div>
             <div className='relative'>

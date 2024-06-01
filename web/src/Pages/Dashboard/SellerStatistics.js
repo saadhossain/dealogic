@@ -5,25 +5,25 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const SellerStatistics = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
     //Get Products for logged in users
     const { data: myProducts = [] } = useQuery({
         queryKey: ['myProducts', user?.email, logOut],
-        queryFn: () => fetch(`https://dealogic.vercel.app/seller/products?email=${user?.email}`, {
+        queryFn: () => fetch(`https://dealogic-server-omega.vercel.app/seller/products?email=${user?.email}`, {
             headers: {
                 authorization: `Beareer ${localStorage.getItem('AccessToken')}`
             }
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
-                    toast.error('Sorry! You are not authorized to access the data')
-                    return logOut()
+                    toast.error('Sorry! You are not authorized to access the data');
+                    return logOut();
                 }
-                res.json()
+                res.json();
             })
-    })
+    });
     //total Purchase Price
-    const totalPurchasePrice = myProducts.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0)
+    const totalPurchasePrice = myProducts.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0);
     return (
         <div>
             {

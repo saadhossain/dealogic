@@ -8,27 +8,27 @@ const AllBuyer = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/users/buyers');
-            const data = await res.json()
-            return data
+            const res = await fetch('https://dealogic-server-omega.vercel.app/users/buyers');
+            const data = await res.json();
+            return data;
         }
-    })
+    });
     //Remove or Delete a Buyer
     const handleDeleteBuyer = (id) => {
-        const confirmation = window.confirm('Do You Want to Delete This User?')
+        const confirmation = window.confirm('Do You Want to Delete This User?');
         if (confirmation) {
-            fetch(`https://dealogic.vercel.app/users/${id}`, {
+            fetch(`https://dealogic-server-omega.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        toast.error('One Buyer has been Deleted...')
-                        refetch()
+                        toast.error('One Buyer has been Deleted...');
+                        refetch();
                     }
-                })
+                });
         }
-    }
+    };
     return (
         <div>
             <div className='relative'>

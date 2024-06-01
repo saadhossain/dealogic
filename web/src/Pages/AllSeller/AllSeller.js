@@ -9,30 +9,30 @@ const AllSeller = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/users/sellers');
-            const data = await res.json()
-            return data
+            const res = await fetch('https://dealogic-server-omega.vercel.app/users/sellers');
+            const data = await res.json();
+            return data;
         }
-    })
+    });
     //Remove or Delete a Seller
     const handleDeleteSeller = (id) => {
-        const confirmation = window.confirm('Do You Want to Delete This User?')
+        const confirmation = window.confirm('Do You Want to Delete This User?');
         if (confirmation) {
-            fetch(`https://dealogic.vercel.app/users/${id}`, {
+            fetch(`https://dealogic-server-omega.vercel.app/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        toast.error('One Seller has been Deleted...')
-                        refetch()
+                        toast.error('One Seller has been Deleted...');
+                        refetch();
                     }
-                })
+                });
         }
-    }
+    };
     //Verify a Seller
     const handleVerify = (id) => {
-        fetch(`https://dealogic.vercel.app/users/${id}`, {
+        fetch(`https://dealogic-server-omega.vercel.app/users/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -42,11 +42,11 @@ const AllSeller = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success('Seller has been Verified')
-                    refetch()
+                    toast.success('Seller has been Verified');
+                    refetch();
                 }
-            })
-    }
+            });
+    };
     return (
         <div>
             <div className='relative'>

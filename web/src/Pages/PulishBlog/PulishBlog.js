@@ -12,27 +12,27 @@ const PulishBlog = ({ placeholder }) => {
     console.log(content);
     //Text Editor Ends
     //Get the Logged in user information from the context
-    const { user } = useContext(AuthContext)
-    const { loggedInUser } = useUser(user?.email)
+    const { user } = useContext(AuthContext);
+    const { loggedInUser } = useUser(user?.email);
     //Set all Input Values
-    const [blogDetails, setBlogDetails] = useState()
+    const [blogDetails, setBlogDetails] = useState();
     //Handle Input Values
     const handleValues = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const field = e.target.name;
         const value = e.target.value;
-        const updatedDetails = { ...blogDetails }
+        const updatedDetails = { ...blogDetails };
         updatedDetails[field] = value;
-        setBlogDetails(updatedDetails)
-    }
+        setBlogDetails(updatedDetails);
+    };
     //Handle add /sell product functionality
     const handlePublishBlog = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const productImage = e.target.productImage.files[0];
-        const formData = new FormData()
-        formData.append('image', productImage)
+        const formData = new FormData();
+        formData.append('image', productImage);
         //Set Product Image to the IMGBB Server
-        fetch('https://api.imgbb.com/1/upload?key=ee7085d23184f77801d3c6950c563d75', {
+        fetch('https://api.imgbb.com/1/upload?key=12bce7cbd26e6938d46594532d6a3147', {
             method: 'POST',
             body: formData
         })
@@ -48,10 +48,10 @@ const PulishBlog = ({ placeholder }) => {
                     authorName: loggedInUser?.fullName,
                     authorEmail: loggedInUser?.email,
                     publishedOn: new Date(),
-                }
-                console.log(articleInfo)
+                };
+                console.log(articleInfo);
                 //Save New Product to the Database
-                fetch('https://dealogic.vercel.app/blogs', {
+                fetch('https://dealogic-server-omega.vercel.app/blogs', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -61,15 +61,15 @@ const PulishBlog = ({ placeholder }) => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.acknowledged) {
-                            toast.success('New Article Added Successfully...')
-                            e.target.reset()
+                            toast.success('New Article Added Successfully...');
+                            e.target.reset();
                         }
                     })
-                    .catch(err => console.error(err))
+                    .catch(err => console.error(err));
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
 
-    }
+    };
     return (
         <div className='w-full flex flex-col p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl'>
             <div className='relative'>

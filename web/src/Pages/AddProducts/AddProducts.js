@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import ButtonLoader from '../../Components/Spinners/ButtonLoader';
 import { AuthContext } from '../../Context/AuthProvider';
 import useUser from '../../hooks/UseUser/useUser';
 import { uploadImageToFirestore } from '../../utils/utils';
-import ButtonLoader from '../../Components/Spinners/ButtonLoader';
 
 const AddProducts = () => {
     //Get the Logged in user information from the context
@@ -14,7 +14,7 @@ const AddProducts = () => {
     const navigate = useNavigate();
     const [category, setCategory] = useState([]);
     useEffect(() => {
-        fetch('https://dealogic.vercel.app/categories')
+        fetch('https://dealogic-server-omega.vercel.app/categories')
             .then(res => res.json())
             .then(data => setCategory(data));
     }, []);
@@ -55,7 +55,7 @@ const AddProducts = () => {
                 addedOn: new Date(),
                 prodStatus: 'Available',
             };
-            const res = await fetch('https://dealogic.vercel.app/products', {
+            const res = await fetch('https://dealogic-server-omega.vercel.app/products', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

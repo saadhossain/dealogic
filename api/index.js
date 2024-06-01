@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 //Require Cors
 const cors = require('cors')
-const whitelist = ['http://localhost:3000', 'https://dealogic-msh.web.app', 'https://dealogic.saadhossain.dev/']
+const whitelist = ['http://localhost:3000', 'https://dealogic-now.web.app','https://dealogic-kappa.vercel.app']
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
@@ -23,7 +23,7 @@ app.use(cors(corsOptions))
 
 app.use(express.json())
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@firstmongodb.yjij5fj.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://dealogic:${process.env.DB_PASSWORD}@dealogic-cluster.gryndey.mongodb.net/?retryWrites=true&w=majority&appName=dealogic-cluster`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 //Stripe configuration
 const stripe = require('stripe')(process.env.STRIPE_SECRET)

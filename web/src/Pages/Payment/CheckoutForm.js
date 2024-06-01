@@ -5,19 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const CheckoutForm = ({ product }) => {
-    const user = useContext(AuthContext)
-    const stripe = useStripe()
-    const elements = useElements()
+    const user = useContext(AuthContext);
+    const stripe = useStripe();
+    const elements = useElements();
     //Navigation
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     //display errors
-    const [errs, setErrs] = useState('')
+    const [errs, setErrs] = useState('');
     //Handle client Secret
     const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://dealogic.vercel.app/payment-intent", {
+        fetch("https://dealogic-server-omega.vercel.app/payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(product),
@@ -27,14 +27,14 @@ const CheckoutForm = ({ product }) => {
     }, [product]);
     //Handle Payment Submit functionality
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         if (!stripe || !elements) {
-            return toast.error("Stripe or Elements couldn't found!")
+            return toast.error("Stripe or Elements couldn't found!");
         }
         const card = elements.getElement(CardElement);
 
         if (card === null) {
-            return toast.error('Invalid Card Details')
+            return toast.error('Invalid Card Details');
         }
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
@@ -42,10 +42,10 @@ const CheckoutForm = ({ product }) => {
         });
 
         if (error) {
-            setErrs(error.message)
+            setErrs(error.message);
         }
         else {
-            setErrs('')
+            setErrs('');
             console.log('[PaymentMethod]', paymentMethod);
         }
         const { paymentIntent, paymentError } = await stripe.confirmCardPayment(
@@ -61,13 +61,13 @@ const CheckoutForm = ({ product }) => {
             },
         );
         if (paymentError) {
-            setErrs(paymentError.message)
+            setErrs(paymentError.message);
             return;
         }
         //Change Product payment status after completing payment
         if (paymentIntent.status === 'succeeded') {
             //Change Product Status Paid after payment
-            fetch(`https://dealogic.vercel.app/products/${product._id}`, {
+            fetch(`https://dealogic-server-omega.vercel.app/products/${product._id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -77,13 +77,13 @@ const CheckoutForm = ({ product }) => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.modifiedCount > 0) {
-                        toast.success('Payment Successfull...')
-                        navigate('/dashboard/mypurchase')
+                        toast.success('Payment Successfull...');
+                        navigate('/dashboard/mypurchase');
                     }
-                })
+                });
         }
         console.log(paymentIntent);
-    }
+    };
     return (
         <div className='w-full'>
             <form onSubmit={handleSubmit}>

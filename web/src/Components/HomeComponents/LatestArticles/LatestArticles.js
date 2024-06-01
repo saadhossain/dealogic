@@ -8,13 +8,13 @@ const LatestArticles = () => {
     const { data: blogs = [], isLoading } = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/latestblogs');
-            const data = await res.json()
-            return data
+            const res = await fetch('https://dealogic-server-omega.vercel.app/latestblogs');
+            const data = await res.json();
+            return data;
         }
-    })
+    });
     if (isLoading) {
-        return <Loader></Loader>
+        return <Loader></Loader>;
     }
     return (
         <div className='bg-[#E2F4FE] py-5'>

@@ -8,14 +8,14 @@ const BookedProducts = () => {
     const { data: bookeProducts = [], refetch } = useQuery({
         queryKey: ['bookeProducts'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/booked')
-            const data = await res.json()
+            const res = await fetch('https://dealogic-server-omega.vercel.app/booked');
+            const data = await res.json();
             return data;
         }
-    })
+    });
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`https://dealogic.vercel.app/products/${id}`, {
+        fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -25,27 +25,27 @@ const BookedProducts = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success('Product Status Updated...')
-                    refetch()
+                    toast.success('Product Status Updated...');
+                    refetch();
                 }
-            })
-    }
+            });
+    };
     //Remove Product from listing
     const handleRemoveProduct = (id) => {
-        const confirmation = window.confirm('Do You Want to Delete This Item?')
+        const confirmation = window.confirm('Do You Want to Delete This Item?');
         if (confirmation) {
-            fetch(`https://dealogic.vercel.app/products/${id}`, {
+            fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        toast.error('One Product has been Deleted...')
-                        refetch()
+                        toast.error('One Product has been Deleted...');
+                        refetch();
                     }
-                })
+                });
         }
-    }
+    };
     return (
         <div>
             <div className='relative'>

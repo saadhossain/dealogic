@@ -44,7 +44,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/products/:category',
-                loader: ({ params }) => fetch(`https://dealogic.vercel.app/products/${params.category}`),
+                loader: ({ params }) => fetch(`https://dealogic-server-omega.vercel.app/products/${params.category}`),
                 element: <PrivateRouter><Products></Products></PrivateRouter>
             },
             {
@@ -53,7 +53,7 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/blogs/:id',
-                loader: ({ params }) => fetch(`https://dealogic.vercel.app/blogs/${params.id}`),
+                loader: ({ params }) => fetch(`https://dealogic-server-omega.vercel.app/blogs/${params.id}`),
                 element: <BlogDetails></BlogDetails>
             }
         ]
@@ -62,7 +62,7 @@ export const Routers = createBrowserRouter([
     //User dashboard routes
     {
         path: '/dashboard',
-        element: <PrivateRouter><DashboardLayout/></PrivateRouter>,
+        element: <PrivateRouter><DashboardLayout /></PrivateRouter>,
         errorElement: <ErrorElements></ErrorElements>,
         children: [
             {
@@ -107,9 +107,9 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/payment/:id',
-                loader: ({ params }) => fetch(`https://dealogic.vercel.app/products/${params.id}`),
+                loader: ({ params }) => fetch(`https://dealogic-server-omega.vercel.app/products/${params.id}`),
                 element: <Payment></Payment>
             }
         ]
     }
-])
+]);

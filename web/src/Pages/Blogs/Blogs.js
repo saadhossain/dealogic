@@ -9,13 +9,13 @@ const Blogs = () => {
     const { data: blogs = [], isLoading } = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/blogs');
-            const data = await res.json()
-            return data
+            const res = await fetch('https://dealogic-server-omega.vercel.app/blogs');
+            const data = await res.json();
+            return data;
         }
-    })
-    if(isLoading){
-        return <Loader></Loader>
+    });
+    if (isLoading) {
+        return <Loader></Loader>;
     }
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto my-5'>

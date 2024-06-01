@@ -2,32 +2,32 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import loginBg from '../../assests/login-background.png';
 import SmallLoader from '../../Components/Spinners/SmallLoader';
 import { AuthContext } from '../../Context/AuthProvider';
+import loginBg from '../../assests/login-background.png';
 import '../../index.css';
 
 const Login = () => {
-    const { userLogin, googleLogin, passwordReset, loading, setLoading } = useContext(AuthContext)
+    const { userLogin, googleLogin, passwordReset, loading, setLoading } = useContext(AuthContext);
     //Use Location to redirect user after registration
-    const location = useLocation()
-    const navigate = useNavigate()
+    const location = useLocation();
+    const navigate = useNavigate();
     const [email, setEmail] = useState();
-    const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || '/dashboard';
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
-    }
+    };
     //Handle User login functionality using email and password
     const handleUserLogin = (e) => {
         setLoading(true);
         e.preventDefault();
-        const form = e.target
-        const password = form.password.value
+        const form = e.target;
+        const password = form.password.value;
         userLogin(email, password)
             .then((result) => {
                 //Get Access token from the server and save it to local storage
-                fetch('https://dealogic.vercel.app/getToken', {
+                fetch('https://dealogic-server-omega.vercel.app/getToken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -37,20 +37,20 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.accesstoken) {
-                            localStorage.setItem('AccessToken', data.accesstoken)
+                            localStorage.setItem('AccessToken', data.accesstoken);
                             //After Saving the token to local storage then do others tasks
-                            toast.success('User Login Successful...')
+                            toast.success('User Login Successful...');
                             form.reset();
-                            setLoading(false)
-                            navigate(from, { replace: true })
+                            setLoading(false);
+                            navigate(from, { replace: true });
                         }
-                    })
+                    });
             })
             .catch(err => {
-                console.error(err)
+                console.error(err);
                 setLoading(false);
-            })
-    }
+            });
+    };
     //Functionality for google login
     const handleGoogleLogin = () => {
         googleLogin()
@@ -61,10 +61,10 @@ const Login = () => {
                     email: user.email,
                     profileImage: user.photoURL,
                     accountType: 'Buyer'
-                }
+                };
                 const email = user.email;
-                saveUser(userInfo)
-                fetch('https://dealogic.vercel.app/getToken', {
+                saveUser(userInfo);
+                fetch('https://dealogic-server-omega.vercel.app/getToken', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -74,39 +74,39 @@ const Login = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.accessToken) {
-                            localStorage.setItem('AccessToken', data.accessToken)
+                            localStorage.setItem('AccessToken', data.accessToken);
                             //After Saving the token to local storage then do others tasks
-                            toast.success('Account Registration Successful... Redirecting...')
-                            navigate(from, { replace: true })
+                            toast.success('Account Registration Successful... Redirecting...');
+                            navigate(from, { replace: true });
                         }
-                    })
+                    });
             })
-            .catch(err => console.error(err))
-    }
+            .catch(err => console.error(err));
+    };
     //Save New user to the database
     const saveUser = (userInfo) => {
-        fetch('https://dealogic.vercel.app/users', {
+        fetch('https://dealogic-server-omega.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(userInfo)
-        })
-    }
+        });
+    };
     //Handle password reset
     const handlePasswordReset = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         passwordReset(email)
             .then((result) => {
-                form.reset()
-                toast.success('Password Reset Link sent to your Email, please Check...')
+                form.reset();
+                toast.success('Password Reset Link sent to your Email, please Check...');
             })
             .catch(error => {
-                toast.error(error)
-            })
-    }
+                toast.error(error);
+            });
+    };
     return (
         <div className='login-bg min-h-screen'>
             <div className='flex flex-col-reverse lg:flex-row w-11/12 lg:max-w-6xl pt-10 mx-auto gap-10'>

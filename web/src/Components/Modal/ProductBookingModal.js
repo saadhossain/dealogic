@@ -3,12 +3,12 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const { _id, proName, productImageURL, productCondition, purchaseYear, regularPrice, resalePrice, sellerName, usedYear } = availableProduct;
 
     //Functionality to book a product by buyer
     const handleBooking = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const form = e.target;
         const buyerPhone = form.buyerPhone.value;
         const meetingLocaton = form.meetingLocation.value;
@@ -19,8 +19,8 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
             meetingLocaton,
             payment: 'unpaid',
             booked: true
-        }
-        fetch(`https://dealogic.vercel.app/products/${_id}`, {
+        };
+        fetch(`https://dealogic-server-omega.vercel.app/products/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -30,10 +30,10 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success(`You have Successfully Booked ${proName}`)
-                    setAvailableProduct(null)
-                    window.location.reload()
-                    // fetch(`https://dealogic.vercel.app/products/${_id}`, {
+                    toast.success(`You have Successfully Booked ${proName}`);
+                    setAvailableProduct(null);
+                    window.location.reload();
+                    // fetch(`https://dealogic-server-omega.vercel.app/products/${_id}`, {
                     //     method: 'PUT',
                     //     headers: {
                     //         'content-type': 'application/json'
@@ -47,8 +47,8 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
                     //         }
                     //     })
                 }
-            })
-    }
+            });
+    };
     return (
         <div>
             <input type="checkbox" id="booking-modal" className="modal-toggle" />

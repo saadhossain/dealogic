@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductBookingModal from '../Modal/ProductBookingModal';
 import DisplayPromotedProducts from '../ProductsComponents/DisplayPromotedProducts';
 
 const PromotedProducts = () => {
-    const [promotedProducts, setPromotedProducts] = useState()
-    const [availableProduct, setAvailableProduct] = useState(null)
-    useEffect(()=> {
-        fetch('https://dealogic.vercel.app/promoted')
-        .then(res => res.json())
-        .then(data => setPromotedProducts(data))
-    }, [])
+    const [promotedProducts, setPromotedProducts] = useState();
+    const [availableProduct, setAvailableProduct] = useState(null);
+    useEffect(() => {
+        fetch('https://dealogic-server-omega.vercel.app/promoted')
+            .then(res => res.json())
+            .then(data => setPromotedProducts(data));
+    }, []);
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto mt-10'>
             {

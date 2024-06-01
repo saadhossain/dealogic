@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Loader from '../Spinners/Loader';
 import CategoryShowcase from './CategoryShowcase';
-import Loader from '../Spinners/Loader'
 
 const Categories = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('https://dealogic.vercel.app/categories')
+        queryFn: () => fetch('https://dealogic-server-omega.vercel.app/categories')
             .then(res => res.json())
-    })
-    if(isLoading){
-        return <Loader></Loader>
+    });
+    if (isLoading) {
+        return <Loader></Loader>;
     }
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto mt-10'>

@@ -7,50 +7,50 @@ const AdminStatistics = () => {
     const { data: allProducts = [] } = useQuery({
         queryKey: ['allProducts'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/products');
-            const data = await res.json()
+            const res = await fetch('https://dealogic-server-omega.vercel.app/products');
+            const data = await res.json();
             return data;
         }
-    })
-    const totalPurchasePrice = allProducts.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0)
+    });
+    const totalPurchasePrice = allProducts.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0);
 
     //Get all Users from the database
     const { data: allUsers = [] } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/users')
-            const data = await res.json()
+            const res = await fetch('https://dealogic-server-omega.vercel.app/users');
+            const data = await res.json();
             return data;
         }
-    })
+    });
     //Get all booked products from the database
     const { data: bookeProducts = [] } = useQuery({
         queryKey: ['bookeProducts'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/booked')
-            const data = await res.json()
+            const res = await fetch('https://dealogic-server-omega.vercel.app/booked');
+            const data = await res.json();
             return data;
         }
-    })
+    });
     //Get all the buyers from the database
     const { data: buyers = [] } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/users/buyers');
-            const data = await res.json()
-            return data
+            const res = await fetch('https://dealogic-server-omega.vercel.app/users/buyers');
+            const data = await res.json();
+            return data;
         }
-    })
+    });
     //Get all the sellers from the database
     const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/users/sellers');
-            const data = await res.json()
-            return data
+            const res = await fetch('https://dealogic-server-omega.vercel.app/users/sellers');
+            const data = await res.json();
+            return data;
         }
-    })
-    const totalBookedPrice = bookeProducts.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0)
+    });
+    const totalBookedPrice = bookeProducts.reduce((prev, current) => prev + parseFloat(current.resalePrice), 0);
     return (
         <div className='w-full grid lg:grid-cols-3 gap-5'>
             {/* All Products Card */}

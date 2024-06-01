@@ -7,23 +7,23 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const MyPurchase = () => {
     //Get User from the Context
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
     //Get Products for logged in users
     const { data: myPurchases = [] } = useQuery({
         queryKey: ['myPurchases', user?.email, logOut],
-        queryFn: () => fetch(`https://dealogic.vercel.app/mypurchase?email=${user?.email}`, {
+        queryFn: () => fetch(`https://dealogic-server-omega.vercel.app/mypurchase?email=${user?.email}`, {
             headers: {
                 authorization: `Beareer ${localStorage.getItem('AccessToken')}`
             }
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
-                    toast.error('Sorry! You are not authorized to access the data')
-                    return logOut()
+                    toast.error('Sorry! You are not authorized to access the data');
+                    return logOut();
                 }
-                return res.json()
+                return res.json();
             })
-    })
+    });
     return (
         <div>
             <div className='relative'>

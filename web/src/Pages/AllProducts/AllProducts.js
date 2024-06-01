@@ -9,14 +9,14 @@ const AllProducts = () => {
     const { data: allProducts = [], refetch } = useQuery({
         queryKey: ['allProducts'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic.vercel.app/products');
-            const data = await res.json()
+            const res = await fetch('https://dealogic-server-omega.vercel.app/products');
+            const data = await res.json();
             return data;
         }
-    })
+    });
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`https://dealogic.vercel.app/products/${id}`, {
+        fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -26,30 +26,30 @@ const AllProducts = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success('Product Status Updated...')
-                    refetch()
+                    toast.success('Product Status Updated...');
+                    refetch();
                 }
-            })
-    }
+            });
+    };
     //Remove Product from listing
     const handleRemoveProduct = (id) => {
-        const confirmation = window.confirm('Do You Want to Delete This Item?')
+        const confirmation = window.confirm('Do You Want to Delete This Item?');
         if (confirmation) {
-            fetch(`https://dealogic.vercel.app/products/${id}`, {
+            fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        toast.error('One Product has been Deleted...')
-                        refetch()
+                        toast.error('One Product has been Deleted...');
+                        refetch();
                     }
-                })
+                });
         }
-    }
+    };
     //Promote Product by Seller
     const handlePromote = (id) => {
-        fetch(`https://dealogic.vercel.app/products/${id}`, {
+        fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -59,11 +59,11 @@ const AllProducts = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success('Product Boosted Successfully....')
-                    refetch()
+                    toast.success('Product Boosted Successfully....');
+                    refetch();
                 }
-            })
-    }
+            });
+    };
     return (
         <div>
             <div className='relative'>
