@@ -7,7 +7,7 @@ const PromotedProducts = () => {
     const [promotedProducts, setPromotedProducts] = useState();
     const [availableProduct, setAvailableProduct] = useState(null);
     useEffect(() => {
-        fetch('https://dealogic-server-omega.vercel.app/promoted')
+        fetch(`${process.env.REACT_APP_API}/promoted`)
             .then(res => res.json())
             .then(data => setPromotedProducts(data));
     }, []);

@@ -57,7 +57,7 @@ const Register = () => {
                             });
                         saveUser(userInfo);
                         //Get Access token from the server and save it to local storage
-                        fetch('https://dealogic-server-omega.vercel.app/getToken', {
+                        fetch(`${process.env.REACT_APP_API}/getToken`, {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -100,7 +100,7 @@ const Register = () => {
                 };
                 const email = user.email;
                 //Get Access token from the server and save it to local storage
-                fetch('https://dealogic-server-omega.vercel.app/getToken', {
+                fetch(`${process.env.REACT_APP_API}/getToken`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -123,7 +123,7 @@ const Register = () => {
     };
     //Save New user to the database
     const saveUser = (userInfo) => {
-        fetch('https://dealogic-server-omega.vercel.app/users', {
+        fetch(`${process.env.REACT_APP_API}/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

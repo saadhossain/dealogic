@@ -2,13 +2,14 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
+import Heading from '../../Components/Heading';
 
 const AllBuyer = () => {
     //Get all the buyers from the database
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic-server-omega.vercel.app/users/buyers');
+            const res = await fetch(`${process.env.REACT_APP_API}/users/buyers`);
             const data = await res.json();
             return data;
         }
@@ -17,7 +18,7 @@ const AllBuyer = () => {
     const handleDeleteBuyer = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This User?');
         if (confirmation) {
-            fetch(`https://dealogic-server-omega.vercel.app/users/${id}`, {
+            fetch(`${process.env.REACT_APP_API}/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -31,10 +32,7 @@ const AllBuyer = () => {
     };
     return (
         <div>
-            <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>All buyer</h1>
-                <div className='border-2 border-primary w-20 absolute top-8 left-40'></div>
-            </div>
+            <Heading heading={'All Buyer'}/>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">

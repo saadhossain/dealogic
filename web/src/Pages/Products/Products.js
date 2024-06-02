@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ProductBookingModal from '../../Components/Modal/ProductBookingModal';
 import ProductShowcase from '../../Components/ProductsComponents/ProductShowcase';
+import Heading from '../../Components/Heading';
 
 const Products = () => {
     const products = useLoaderData();
     const [availableProduct, setAvailableProduct] = useState(null);
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto my-5'>
-            <div className='relative'>
-                <h1 className='text-2xl lg:text-4xl font-bold text-primary mb-10'>All Products</h1>
-                <div className='border-2 border-primary w-20 absolute top-8 left-36 lg:left-52'></div>
-            </div>
+            <Heading heading={`Products`}/>
             {/* Products */}
             <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-5'>
                 {

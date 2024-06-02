@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
 import { RiRocket2Fill } from 'react-icons/ri';
 import { AuthContext } from '../../Context/AuthProvider';
+import Heading from '../../Components/Heading';
 
 const MyProudcts = () => {
     //Get User from the Context
@@ -11,7 +12,7 @@ const MyProudcts = () => {
     //Get Products for logged in users
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts', user?.email, logOut],
-        queryFn: () => fetch(`https://dealogic-server-omega.vercel.app/seller/products?email=${user?.email}`, {
+        queryFn: () => fetch(`${process.env.REACT_APP_API}/seller/products?email=${user?.email}`, {
             headers: {
                 authorization: `Beareer ${localStorage.getItem('AccessToken')}`
             }
@@ -26,7 +27,7 @@ const MyProudcts = () => {
     });
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
+        fetch(`${process.env.REACT_APP_API}/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -45,7 +46,7 @@ const MyProudcts = () => {
     const handleRemoveProduct = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This Item?');
         if (confirmation) {
-            fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
+            fetch(`${process.env.REACT_APP_API}/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -59,7 +60,7 @@ const MyProudcts = () => {
     };
     //Promote Product by Seller
     const handlePromote = (id) => {
-        fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
+        fetch(`${process.env.REACT_APP_API}/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -76,10 +77,7 @@ const MyProudcts = () => {
     };
     return (
         <div>
-            <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>My Products</h1>
-                <div className='border-2 border-primary w-20 absolute top-8 left-56'></div>
-            </div>
+            <Heading heading={'My Products'}/>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">

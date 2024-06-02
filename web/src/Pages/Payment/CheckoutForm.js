@@ -17,7 +17,7 @@ const CheckoutForm = ({ product }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://dealogic-server-omega.vercel.app/payment-intent", {
+        fetch(`${process.env.REACT_APP_API}/payment-intent`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(product),
@@ -67,7 +67,7 @@ const CheckoutForm = ({ product }) => {
         //Change Product payment status after completing payment
         if (paymentIntent.status === 'succeeded') {
             //Change Product Status Paid after payment
-            fetch(`https://dealogic-server-omega.vercel.app/products/${product._id}`, {
+            fetch(`${process.env.REACT_APP_API}/products/${product._id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

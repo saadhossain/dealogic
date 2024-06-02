@@ -9,7 +9,7 @@ const LatestArticles = () => {
     const { data: blogs = [], isLoading } = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic-server-omega.vercel.app/latestblogs');
+            const res = await fetch(`${process.env.REACT_APP_API}/latestblogs`);
             const data = await res.json();
             return data;
         }

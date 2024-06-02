@@ -3,6 +3,7 @@ import { React, useContext, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/AuthProvider';
 import useUser from '../../hooks/UseUser/useUser';
+import Heading from '../../Components/Heading';
 
 const PulishBlog = ({ placeholder }) => {
 
@@ -51,7 +52,7 @@ const PulishBlog = ({ placeholder }) => {
                 };
                 console.log(articleInfo);
                 //Save New Product to the Database
-                fetch('https://dealogic-server-omega.vercel.app/blogs', {
+                fetch(`${process.env.REACT_APP_API}/blogs`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -72,10 +73,7 @@ const PulishBlog = ({ placeholder }) => {
     };
     return (
         <div className='w-full flex flex-col p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl'>
-            <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>Publish A Article</h1>
-                <div className='border-2 border-primary w-20 absolute top-7 lg:top-8 left-40 lg:left-72'></div>
-            </div>
+            <Heading heading={'Publish A Article'}/>
             <form onSubmit={handlePublishBlog}>
                 <div className="space-y-4">
                     {/* Blog Information Section */}

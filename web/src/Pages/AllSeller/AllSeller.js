@@ -3,13 +3,14 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
 import { GoVerified } from 'react-icons/go';
+import Heading from '../../Components/Heading';
 
 const AllSeller = () => {
     //Get all the sellers from the database
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic-server-omega.vercel.app/users/sellers');
+            const res = await fetch(`${process.env.REACT_APP_API}/users/sellers`);
             const data = await res.json();
             return data;
         }
@@ -18,7 +19,7 @@ const AllSeller = () => {
     const handleDeleteSeller = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This User?');
         if (confirmation) {
-            fetch(`https://dealogic-server-omega.vercel.app/users/${id}`, {
+            fetch(`${process.env.REACT_APP_API}/users/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -32,7 +33,7 @@ const AllSeller = () => {
     };
     //Verify a Seller
     const handleVerify = (id) => {
-        fetch(`https://dealogic-server-omega.vercel.app/users/${id}`, {
+        fetch(`${process.env.REACT_APP_API}/users/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -49,10 +50,7 @@ const AllSeller = () => {
     };
     return (
         <div>
-            <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>All seller</h1>
-                <div className='border-2 border-primary w-20 absolute top-8 left-40'></div>
-            </div>
+            <Heading heading={'All Seller'}/>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">

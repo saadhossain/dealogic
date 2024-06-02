@@ -2,20 +2,21 @@ import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
 import { RiRocket2Fill } from 'react-icons/ri';
+import Heading from '../../Components/Heading';
 
 const BookedProducts = () => {
     //Get all booked products from the database
     const { data: bookeProducts = [], refetch } = useQuery({
         queryKey: ['bookeProducts'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic-server-omega.vercel.app/booked');
+            const res = await fetch(`${process.env.REACT_APP_API}/booked`);
             const data = await res.json();
             return data;
         }
     });
     //Set Product Status to the Database
     const handleStatusChange = (id) => {
-        fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
+        fetch(`${process.env.REACT_APP_API}/products/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -34,7 +35,7 @@ const BookedProducts = () => {
     const handleRemoveProduct = (id) => {
         const confirmation = window.confirm('Do You Want to Delete This Item?');
         if (confirmation) {
-            fetch(`https://dealogic-server-omega.vercel.app/products/${id}`, {
+            fetch(`${process.env.REACT_APP_API}/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -48,10 +49,7 @@ const BookedProducts = () => {
     };
     return (
         <div>
-            <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>Booked Products</h1>
-                <div className='border-2 border-primary w-20 absolute top-8 left-[300px]'></div>
-            </div>
+            <Heading heading={'Booked Products'}/>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">

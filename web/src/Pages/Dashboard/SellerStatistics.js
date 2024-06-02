@@ -9,7 +9,7 @@ const SellerStatistics = () => {
     //Get Products for logged in users
     const { data: myProducts = [] } = useQuery({
         queryKey: ['myProducts', user?.email, logOut],
-        queryFn: () => fetch(`https://dealogic-server-omega.vercel.app/seller/products?email=${user?.email}`, {
+        queryFn: () => fetch(`${process.env.REACT_APP_API}/seller/products?email=${user?.email}`, {
             headers: {
                 authorization: `Beareer ${localStorage.getItem('AccessToken')}`
             }

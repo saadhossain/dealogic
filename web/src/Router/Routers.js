@@ -44,17 +44,17 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/products/:category',
-                loader: ({ params }) => fetch(`https://dealogic-server-omega.vercel.app/products/${params.category}`),
-                element: <PrivateRouter><Products></Products></PrivateRouter>
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_API}/products/${params.category}`),
+                element: <Products />
             },
             {
                 path: '/blogs',
-                element: <Blogs></Blogs>
+                element: <Blogs />
             },
             {
                 path: '/blogs/:id',
-                loader: ({ params }) => fetch(`https://dealogic-server-omega.vercel.app/blogs/${params.id}`),
-                element: <BlogDetails></BlogDetails>
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_API}/blogs/${params.id}`),
+                element: <BlogDetails />
             }
         ]
     },
@@ -63,23 +63,23 @@ export const Routers = createBrowserRouter([
     {
         path: '/dashboard',
         element: <PrivateRouter><DashboardLayout /></PrivateRouter>,
-        errorElement: <ErrorElements></ErrorElements>,
+        errorElement: <ErrorElements />,
         children: [
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                element: <Dashboard />
             },
             {
                 path: '/dashboard/addProduct',
-                element: <AddProducts></AddProducts>
+                element: <AddProducts />
             },
             {
                 path: '/dashboard/allproducts',
-                element: <AdminRouter><AllProducts></AllProducts></AdminRouter>
+                element: <AdminRouter><AllProducts /></AdminRouter>
             },
             {
                 path: '/dashboard/allusers',
-                element: <AdminRouter><AllUsers></AllUsers></AdminRouter>
+                element: <AdminRouter><AllUsers /></AdminRouter>
             },
             {
                 path: '/dashboard/buyers',
@@ -87,27 +87,27 @@ export const Routers = createBrowserRouter([
             },
             {
                 path: '/dashboard/sellers',
-                element: <AdminRouter><AllSeller></AllSeller></AdminRouter>
+                element: <AdminRouter><AllSeller /></AdminRouter>
             },
             {
                 path: '/dashboard/bookedproducts',
-                element: <AdminRouter><BookedProducts></BookedProducts></AdminRouter>
+                element: <AdminRouter><BookedProducts /></AdminRouter>
             },
             {
                 path: '/dashboard/publishblog',
-                element: <AdminRouter><PulishBlog></PulishBlog></AdminRouter>
+                element: <AdminRouter><PulishBlog /></AdminRouter>
             },
             {
                 path: '/dashboard/mypurchase',
-                element: <BuyerRouter><MyPurchase></MyPurchase></BuyerRouter>
+                element: <BuyerRouter><MyPurchase /></BuyerRouter>
             },
             {
                 path: '/dashboard/myproducts',
-                element: <SellerRouter><MyProudcts></MyProudcts></SellerRouter>
+                element: <SellerRouter><MyProudcts /></SellerRouter>
             },
             {
                 path: '/dashboard/payment/:id',
-                loader: ({ params }) => fetch(`https://dealogic-server-omega.vercel.app/products/${params.id}`),
+                loader: ({ params }) => fetch(`${process.env.REACT_APP_API}/products/${params.id}`),
                 element: <Payment></Payment>
             }
         ]

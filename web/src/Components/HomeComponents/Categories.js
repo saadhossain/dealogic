@@ -7,7 +7,7 @@ import Heading from '../Heading';
 const Categories = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('https://dealogic-server-omega.vercel.app/categories')
+        queryFn: () => fetch(`${process.env.REACT_APP_API}/categories`)
             .then(res => res.json())
     });
     if (isLoading) {

@@ -5,6 +5,7 @@ import ButtonLoader from '../../Components/Spinners/ButtonLoader';
 import { AuthContext } from '../../Context/AuthProvider';
 import useUser from '../../hooks/UseUser/useUser';
 import { uploadImageToFirestore } from '../../utils/utils';
+import Heading from '../../Components/Heading';
 
 const AddProducts = () => {
     //Get the Logged in user information from the context
@@ -14,7 +15,7 @@ const AddProducts = () => {
     const navigate = useNavigate();
     const [category, setCategory] = useState([]);
     useEffect(() => {
-        fetch('https://dealogic-server-omega.vercel.app/categories')
+        fetch(`${process.env.REACT_APP_API}/categories`)
             .then(res => res.json())
             .then(data => setCategory(data));
     }, []);
@@ -55,7 +56,7 @@ const AddProducts = () => {
                 addedOn: new Date(),
                 prodStatus: 'Available',
             };
-            const res = await fetch('https://dealogic-server-omega.vercel.app/products', {
+            const res = await fetch(`${process.env.REACT_APP_API}/products`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -78,10 +79,7 @@ const AddProducts = () => {
     };
     return (
         <div className='w-full flex flex-col p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl'>
-            <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>Add A Product</h1>
-                <div className='border-2 border-primary w-20 absolute top-8 left-64'></div>
-            </div>
+            <Heading heading={'Add A Product'}/>
             <form onSubmit={handleAddProduct}>
                 <div className="space-y-4">
                     {/* Product Information Section */}

@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import Heading from '../../Components/Heading';
 
 const MyPurchase = () => {
     //Get User from the Context
@@ -11,7 +12,7 @@ const MyPurchase = () => {
     //Get Products for logged in users
     const { data: myPurchases = [] } = useQuery({
         queryKey: ['myPurchases', user?.email, logOut],
-        queryFn: () => fetch(`https://dealogic-server-omega.vercel.app/mypurchase?email=${user?.email}`, {
+        queryFn: () => fetch(`${process.env.REACT_APP_API}/mypurchase?email=${user?.email}`, {
             headers: {
                 authorization: `Beareer ${localStorage.getItem('AccessToken')}`
             }
@@ -26,10 +27,7 @@ const MyPurchase = () => {
     });
     return (
         <div>
-            <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>My Purchases</h1>
-                <div className='border-2 border-primary w-20 absolute top-8 left-60'></div>
-            </div>
+            <Heading heading={'My Purchases'}/>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table w-full">

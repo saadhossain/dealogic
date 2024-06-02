@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import DisplayBlogs from '../../Components/BlogsComp/DisplayBlogs';
 import Loader from '../../Components/Spinners/Loader';
+import Heading from '../../Components/Heading';
 
 const Blogs = () => {
 
@@ -9,7 +10,7 @@ const Blogs = () => {
     const { data: blogs = [], isLoading } = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
-            const res = await fetch('https://dealogic-server-omega.vercel.app/blogs');
+            const res = await fetch(`${process.env.REACT_APP_API}/blogs`);
             const data = await res.json();
             return data;
         }
@@ -19,10 +20,7 @@ const Blogs = () => {
     }
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto my-5'>
-            <div className='relative'>
-                <h1 className='text-2xl lg:text-4xl font-bold text-primary mb-10'>All Articles</h1>
-                <div className='border-2 border-primary w-20 absolute top-8 left-32 lg:left-48'></div>
-            </div>
+            <Heading heading={'All Articles'}/>
 
             {/* //Show All blogs */}
             <div className='grid lg:grid-cols-3 gap-5'>

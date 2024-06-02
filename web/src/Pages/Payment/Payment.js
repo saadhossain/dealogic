@@ -4,6 +4,7 @@ import React from 'react';
 import { GoVerified } from 'react-icons/go';
 import { useLoaderData } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
+import Heading from '../../Components/Heading';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Payment = () => {
@@ -12,7 +13,7 @@ const Payment = () => {
     return (
         <div className='flex justify-between gap-10'>
             <div className='w-2/5'>
-                <h1 className='text-xl lg:text-3xl text-primary font-bold'>Payment Details</h1>
+                <Heading heading={'Payment Details'}/>
                 <div className='my-5'>
                     <Elements stripe={stripePromise}>
                         <CheckoutForm

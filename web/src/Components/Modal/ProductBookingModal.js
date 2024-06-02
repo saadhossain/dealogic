@@ -20,7 +20,7 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
             payment: 'unpaid',
             booked: true
         };
-        fetch(`https://dealogic-server-omega.vercel.app/products/${_id}`, {
+        fetch(`${process.env.REACT_APP_API}/products/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -33,7 +33,7 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
                     toast.success(`You have Successfully Booked ${proName}`);
                     setAvailableProduct(null);
                     window.location.reload();
-                    // fetch(`https://dealogic-server-omega.vercel.app/products/${_id}`, {
+                    // fetch(`${process.env.REACT_APP_API}/products/${_id}`, {
                     //     method: 'PUT',
                     //     headers: {
                     //         'content-type': 'application/json'
