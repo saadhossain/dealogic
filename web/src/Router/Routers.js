@@ -16,13 +16,14 @@ import Login from "../Pages/Login/Login";
 import MyProudcts from "../Pages/MyProudcts/MyProudcts";
 import MyPurchase from "../Pages/MyPurchase/MyPurchase";
 import Payment from "../Pages/Payment/Payment";
-import Products from "../Pages/Products/Products";
+import CategoryProducts from '../Pages/Products/CategoryProducts';
 import PulishBlog from "../Pages/PulishBlog/PulishBlog";
 import Register from "../Pages/Register/Register";
 import AdminRouter from "./AdminRouter";
 import BuyerRouter from "./BuyerRouter";
 import PrivateRouter from "./PrivateRouter";
 import SellerRouter from "./SellerRouter";
+import Products from '../Pages/Products/Products';
 
 export const Routers = createBrowserRouter([
     {
@@ -45,11 +46,15 @@ export const Routers = createBrowserRouter([
             {
                 path: '/products/:category',
                 loader: ({ params }) => fetch(`${process.env.REACT_APP_API}/products/${params.category}`),
-                element: <Products />
+                element: <CategoryProducts />
             },
             {
                 path: '/blogs',
                 element: <Blogs />
+            },
+            {
+                path: '/products',
+                element: <Products />
             },
             {
                 path: '/blogs/:id',
