@@ -2,15 +2,30 @@ import React, { useEffect, useState } from 'react';
 import Heading from '../Heading';
 import ProductBookingModal from '../Modal/ProductBookingModal';
 import ProductShowcase from '../ProductsComponents/ProductShowcase';
+import Loader from '../Spinners/Loader';
 
 const RecentProducts = () => {
     const [recentProducts, setRecentProducts] = useState();
     const [availableProduct, setAvailableProduct] = useState(null);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API}/recentproducts`)
-            .then(res => res.json())
-            .then(data => setRecentProducts(data));
+        const fetchProducts = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(`${process.env.REACT_APP_API}/recentproducts`);
+                const data = await response.json();
+                setRecentProducts(data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Failed to fetch products:', error);
+            }
+        };
+
+        fetchProducts();
     }, []);
+    if(loading){
+        return <Loader/>
+    }
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto mt-10'>
             {

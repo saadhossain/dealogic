@@ -35,48 +35,68 @@ const DashboardLeftSidebar = () => {
                             {/* //Conditionally showing Admin menus */}
                             {
                                 loggedInUser?.accountType === 'Admin' && <>
-                                    <Link to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>All Products</li>
-                                    </Link>
+                                    <li>
+                                        <Link to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                            All Products
+                                        </Link>
+                                    </li>
+                                    <li>
                                     <Link to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>Add A Product</li>
+                                        Add A Product
                                     </Link>
+                                    </li>
+                                    <li>
                                     <Link to='/dashboard/allusers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>All Users</li>
+                                        All Users
                                     </Link>
+                                    </li>
+                                    <li>
                                     <Link to='/dashboard/sellers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>All Seller</li>
+                                        All Seller
                                     </Link>
+                                    </li>
+                                    <li>
                                     <Link to='/dashboard/buyers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>All Buyer</li>
+                                        All Buyer
                                     </Link>
+                                    </li>
+                                    <li>
                                     <Link to='/dashboard/publishblog' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>Publish A Blog</li>
+                                        Publish A Blog
                                     </Link>
+                                    </li>
+                                    <li>
                                     <Link to='/dashboard/bookedproducts' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>Booked Products</li>
+                                        Booked Products
                                     </Link>
+                                    </li>
                                 </>
                             }
                             {/* //Conditionally showing Seller menus */}
                             {
                                 loggedInUser?.accountType === 'Seller' && <>
+                                <li>
                                     <Link to='/dashboard/myproducts' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>My Products</li>
+                                        My Products
                                     </Link>
+                                    </li>
+                                    <li>
                                     <Link to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>Sell A Product</li>
-                                    </Link></>
+                                        Sell A Product
+                                    </Link></li></>
                             }
                             {/* //Conditionally showing buyer menus */}
                             {
                                 loggedInUser?.accountType === 'Buyer' && <>
+                                <li>
                                     <Link to='/dashboard/mypurchase' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>My Purchases</li>
+                                        My Purchases
                                     </Link>
+                                    </li>
+                                    <li>
                                     <Link to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        <li>Sell A Product</li>
-                                    </Link></>
+                                        Sell A Product
+                                    </Link></li></>
                             }
                         </ul>
                     </div>

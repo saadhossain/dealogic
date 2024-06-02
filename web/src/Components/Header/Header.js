@@ -7,6 +7,7 @@ import blog from '../../assests/icons/blogs.png';
 import dashboard from '../../assests/icons/dashboard.png';
 import home from '../../assests/icons/home.png';
 import login from '../../assests/icons/login.png';
+import products from '../../assests/icons/products.png';
 import logo from '../../assests/logo.png';
 
 const Header = () => {
@@ -19,18 +20,39 @@ const Header = () => {
                 <Link to='/'><img src={logo} alt='dealogic' className='w-28' /></Link>
                 <div className='flex items-center gap-2'>
                     <ul className={`lg:flex items-center gap-6 bg-[#E2F4FE] w-full font-semibold absolute lg:static py-3 lg:py-2 px-10 shadow-lg lg:shadow-none duration-500 ease-in-out z-40 text-primary ${expand ? 'top-12 right-0' : 'top-[-400px] right-0'}`}>
-                        <li><NavLink to='/' className='flex gap-1 mb-3 lg:mb-0'><img src={home} alt='Home Icon' className='w-6 ' />Home</NavLink></li>
-                        <li><NavLink to='/blogs' className='flex gap-1 mb-3 lg:mb-0'><img src={blog} alt='Blog Icon' className='w-6 ' />Blog</NavLink></li>
-                        <li><NavLink to='/dashboard/addProduct' className='flex gap-1 mb-3 lg:mb-0'><img src={addProduct} alt='Add Product' className='w-6 ' />Add Product</NavLink></li>
+                        <li onClick={()=> setExpand(false)}>
+                            <NavLink to='/' className='flex gap-1 mb-3 lg:mb-0'>
+                                <img src={home} alt='Home Icon' className='w-6 ' />Home
+                            </NavLink>
+                        </li>
+                        <li onClick={()=> setExpand(false)}>
+                            <NavLink to='/blogs' className='flex gap-1 mb-3 lg:mb-0'>
+                                <img src={blog} alt='Blog Icon' className='w-6 ' />Blog
+                            </NavLink>
+                        </li>
+                        <li onClick={()=> setExpand(false)}>
+                            <NavLink to='/products' className='flex gap-1 mb-3 lg:mb-0'>
+                                <img src={products} alt='Blog Icon' className='w-6 ' />Products
+                            </NavLink>
+                        </li>
+                        <li onClick={()=> setExpand(false)}>
+                            <NavLink to='/dashboard/addProduct' className='flex gap-1 mb-3 lg:mb-0'>
+                                <img src={addProduct} alt='Add Product' className='w-6 ' />Sell
+                            </NavLink>
+                        </li>
                         {
                             user?.email
                                 ? <>
-                                    <Link to='/dashboard'>
+                                    <Link to='/dashboard' onClick={() => setExpand(false)}>
                                         <li className='flex gap-1 mb-3 lg:mb-0'><img src={dashboard} alt='dashboard' className='w-6 ' />Dashboard</li>
                                     </Link>
-                                    <div className='flex items-center gap-2'>
-                                        <Link to='/dashboard' className='flex'>
+                                    <div
+                                        className='flex items-center gap-2'
+                                        onClick={() => setExpand(false)}
+                                    >
+                                        <Link to='/dashboard' className='flex items-center gap-1'>
                                             <img src={user?.photoURL ? user.photoURL : ''} alt={user?.displayName} className='w-9 h-9 rounded-full border-2 border-primary' />
+                                            <span className='md:hidden'>My Account</span>
                                         </Link>
                                     </div>
                                 </>

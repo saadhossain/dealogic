@@ -2,15 +2,30 @@ import React, { useEffect, useState } from 'react';
 import Heading from '../../Components/Heading';
 import ProductBookingModal from '../../Components/Modal/ProductBookingModal';
 import ProductShowcase from '../../Components/ProductsComponents/ProductShowcase';
+import Loader from '../../Components/Spinners/Loader';
 
 const Products = () => {
     const [products, setProducts] = useState();
     const [availableProduct, setAvailableProduct] = useState(null);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API}/products`)
-            .then(res => res.json())
-            .then(data => setProducts(data));
+        const fetchProducts = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(`${process.env.REACT_APP_API}/products`);
+                const data = await response.json();
+                setProducts(data);
+                setLoading(false);
+            } catch (error) {
+                console.error('Failed to fetch products:', error);
+            }
+        };
+
+        fetchProducts();
     }, []);
+    if (loading) {
+        return <Loader />;
+    }
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto my-5'>
             <Heading heading={`All Products`} />
