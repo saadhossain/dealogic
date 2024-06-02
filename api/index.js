@@ -52,6 +52,7 @@ const verifyToken = (req, res, next) => {
 const dbConnect = () => {
     const categories = client.db('dealogic').collection('categories');
     const productsCollection = client.db('dealogic').collection('products');
+    const featuredProducts = client.db('dealogic').collection('featured');
     const users = client.db('dealogic').collection('users');
     const blogs = client.db('dealogic').collection('blogs');
 
@@ -85,13 +86,10 @@ const dbConnect = () => {
 
     app.get('/recentproducts', async (req, res) => {
         const query = {};
-        const products = await productsCollection
-            .find(query)
-            .sort({ addedOn: -1 })
-            .limit(12)
-            .toArray();
+        const products = await featuredProducts.find(query).toArray();
         res.send(products);
     });
+
     //Get a Single Product
     app.get('/products/:id', async (req, res) => {
         const id = req.params.id;

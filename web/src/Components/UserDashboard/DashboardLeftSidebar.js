@@ -29,74 +29,54 @@ const DashboardLeftSidebar = () => {
                     </div>
                     <div className='mt-10 ml-5'>
                         <ul className='font-semibold flex flex-col gap-3'>
-                            <Link to='/dashboard' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                            <Link    to='/dashboard' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
                                 <li>Dashboard</li>
                             </Link>
                             {/* //Conditionally showing Admin menus */}
                             {
                                 loggedInUser?.accountType === 'Admin' && <>
-                                    <li>
-                                        <Link to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                            All Products
-                                        </Link>
-                                    </li>
-                                    <li>
-                                    <Link to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        Add A Product
+                                    <Link    to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                        <li>All Products</li>
                                     </Link>
-                                    </li>
-                                    <li>
-                                    <Link to='/dashboard/allusers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        All Users
+                                    <Link    to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                        <li>Add A Product</li>
                                     </Link>
-                                    </li>
-                                    <li>
-                                    <Link to='/dashboard/sellers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        All Seller
+                                    <Link    to='/dashboard/allusers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                        <li>All Users</li>
                                     </Link>
-                                    </li>
-                                    <li>
-                                    <Link to='/dashboard/buyers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        All Buyer
+                                    <Link    to='/dashboard/sellers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                        <li>All Seller</li>
                                     </Link>
-                                    </li>
-                                    <li>
-                                    <Link to='/dashboard/publishblog' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        Publish A Blog
+                                    <Link    to='/dashboard/buyers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                        <li>All Buyer</li>
                                     </Link>
-                                    </li>
-                                    <li>
-                                    <Link to='/dashboard/bookedproducts' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        Booked Products
+                                    <Link    to='/dashboard/publishblog' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                        <li>Publish A Blog</li>
                                     </Link>
-                                    </li>
+                                    <Link    to='/dashboard/bookedproducts' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                        <li>Booked Products</li>
+                                    </Link>
                                 </>
                             }
                             {/* //Conditionally showing Seller menus */}
                             {
                                 loggedInUser?.accountType === 'Seller' && <>
-                                <li>
                                     <Link to='/dashboard/myproducts' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        My Products
+                                        <li>My Products</li>
                                     </Link>
-                                    </li>
-                                    <li>
                                     <Link to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        Sell A Product
-                                    </Link></li></>
+                                        <li>Sell A Product</li>
+                                    </Link></>
                             }
                             {/* //Conditionally showing buyer menus */}
                             {
                                 loggedInUser?.accountType === 'Buyer' && <>
-                                <li>
                                     <Link to='/dashboard/mypurchase' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        My Purchases
+                                        <li>My Purchases</li>
                                     </Link>
-                                    </li>
-                                    <li>
                                     <Link to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
-                                        Sell A Product
-                                    </Link></li></>
+                                        <li>Sell A Product</li>
+                                    </Link></>
                             }
                         </ul>
                     </div>
