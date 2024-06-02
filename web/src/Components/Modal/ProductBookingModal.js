@@ -58,7 +58,7 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
                     <form onSubmit={handleBooking}>
                         <div className="space-y-4">
                             {/* Product Information Section */}
-                            <h3 className='text-2xl font-semibold text-dealogic'>Product Information</h3>
+                            <h3 className='text-2xl font-semibold text-primary'>Product Information</h3>
                             <div className='flex gap-5 items-center'>
                                 <img src={productImageURL} alt={proName} className='w-12' />
                                 <h3 className='text-2xl'>{proName}</h3>
@@ -66,17 +66,17 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
                             <div className='grid lg:grid-cols-2 gap-2 font-semibold'>
                                 <div className='flex gap-2'>
                                     <p className='line-through'>Price: ${regularPrice}</p>
-                                    <p className='text-dealogic'>Sale Price: ${resalePrice}</p>
+                                    <p className='text-primary'>Sale Price: ${resalePrice}</p>
                                 </div>
-                                <p>Product Condition: <span className='text-dealogic'>{productCondition}</span></p>
-                                <p>Purchase Year: <span className='text-dealogic'>{purchaseYear}</span></p>
-                                <p>Sold By: <span className='text-dealogic'>{sellerName}</span></p>
-                                <p>Used Duration: <span className='text-dealogic'>{usedYear ? usedYear : 'Not Found'}</span></p>
+                                <p>Product Condition: <span className='text-primary'>{productCondition}</span></p>
+                                <p>Purchase Year: <span className='text-primary'>{purchaseYear}</span></p>
+                                <p>Sold By: <span className='text-primary'>{sellerName}</span></p>
+                                <p>Used Duration: <span className='text-primary'>{usedYear ? usedYear : 'Not Found'}</span></p>
                             </div>
                             {/* Product information section end */}
 
                             {/* Buyer Information section start */}
-                            <h3 className='text-2xl font-semibold text-dealogic'>Buyer Information</h3>
+                            <h3 className='text-2xl font-semibold text-primary'>Buyer Information</h3>
                             <div className='grid lg:grid-cols-2 gap-2'>
                                 <div>
                                     <label htmlFor="buyer" className="mb-2 text-lg">Buyer Name</label>
@@ -98,7 +98,7 @@ const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
                             {/* Buyer Information section end */}
                         </div>
                         <div className='flex justify-center my-5'>
-                            <button type='submit' className='bg-dealogic text-white font-semibold py-3 px-10 rounded'>Book Product</button>
+                            <button type='submit' className='bg-primary text-white font-semibold py-3 px-10 rounded'>Book Product</button>
                         </div>
                     </form>
                 </div>

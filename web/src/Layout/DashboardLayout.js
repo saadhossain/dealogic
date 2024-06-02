@@ -5,7 +5,7 @@ import Header from '../Components/Header/Header';
 import DashboardLeftSidebar from '../Components/UserDashboard/DashboardLeftSidebar';
 
 const DashboardLayout = () => {
-    const [isExpand, setIsExpand] = useState(false)
+    const [isExpand, setIsExpand] = useState(false);
     return (
         <div>
             <Header></Header>
@@ -14,7 +14,7 @@ const DashboardLayout = () => {
                     <DashboardLeftSidebar></DashboardLeftSidebar>
                 </div>
                 <div className='w-11/12 lg:w-[70%]'>
-                    <div className='lg:hidden text-xl font-bold flex justify-between items-center gap-2 bg-dealogic text-white py-1 px-2 mb-5 rounded'>
+                    <div className='lg:hidden text-xl font-bold flex justify-between items-center gap-2 bg-primary text-white py-1 px-2 mb-5 rounded'>
                         <Link to='/dashboard'>Dashboard</Link>
                         <div onClick={() => setIsExpand(!isExpand)}>
                             {

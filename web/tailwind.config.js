@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "dealogic": "#4AACC5",
+        "primary": "#4AACC5",
         "secondary": "#298aa3",
         "accent": "#191A1F"
       }

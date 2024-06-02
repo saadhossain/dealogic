@@ -50,8 +50,8 @@ const AllSeller = () => {
     return (
         <div>
             <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-dealogic mb-10'>All seller</h1>
-                <div className='border-2 border-dealogic w-20 absolute top-8 left-40'></div>
+                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>All seller</h1>
+                <div className='border-2 border-primary w-20 absolute top-8 left-40'></div>
             </div>
             <div>
                 <div className="overflow-x-auto">
@@ -78,11 +78,11 @@ const AllSeller = () => {
                                     </td>
                                     <td>{seller.email}</td>
                                     <td>
-                                        <button className='bg-dealogic text-white  rounded py-1 px-2'>{seller.accountType}</button>
+                                        <button className='bg-primary text-white  rounded py-1 px-2'>{seller.accountType}</button>
                                     </td>
                                     <td className='flex items-center gap-2 mt-3'>
-                                        <button onClick={() => handleDeleteSeller(seller._id)} className='text-dealogic hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
-                                        <button onClick={() => handleVerify(seller._id)} className={`duration-300 flex items-center gap-1 ${seller.verified ? 'text-green-700' : 'text-dealogic hover:text-green-700'}`}><GoVerified></GoVerified> {seller.verified ? 'Verified' : 'Verify'}</button>
+                                        <button onClick={() => handleDeleteSeller(seller._id)} className='text-primary hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
+                                        <button onClick={() => handleVerify(seller._id)} className={`duration-300 flex items-center gap-1 ${seller.verified ? 'text-green-700' : 'text-primary hover:text-green-700'}`}><GoVerified></GoVerified> {seller.verified ? 'Verified' : 'Verify'}</button>
                                     </td>
 
                                 </tr>)

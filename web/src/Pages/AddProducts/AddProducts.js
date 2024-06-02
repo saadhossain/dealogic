@@ -79,13 +79,13 @@ const AddProducts = () => {
     return (
         <div className='w-full flex flex-col p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl'>
             <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-dealogic mb-10'>Add A Product</h1>
-                <div className='border-2 border-dealogic w-20 absolute top-8 left-64'></div>
+                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>Add A Product</h1>
+                <div className='border-2 border-primary w-20 absolute top-8 left-64'></div>
             </div>
             <form onSubmit={handleAddProduct}>
                 <div className="space-y-4">
                     {/* Product Information Section */}
-                    <h3 className='text-2xl font-semibold text-dealogic'>Product Information</h3>
+                    <h3 className='text-2xl font-semibold text-primary'>Product Information</h3>
                     <div className='grid grid-cols-2 lg:grid-cols-4 gap-2'>
                         <div>
                             <label htmlFor="proName" className="mb-2 text-lg">Product Name</label>
@@ -143,7 +143,7 @@ const AddProducts = () => {
                     {/* Product information section end */}
 
                     {/* Seller Information section start */}
-                    <h3 className='text-2xl font-semibold text-dealogic'>Seller Information</h3>
+                    <h3 className='text-2xl font-semibold text-primary'>Seller Information</h3>
                     <div className='grid grid-cols-2 lg:grid-cols-3 gap-2'>
                         <div>
                             <label htmlFor="seller" className="mb-2 text-lg">Seller Name</label>
@@ -161,7 +161,7 @@ const AddProducts = () => {
                     {/* Seller Information section end */}
                 </div>
                 <div className='flex justify-center my-5'>
-                    <button type='submit' className='bg-dealogic duration-500 ease-in-out hover:bg-secondary text-white font-semibold py-3 px-10 rounded'>{loading ? <ButtonLoader title='Adding Product' /> : 'Add Product'}</button>
+                    <button type='submit' className='bg-primary duration-500 ease-in-out hover:bg-secondary text-white font-semibold py-3 px-10 rounded'>{loading ? <ButtonLoader title='Adding Product' /> : 'Add Product'}</button>
                 </div>
             </form>
         </div>

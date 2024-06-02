@@ -20,7 +20,7 @@ const ProductShowcase = ({ product, setAvailableProduct }) => {
                         <p className='line-through text-gray-500'>Regular :${regularPrice}</p>
                         <div className='flex items-center gap-1'>
                             <img src={salePrice} alt='Sale Price' />
-                            <h3 className="text-2xl text-dealogic font-semibold">${resalePrice}</h3>
+                            <h3 className="text-2xl text-primary font-semibold">${resalePrice}</h3>
                         </div>
                     </div>
                     <hr className="border-1 border-gray-400" />
@@ -38,7 +38,7 @@ const ProductShowcase = ({ product, setAvailableProduct }) => {
                     </p>
                     <div className="card-actions justify-center">
                         <label
-                            className='btn border-none duration-300 ease-in-out bg-dealogic hover:bg-secondary capitalize'
+                            className='btn border-none duration-300 ease-in-out bg-primary hover:bg-secondary capitalize'
                             htmlFor="booking-modal"
                             disabled={booked}
                             onClick={() => setAvailableProduct(product)}

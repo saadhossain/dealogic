@@ -57,11 +57,11 @@ const AdminStatistics = () => {
             <div>
                 {
                     allProducts.length > 0 && <div className='shadow-xl rounded-lg p-5 bg-slate-50'>
-                        <h3 className='text-xl font-bold text-center border-b-2 border-dealogic mb-4'>All Products</h3>
-                        <h3 className='text-xl font-bold'>Total Products: <span className='text-dealogic text-2xl'>{allProducts.length}</span></h3>
-                        <h3 className='text-xl font-bold'>Total Price: <span className='text-dealogic text-2xl'>${totalPurchasePrice}</span></h3>
+                        <h3 className='text-xl font-bold text-center border-b-2 border-primary mb-4'>All Products</h3>
+                        <h3 className='text-xl font-bold'>Total Products: <span className='text-primary text-2xl'>{allProducts.length}</span></h3>
+                        <h3 className='text-xl font-bold'>Total Price: <span className='text-primary text-2xl'>${totalPurchasePrice}</span></h3>
                         <Link to='/dashboard/allproducts'>
-                            <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-dealogic hover:bg-secondary'>See All</button>
+                            <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-primary hover:bg-secondary'>See All</button>
                         </Link>
                     </div>
                 }
@@ -70,16 +70,16 @@ const AdminStatistics = () => {
             <div>
                 {
                     allUsers.length > 0 && <div className='shadow-xl rounded-lg p-5 bg-slate-50'>
-                        <h3 className='text-xl font-bold text-center border-b-2 border-dealogic mb-4'>All Users</h3>
-                        <h3 className='text-xl font-bold'>All Users: <span className='text-dealogic text-2xl'>{allUsers.length}</span></h3>
+                        <h3 className='text-xl font-bold text-center border-b-2 border-primary mb-4'>All Users</h3>
+                        <h3 className='text-xl font-bold'>All Users: <span className='text-primary text-2xl'>{allUsers.length}</span></h3>
                         <h3 className='text-lg font-bold'>
-                            <Link to='/dashboard/buyers' className='hover:text-dealogic'>Buyer</Link>
-                            <span className='text-dealogic text-xl'> {buyers.length} | </span>
-                            <Link to='/dashboard/sellers' className='hover:text-dealogic'>Seller</Link>
-                            <span className='text-dealogic text-xl'> {sellers.length} </span>
+                            <Link to='/dashboard/buyers' className='hover:text-primary'>Buyer</Link>
+                            <span className='text-primary text-xl'> {buyers.length} | </span>
+                            <Link to='/dashboard/sellers' className='hover:text-primary'>Seller</Link>
+                            <span className='text-primary text-xl'> {sellers.length} </span>
                         </h3>
                         <Link to='/dashboard/allusers'>
-                            <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-dealogic hover:bg-secondary'>See All</button>
+                            <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-primary hover:bg-secondary'>See All</button>
                         </Link>
                     </div>
                 }
@@ -88,11 +88,11 @@ const AdminStatistics = () => {
             <div>
                 {
                     bookeProducts.length > 0 && <div className='shadow-xl rounded-lg p-5 bg-slate-50'>
-                        <h3 className='text-xl font-bold text-center border-b-2 border-dealogic mb-4'>Booked Products</h3>
-                        <h3 className='text-xl font-bold'>All Booked: <span className='text-dealogic text-2xl'>{bookeProducts.length}</span></h3>
-                        <h3 className='text-xl font-bold'>Total Price: <span className='text-dealogic text-2xl'>${totalBookedPrice}</span></h3>
+                        <h3 className='text-xl font-bold text-center border-b-2 border-primary mb-4'>Booked Products</h3>
+                        <h3 className='text-xl font-bold'>All Booked: <span className='text-primary text-2xl'>{bookeProducts.length}</span></h3>
+                        <h3 className='text-xl font-bold'>Total Price: <span className='text-primary text-2xl'>${totalBookedPrice}</span></h3>
                         <Link to='/dashboard/bookedproducts'>
-                            <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-dealogic hover:bg-secondary'>See All</button>
+                            <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-primary hover:bg-secondary'>See All</button>
                         </Link>
                     </div>
                 }

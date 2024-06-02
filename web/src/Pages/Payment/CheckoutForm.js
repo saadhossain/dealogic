@@ -105,7 +105,7 @@ const CheckoutForm = ({ product }) => {
                         },
                     }}
                 />
-                <button type="submit" disabled={!stripe || !clientSecret} className={`${!stripe || !clientSecret ? 'bg-secondary' : 'bg-dealogic'} py-2 px-3 rounded text-white font-semibold my-3`}>
+                <button type="submit" disabled={!stripe || !clientSecret} className={`${!stripe || !clientSecret ? 'bg-secondary' : 'bg-primary'} py-2 px-3 rounded text-white font-semibold my-3`}>
                     Confirm Payment
                 </button>
             </form>

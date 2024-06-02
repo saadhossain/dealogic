@@ -138,7 +138,7 @@ const Register = () => {
                     <img src={registerBg} alt='Login Background' className='sticky top-10' />
                 </div>
                 <div className="w-full lg:w-2/4 flex flex-col rounded-lg bg-slate-50 text-gray-800 shadow-xl">
-                    <h3 className='py-3 px-5 rounded-r-md bg-dealogic text-white font-semibold w-64 shadow-lg mt-10'>Please Create Your Account</h3>
+                    <h3 className='py-3 px-5 rounded-r-md bg-primary text-white font-semibold w-64 shadow-lg mt-10'>Please Create Your Account</h3>
                     <div className='p-6'>
                         <form onSubmit={handleRegistration} className="space-y-12 ng-untouched ng-pristine ng-valid">
                             <div className="space-y-4">
@@ -171,17 +171,17 @@ const Register = () => {
                             <div className="space-y-2">
                                 <div>
                                     {/* Sign Up Button */}
-                                    <button type="submit" className={`w-full px-8 py-3 font-semibold rounded-md ${email ? 'bg-dealogic' : 'bg-gray-800'} text-white`} disabled={!email}>{loading ? <SmallLoader /> : 'Sign Up'}</button>
+                                    <button type="submit" className={`w-full px-8 py-3 font-semibold rounded-md ${email ? 'bg-primary' : 'bg-gray-800'} text-white`} disabled={!email}>{loading ? <SmallLoader /> : 'Sign Up'}</button>
                                 </div>
                                 <p className="px-6 text-lg text-center text-gray-800">Already Have an Account?
-                                    <Link to="/login" className="hover:underline text-dealogic ml-2 font-bold">Login</Link>.
+                                    <Link to="/login" className="hover:underline text-primary ml-2 font-bold">Login</Link>.
                                 </p>
                             </div>
                         </form>
                         <button
                             onClick={handleGoogleLogin}
                             type="button"
-                            className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-dealogic hover:border-dealogic hover:text-white">
+                            className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-primary hover:border-primary hover:text-white">
                             <FaGoogle></FaGoogle>
                             <p>Login with Google</p>
                         </button>

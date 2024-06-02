@@ -1,7 +1,7 @@
 import dateFormat from "dateformat";
 import React from 'react';
+import { AiFillRead } from 'react-icons/ai';
 import { Link } from "react-router-dom";
-import {AiFillRead} from 'react-icons/ai'
 
 const DisplayBlogs = ({ blog }) => {
     const { _id, blogTitle, blogImage, description, authorImage, authorName, publishedOn } = blog;
@@ -23,7 +23,7 @@ const DisplayBlogs = ({ blog }) => {
                                 <p>On: {dateFormat(publishedOn, "mmm dS, yyyy")}</p>
                             </div>
                         </div>
-                        <Link to={`/blogs/${_id}`}><button className='py-2 px-2 bg-dealogic duration-500 ease-in-out hover:bg-secondary rounded text-white font-semibold text-center flex justify-center gap-1'><AiFillRead className="w-5 h-5"/> Read Details</button></Link>
+                        <Link to={`/blogs/${_id}`}><button className='py-2 px-2 bg-primary duration-500 ease-in-out hover:bg-secondary rounded text-white font-semibold text-center flex justify-center gap-1'><AiFillRead className="w-5 h-5" /> Read Details</button></Link>
                     </div>
                 </div>
             </div>

@@ -113,8 +113,8 @@ const Login = () => {
                 <div className='w-full lg:w-2/4'>
                     <img src={loginBg} alt='Login Background' />
                 </div>
-                <div className="w-full lg:w-2/4 flex flex-col justify-center bg-white rounded-lg text-dealogic font-semibold">
-                    <h3 className='py-3 px-5 rounded-r-md bg-dealogic text-white w-48 shadow-lg mt-10'>Welcome Back</h3>
+                <div className="w-full lg:w-2/4 flex flex-col justify-center bg-white rounded-lg text-primary font-semibold">
+                    <h3 className='py-3 px-5 rounded-r-md bg-primary text-white w-48 shadow-lg mt-10'>Welcome Back</h3>
                     <div className='p-6'>
                         <h1 className="my-3 text-2xl font-bold text-center">Login your Account</h1>
                         <form onSubmit={handleUserLogin} className="space-y-12 ng-untouched ng-pristine ng-valid">
@@ -134,17 +134,17 @@ const Login = () => {
                             <div className="space-y-2">
                                 <div>
                                     {/* Sign In Button */}
-                                    <button type="submit" className={`w-full px-8 py-3 font-semibold rounded-md ${email ? 'bg-dealogic' : 'bg-gray-800'} text-white`} disabled={!email}>{loading ? <SmallLoader /> : 'Sign In'}</button>
+                                    <button type="submit" className={`w-full px-8 py-3 font-semibold rounded-md ${email ? 'bg-primary' : 'bg-gray-800'} text-white`} disabled={!email}>{loading ? <SmallLoader /> : 'Sign In'}</button>
                                 </div>
                                 <p className="px-6 text-lg text-center text-gray-800">Don't have an account yet?
-                                    <Link to="/register" className="hover:underline text-dealogic ml-2 font-bold">Sign up</Link>.
+                                    <Link to="/register" className="hover:underline text-primary ml-2 font-bold">Sign up</Link>.
                                 </p>
                             </div>
                         </form>
                         <button
                             onClick={handleGoogleLogin}
                             type="button"
-                            className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-dealogic hover:border-dealogic hover:text-white">
+                            className="flex items-center justify-center w-full p-2 mt-3 space-x-4 font-semibold border rounded-md border-gray-400 duration-500 ease-in-out hover:bg-primary hover:border-primary hover:text-white">
                             <FaGoogle></FaGoogle>
                             <p>Login with Google</p>
                         </button>
@@ -154,7 +154,7 @@ const Login = () => {
                 <input type="checkbox" id="forgetPassModal" className="modal-toggle" />
                 <div className="modal">
                     <div className="modal-box relative bg-eduhf text-white">
-                        <label htmlFor="forgetPassModal" className="btn btn-sm btn-circle absolute right-2 top-2 bg-dealogic text-white hover:bg-dealogic">✕</label>
+                        <label htmlFor="forgetPassModal" className="btn btn-sm btn-circle absolute right-2 top-2 bg-primary text-white hover:bg-primary">✕</label>
                         <div className="flex flex-col max-w-md p-2 rounded-md">
                             <div className="mb-2 text-center">
                                 <h1 className="text-lg md:text-2xl font-bold text-accent">Reset Password</h1>
@@ -168,7 +168,7 @@ const Login = () => {
                                 </div>
                                 <div className="space-y-2">
                                     <div>
-                                        <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-dealogic">Reset</button>
+                                        <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-primary">Reset</button>
                                     </div>
                                 </div>
                             </form>

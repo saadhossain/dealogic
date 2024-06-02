@@ -32,8 +32,8 @@ const AllBuyer = () => {
     return (
         <div>
             <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-dealogic mb-10'>All buyer</h1>
-                <div className='border-2 border-dealogic w-20 absolute top-8 left-40'></div>
+                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>All buyer</h1>
+                <div className='border-2 border-primary w-20 absolute top-8 left-40'></div>
             </div>
             <div>
                 <div className="overflow-x-auto">
@@ -60,10 +60,10 @@ const AllBuyer = () => {
                                     </td>
                                     <td>{buyer.email}</td>
                                     <td>
-                                        <button className='bg-dealogic text-white  rounded py-1 px-2'>{buyer.accountType}</button>
+                                        <button className='bg-primary text-white  rounded py-1 px-2'>{buyer.accountType}</button>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleDeleteBuyer(buyer._id)} className='text-dealogic hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
+                                        <button onClick={() => handleDeleteBuyer(buyer._id)} className='text-primary hover:text-red-700 duration-300 flex items-center gap-1'><FaTrash></FaTrash> Delete</button>
                                     </td>
                                 </tr>)
                             }

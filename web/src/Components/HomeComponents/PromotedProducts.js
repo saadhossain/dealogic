@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductBookingModal from '../Modal/ProductBookingModal';
 import DisplayPromotedProducts from '../ProductsComponents/DisplayPromotedProducts';
+import Heading from '../Heading';
 
 const PromotedProducts = () => {
     const [promotedProducts, setPromotedProducts] = useState();
@@ -15,10 +16,7 @@ const PromotedProducts = () => {
             {
                 promotedProducts?.length > 0 &&
                 <>
-                    <div className='relative'>
-                        <h1 className='text-2xl lg:text-4xl font-bold text-dealogic mb-10'>Promoted Products</h1>
-                        <div className='border-2 border-dealogic w-20 absolute top-8 left-56 lg:left-[340px]'></div>
-                    </div>
+                    <Heading heading={'Promoted Products'}/>
                     <div className='grid lg:grid-cols-4 gap-5'>
                         {
                             promotedProducts?.map(promoted => <DisplayPromotedProducts

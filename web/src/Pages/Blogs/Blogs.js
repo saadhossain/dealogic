@@ -20,8 +20,8 @@ const Blogs = () => {
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto my-5'>
             <div className='relative'>
-                <h1 className='text-2xl lg:text-4xl font-bold text-dealogic mb-10'>All Articles</h1>
-                <div className='border-2 border-dealogic w-20 absolute top-8 left-32 lg:left-48'></div>
+                <h1 className='text-2xl lg:text-4xl font-bold text-primary mb-10'>All Articles</h1>
+                <div className='border-2 border-primary w-20 absolute top-8 left-32 lg:left-48'></div>
             </div>
 
             {/* //Show All blogs */}

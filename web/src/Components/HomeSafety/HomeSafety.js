@@ -7,7 +7,7 @@ const HomeSafety = () => {
             <div className='w-11/12 lg:w-2/4'>
                 <div data-aos='slide-left'>
                     <h1 className='text-3xl lg:text-5xl font-bold leading-[70px] tracking-[10px] lg:tracking-[15px]'>
-                        <span className='text-dealogic text-5xl lg:text-7xl'>Be Safe</span> <br />
+                        <span className='text-primary text-5xl lg:text-7xl'>Be Safe</span> <br />
                         While Making <br />
                         TRANSACTION
                     </h1>

@@ -32,8 +32,8 @@ const AllUsers = () => {
     return (
         <div>
             <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-dealogic mb-10'>All Users</h1>
-                <div className='border-2 border-dealogic w-20 absolute top-8 left-40'></div>
+                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>All Users</h1>
+                <div className='border-2 border-primary w-20 absolute top-8 left-40'></div>
             </div>
             <div>
                 <div className="overflow-x-auto">
@@ -60,10 +60,10 @@ const AllUsers = () => {
                                     </td>
                                     <td>{users.email}</td>
                                     <td>
-                                        <button className='bg-dealogic text-white  rounded py-1 px-2'>{users.accountType}</button>
+                                        <button className='bg-primary text-white  rounded py-1 px-2'>{users.accountType}</button>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleDeleteUser(users._id)} className={`duration-300 flex items-center gap-1 ${users?.accountType === 'Admin' ? 'text-accent' : 'text-dealogic hover:text-red-700'}`} disabled={users?.accountType === 'Admin'} ><FaTrash></FaTrash> Delete</button>
+                                        <button onClick={() => handleDeleteUser(users._id)} className={`duration-300 flex items-center gap-1 ${users?.accountType === 'Admin' ? 'text-accent' : 'text-primary hover:text-red-700'}`} disabled={users?.accountType === 'Admin'} ><FaTrash></FaTrash> Delete</button>
                                     </td>
                                 </tr>)
                             }

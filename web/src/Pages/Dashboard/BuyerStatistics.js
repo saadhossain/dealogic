@@ -28,10 +28,10 @@ const BuyerStatistics = () => {
         <div>
             {
                 myPurchases.length > 0 && <div className='w-72 shadow-xl rounded-lg p-5 bg-slate-50'>
-                    <h3 className='text-2xl font-bold'>Total Purchase: <span className='text-dealogic'>{myPurchases.length}</span></h3>
-                    <h3 className='text-2xl font-bold'>Total Price: <span className='text-dealogic'>${totalPurchasePrice}</span></h3>
+                    <h3 className='text-2xl font-bold'>Total Purchase: <span className='text-primary'>{myPurchases.length}</span></h3>
+                    <h3 className='text-2xl font-bold'>Total Price: <span className='text-primary'>${totalPurchasePrice}</span></h3>
                     <Link to='/dashboard/mypurchase'>
-                        <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-dealogic hover:bg-secondary'>See All</button>
+                        <button className='py-2 mt-5 w-full rounded text-white font-semibold bg-primary hover:bg-secondary'>See All</button>
                     </Link>
                 </div>
             }

@@ -73,13 +73,13 @@ const PulishBlog = ({ placeholder }) => {
     return (
         <div className='w-full flex flex-col p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl'>
             <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-dealogic mb-10'>Publish A Article</h1>
-                <div className='border-2 border-dealogic w-20 absolute top-7 lg:top-8 left-40 lg:left-72'></div>
+                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>Publish A Article</h1>
+                <div className='border-2 border-primary w-20 absolute top-7 lg:top-8 left-40 lg:left-72'></div>
             </div>
             <form onSubmit={handlePublishBlog}>
                 <div className="space-y-4">
                     {/* Blog Information Section */}
-                    <h3 className='text-2xl font-semibold text-dealogic'>Article Information</h3>
+                    <h3 className='text-2xl font-semibold text-primary'>Article Information</h3>
                     <div>
                         <label htmlFor="blogTitle" className="mb-2 text-lg font-semibold">Article Title</label>
                         <input onBlur={handleValues} type="text" name="blogTitle" id="blogTitle" placeholder="Enter Article Title" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800" required />
@@ -105,7 +105,7 @@ const PulishBlog = ({ placeholder }) => {
                     {/* Text Editor Ends */}
                 </div>
                 <div className='flex justify-center my-5'>
-                    <button type='submit' className='bg-dealogic duration-500 ease-in-out hover:bg-secondary text-white font-semibold py-3 px-10 rounded'> Publish Blog</button>
+                    <button type='submit' className='bg-primary duration-500 ease-in-out hover:bg-secondary text-white font-semibold py-3 px-10 rounded'> Publish Blog</button>
                 </div>
             </form>
         </div>

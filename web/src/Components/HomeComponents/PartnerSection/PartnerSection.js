@@ -8,6 +8,7 @@ import gigabyte from '../../../assests/partners/gigabyte-logo.png';
 import hp from '../../../assests/partners/hp-logo.png';
 import msi from '../../../assests/partners/msi-logo.png';
 import ryzen from '../../../assests/partners/ryzen-logo.png';
+import Heading from '../../Heading';
 
 const PartnerSection = () => {
     const settings = {
@@ -49,10 +50,7 @@ const PartnerSection = () => {
     };
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto my-5 mb-10'>
-            <div className='relative'>
-                <h1 className='text-2xl lg:text-4xl font-bold text-dealogic mb-10'>Our Partners</h1>
-                <div className='border-2 border-dealogic w-20 absolute top-8 left-36 lg:left-56'></div>
-            </div>
+            <Heading heading={'Our Partners'}/>
             {/* Partners Carousel */}
             <div data-aos='zoom-in'>
                 <Slider {...settings}>

@@ -67,8 +67,8 @@ const AllProducts = () => {
     return (
         <div>
             <div className='relative'>
-                <h1 className='text-xl lg:text-4xl font-bold text-dealogic mb-10'>All Products</h1>
-                <div className='border-2 border-dealogic w-20 absolute top-8 left-56'></div>
+                <h1 className='text-xl lg:text-4xl font-bold text-primary mb-10'>All Products</h1>
+                <div className='border-2 border-primary w-20 absolute top-8 left-56'></div>
             </div>
             <div>
                 <div className="overflow-x-auto">
@@ -96,7 +96,7 @@ const AllProducts = () => {
                                     <td className='flex items-center gap-1'>
                                         <button
                                             onClick={() => handleStatusChange(product._id)}
-                                            className={`duration-300 py-1 px-2 rounded text-white font-semibold ${product.prodStatus === 'Sold' ? 'bg-accent' : 'bg-dealogic hover:bg-secondary'}`}
+                                            className={`duration-300 py-1 px-2 rounded text-white font-semibold ${product.prodStatus === 'Sold' ? 'bg-accent' : 'bg-primary hover:bg-secondary'}`}
                                             disabled={product.prodStatus === 'Sold'}
                                         >
                                             {product.prodStatus === 'Sold' ? 'Sold' : 'Mark Sold'}
@@ -105,14 +105,14 @@ const AllProducts = () => {
                                     <td>
                                         <button
                                             onClick={() => handlePromote(product._id)}
-                                            className={`flex items-center duration-300 py-1 px-2 rounded text-white ${product.promoted ? 'bg-accent' : 'bg-dealogic hover:bg-secondary'}`}
+                                            className={`flex items-center duration-300 py-1 px-2 rounded text-white ${product.promoted ? 'bg-accent' : 'bg-primary hover:bg-secondary'}`}
                                             disabled={product.promoted}
                                         >
                                             <RiRocket2Fill></RiRocket2Fill>
                                             {product.promoted ? 'Promoted' : 'Promote'}</button>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleRemoveProduct(product._id)} className='text-dealogic hover:text-red-700 duration-300'><FaTrash></FaTrash></button>
+                                        <button onClick={() => handleRemoveProduct(product._id)} className='text-primary hover:text-red-700 duration-300'><FaTrash></FaTrash></button>
                                     </td>
                                 </tr>)
                             }
