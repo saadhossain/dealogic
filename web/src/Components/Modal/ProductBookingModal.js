@@ -1,14 +1,25 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const ProductBookingModal = ({ availableProduct, setAvailableProduct }) => {
     const { user } = useContext(AuthContext);
     const { _id, proName, productImageURL, productCondition, purchaseYear, regularPrice, resalePrice, sellerName, usedYear } = availableProduct;
 
+    //Use Location to redirect user after registration
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+
     //Functionality to book a product by buyer
     const handleBooking = (e) => {
         e.preventDefault();
+        if (!user) {
+            toast.error('Please Login First to Book the Product.');
+            navigate(from, { replace: true });
+            return;
+        }
         const form = e.target;
         const buyerPhone = form.buyerPhone.value;
         const meetingLocaton = form.meetingLocation.value;
