@@ -17,7 +17,7 @@ const ProductShowcase = ({ product, setAvailableProduct }) => {
                 <div className="card-body font-semibold">
                     <h2 className="text-base font-semibold h-16">{proName.length > 50 ? proName.slice(0, 50) + '...' : proName}</h2>
                     <div className='flex items-center justify-between'>
-                        <p className='line-through text-gray-500'><span className='hidden md:block'>Regular :$</span>{regularPrice}</p>
+                        <p className='line-through text-gray-500'>Regular: ${regularPrice}</p>
                         <div className='flex items-center gap-1'>
                             <img src={salePrice} alt='Sale Price' className='w-4 md:w-5' />
                             <h3 className="text-lg md:text-xl text-primary font-semibold">${resalePrice}</h3>
