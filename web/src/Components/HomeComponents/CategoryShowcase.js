@@ -6,7 +6,7 @@ const CategoryShowcase = ({ category }) => {
     return (
         <Link to={`/products/${category.catSlug}`}>
             <div className="card card-compact w-full bg-base-100 shadow-lg hover:shadow-2xl duration-500 hover:-mt-2 cursor-pointer">
-                <figure><img src={category.categoryImage} alt={category.categoryName} className='w-16' /></figure>
+                <figure><img src={category.categoryImage} alt={category.categoryName} className='w-16 pt-3' /></figure>
                 <div className="card-body">
                     <h2 className="text-center text-lg font-semibold">{category.categoryName}</h2>
                     <div className="card-actions justify-center">

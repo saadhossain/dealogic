@@ -23,8 +23,8 @@ const RecentProducts = () => {
 
         fetchProducts();
     }, []);
-    if(loading){
-        return <Loader/>
+    if (loading) {
+        return <Loader />;
     }
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto mt-10'>
@@ -32,7 +32,7 @@ const RecentProducts = () => {
                 recentProducts?.length > 0 &&
                 <>
                     <Heading heading={'Recently Posted'} />
-                    <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-5'>
+                    <div className='grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-5' data-aos='fade-up'>
                         {
                             recentProducts.map(product => <ProductShowcase
                                 key={product._id}

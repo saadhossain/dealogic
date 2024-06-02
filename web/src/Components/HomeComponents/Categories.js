@@ -16,7 +16,7 @@ const Categories = () => {
     return (
         <div className='w-11/12 lg:w-10/12 mx-auto mt-10'>
             <Heading heading={'Top Categories'}/>
-            <div className='grid grid-cols-3 md:grid-cols-6 gap-5' data-aos='zoom-in-left'>
+            <div className='grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-5' data-aos='fade-up'>
                 {
                     categories.map(category => <CategoryShowcase
                         key={category._id}

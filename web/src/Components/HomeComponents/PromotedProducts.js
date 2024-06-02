@@ -17,7 +17,7 @@ const PromotedProducts = () => {
                 promotedProducts?.length > 0 &&
                 <>
                     <Heading heading={'Promoted Products'}/>
-                    <div className='grid lg:grid-cols-4 gap-5'>
+                    <div className='grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-5'>
                         {
                             promotedProducts?.map(promoted => <DisplayPromotedProducts
                                 key={promoted._id}

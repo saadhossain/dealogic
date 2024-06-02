@@ -11,7 +11,7 @@ const CategoryProducts = () => {
         <div className='w-11/12 lg:w-10/12 mx-auto my-5'>
             <Heading heading={`Category Based Products`}/>
             {/* Products */}
-            <div className='grid md:grid-cols-3 lg:grid-cols-4 gap-5'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-5'>
                 {
                     products.map(product => <ProductShowcase
                         key={product._id}
