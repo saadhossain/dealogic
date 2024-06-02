@@ -5,15 +5,17 @@ import LatestArticles from '../../Components/HomeComponents/LatestArticles/Lates
 import PartnerSection from '../../Components/HomeComponents/PartnerSection/PartnerSection';
 import PromotedProducts from '../../Components/HomeComponents/PromotedProducts';
 import HomeSafety from '../../Components/HomeSafety/HomeSafety';
+import RecentProducts from '../../Components/HomeComponents/RecentProducts';
 const Home = () => {
     return (
         <div>
-            <HomeBanner></HomeBanner>
-            <Categories></Categories>
-            <PromotedProducts></PromotedProducts>
-            <HomeSafety></HomeSafety>
-            <LatestArticles></LatestArticles>
-            <PartnerSection></PartnerSection>
+            <HomeBanner />
+            <Categories />
+            <RecentProducts />
+            <PromotedProducts />
+            <HomeSafety />
+            <LatestArticles />
+            <PartnerSection />
         </div>
     );
 };

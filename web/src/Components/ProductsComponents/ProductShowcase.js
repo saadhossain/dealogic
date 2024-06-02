@@ -15,7 +15,7 @@ const ProductShowcase = ({ product, setAvailableProduct }) => {
             <div className="card card-compact w-full bg-base-100 shadow-lg hover:shadow-2xl duration-500 hover:-mt-2 cursor-pointer">
                 <figure><img src={productImageURL} alt={proName} className='w-full h-48 rounded-t' /></figure>
                 <div className="card-body font-semibold">
-                    <h2 className="text-lg font-semibold h-12">{proName}</h2>
+                    <h2 className="text-lg font-semibold h-12">{proName.length > 50 ? proName.slice(0, 50)+'...' : proName}</h2>
                     <div className='flex items-center justify-between'>
                         <p className='line-through text-gray-500'>Regular :${regularPrice}</p>
                         <div className='flex items-center gap-1'>

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Heading from '../../Components/Heading';
 import ButtonLoader from '../../Components/Spinners/ButtonLoader';
 import { AuthContext } from '../../Context/AuthProvider';
 import useUser from '../../hooks/UseUser/useUser';
 import { uploadImageToFirestore } from '../../utils/utils';
-import Heading from '../../Components/Heading';
 
 const AddProducts = () => {
     //Get the Logged in user information from the context
@@ -24,7 +24,8 @@ const AddProducts = () => {
     //Set Product Condition to a state
     const [productCondition, setProductCondition] = useState('Excellent');
     //Set Product Category to a State 
-    const [productCategory, setProductCategory] = useState('processor');
+    const [selectedCategory, setSelectedCategory] = useState('');
+    // console.log(selectedCategory)
     //Handle Input Values
     const handleValues = (e) => {
         e.preventDefault();
@@ -48,7 +49,7 @@ const AddProducts = () => {
                 ...productDetails,
                 productImageURL,
                 productCondition,
-                productCategory,
+                productCategory:selectedCategory,
                 sellerName: loggedInUser?.fullName,
                 sellerEmail: loggedInUser?.email,
                 sellerVerified: loggedInUser?.verified,
@@ -79,7 +80,7 @@ const AddProducts = () => {
     };
     return (
         <div className='w-full flex flex-col p-6 rounded-lg bg-slate-50 text-gray-700 shadow-xl'>
-            <Heading heading={'Add A Product'}/>
+            <Heading heading={'Add A Product'} />
             <form onSubmit={handleAddProduct}>
                 <div className="space-y-4">
                     {/* Product Information Section */}
@@ -117,10 +118,20 @@ const AddProducts = () => {
                         </div>
                         <div>
                             <label htmlFor="category" className="mb-2 text-lg">Product Category</label>
-                            <select onChange={e => setProductCategory(e.target.value)} name="category" id="category" className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800">
-                                <option value={category[0]?.catSlug}>{category[0]?.categoryName}</option>
-                                <option value={category[1]?.catSlug}>{category[1]?.categoryName}</option>
-                                <option value={category[2]?.catSlug}>{category[2]?.categoryName}</option>
+                            <select
+                                className="w-full px-3 py-2 border rounded-md border-gray-800 text-gray-800 focus:outline-none"
+                                value={selectedCategory}
+                                onChange={(e) => setSelectedCategory(e.target.value)}
+                                name="category"
+                                id="category"
+                            >
+                                <option value="">Select Category</option>
+                                {
+                                    category.map((category) => <option
+                                        key={category._id}
+                                        value={category.catSlug}
+                                    >{category.categoryName}</option>)
+                                }
                             </select>
                         </div>
                         <div>
