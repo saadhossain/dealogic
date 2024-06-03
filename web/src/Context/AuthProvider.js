@@ -53,7 +53,9 @@ const AuthProvider = ({ children }) => {
         })
         return () => unSubscribe()
     }, [auth])
-    const authInfo = {createUser, googleLogin, updateUser, loading, setLoading, userLogin, user, logOut, passwordReset}
+
+    const [isExpand, setIsExpand] = useState(false);
+    const authInfo = {createUser, googleLogin, updateUser, loading, setLoading, userLogin, user, logOut, passwordReset, isExpand, setIsExpand}
     return (
         <div>
             <AuthContext.Provider value={authInfo}>

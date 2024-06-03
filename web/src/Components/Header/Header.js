@@ -15,7 +15,7 @@ const Header = () => {
     //get user form the context
     const { user } = useContext(AuthContext);
     return (
-        <div className='bg-[#E2F4FE] py-2'>
+        <div className='bg-[#E2F4FE] py-2 sticky top-0 z-[9999999]'>
             <div className='w-11/12 lg:w-10/12 mx-auto flex justify-between items-center'>
                 <Link to='/'><img src={logo} alt='dealogic' className='w-28' /></Link>
                 <div className='flex items-center gap-2'>

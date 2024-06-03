@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 import useUser from '../../hooks/UseUser/useUser';
 
 const DashboardLeftSidebar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, setIsExpand } = useContext(AuthContext);
     //Get LoggedIn user by using useUser hook
     const { loggedInUser } = useUser(user?.email);
     const handleLogOut = () => {
@@ -18,7 +18,7 @@ const DashboardLeftSidebar = () => {
     };
     return (
         <div className='sticky top-10'>
-            <div className='bg-accent p-5 rounded-lg flex flex-col justify-between text-white'>
+            <div className='bg-primary p-5 rounded-b flex flex-col justify-between text-white -ml-[17px] w-full shadow-2xl'>
                 <div>
                     <div className='flex items-center gap-5'>
                         <img src={user?.photoURL ? user.photoURL : 'https://i.ibb.co/mzkVLJt/profile.png'} alt={user?.displayName} className="w-16 h-16 rounded-full" />
@@ -29,31 +29,49 @@ const DashboardLeftSidebar = () => {
                     </div>
                     <div className='mt-10 ml-5'>
                         <ul className='font-semibold flex flex-col gap-3'>
-                            <Link    to='/dashboard' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                            <Link
+                                to='/dashboard'
+                                className='duration-500 ease-in-out hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                onClick={() => setIsExpand(false)}
+                            >
                                 <li>Dashboard</li>
                             </Link>
                             {/* //Conditionally showing Admin menus */}
                             {
                                 loggedInUser?.accountType === 'Admin' && <>
-                                    <Link    to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/allproducts' className='duration-500 ease-in-out hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>All Products</li>
                                     </Link>
-                                    <Link    to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>Add A Product</li>
                                     </Link>
-                                    <Link    to='/dashboard/allusers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/allusers' className='hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>All Users</li>
                                     </Link>
-                                    <Link    to='/dashboard/sellers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/sellers' className='hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>All Seller</li>
                                     </Link>
-                                    <Link    to='/dashboard/buyers' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/buyers' className='hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>All Buyer</li>
                                     </Link>
-                                    <Link    to='/dashboard/publishblog' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/publishblog' className='hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>Publish A Blog</li>
                                     </Link>
-                                    <Link    to='/dashboard/bookedproducts' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/bookedproducts' className='hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>Booked Products</li>
                                     </Link>
                                 </>
@@ -61,20 +79,28 @@ const DashboardLeftSidebar = () => {
                             {/* //Conditionally showing Seller menus */}
                             {
                                 loggedInUser?.accountType === 'Seller' && <>
-                                    <Link to='/dashboard/myproducts' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/myproducts' className='duration-500 ease-in-out hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>My Products</li>
                                     </Link>
-                                    <Link to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>Sell A Product</li>
                                     </Link></>
                             }
                             {/* //Conditionally showing buyer menus */}
                             {
                                 loggedInUser?.accountType === 'Buyer' && <>
-                                    <Link to='/dashboard/mypurchase' className='duration-500 ease-in-out hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/mypurchase' className='duration-500 ease-in-out hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>My Purchases</li>
                                     </Link>
-                                    <Link to='/dashboard/addProduct' className='hover:bg-primary text-white py-1 px-2 rounded border-b-2 border-primary'>
+                                    <Link to='/dashboard/addProduct' className='hover:bg-secondary text-white py-1 px-2 rounded border-b-2 border-secondary'
+                                        onClick={() => setIsExpand(false)}
+                                    >
                                         <li>Sell A Product</li>
                                     </Link></>
                             }
